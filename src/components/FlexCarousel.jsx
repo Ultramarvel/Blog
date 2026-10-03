@@ -469,13 +469,13 @@ const FlexCarousel = ({
       if (!ctx) return cover;
 
       const background = ctx.createLinearGradient(90, 30, 1110, 870);
-      background.addColorStop(0, '#c2c5c2');
-      background.addColorStop(0.46, '#777b77');
-      background.addColorStop(1, '#282b28');
+      background.addColorStop(0, '#e8f1cf');
+      background.addColorStop(0.52, '#cbdca3');
+      background.addColorStop(1, '#a9c47a');
       ctx.fillStyle = background;
       ctx.fillRect(0, 0, cover.width, cover.height);
 
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.055)';
+      ctx.fillStyle = 'rgba(29, 45, 25, 0.055)';
       for (let y = 24; y < cover.height; y += 28) {
         for (let x = 24 + (y % 56 ? 12 : 0); x < cover.width; x += 28) {
           ctx.beginPath();
@@ -495,7 +495,7 @@ const FlexCarousel = ({
       ctx.translate(600, 458);
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillStyle = '#fff';
+      ctx.fillStyle = '#1d2d19';
 
       let titleSize = 76;
       const title = item.title || item.alt || `FIELD NOTE ${index + 1}`;
@@ -506,12 +506,12 @@ const FlexCarousel = ({
       ctx.fillText(title, 0, -28);
 
       ctx.font = '500 28px "Microsoft YaHei", sans-serif';
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.86)';
+      ctx.fillStyle = 'rgba(29, 45, 25, 0.76)';
       ctx.fillText(item.coverMeta || item.subtitle || '推荐阅读  ↗', 0, 48);
       ctx.restore();
 
       const number = String(index + 1).padStart(2, '0');
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.78)';
+      ctx.fillStyle = 'rgba(29, 45, 25, 0.68)';
       ctx.font = '22px monospace';
       ctx.textAlign = 'left';
       ctx.fillText(`SELECTED NOTE / ${number}`, 68, 82);

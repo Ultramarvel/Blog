@@ -102,6 +102,9 @@ test('the homepage presents published posts in the interactive recommended readi
   assert.match(page, /generated-field-note-/);
   assert.match(page, /coverMeta: `\$\{post\.data\.readingMinutes\} MIN READ/);
   assert.match(carousel, /createGeneratedCover/);
+  assert.match(carousel, /background\.addColorStop\(0, '#e8f1cf'\)/);
+  assert.match(carousel, /background\.addColorStop\(1, '#a9c47a'\)/);
+  assert.match(carousel, /ctx\.fillStyle = '#1d2d19'/);
   assert.doesNotMatch(carousel, /ctx\.rotate\([^)]*Math\.PI/);
   assert.match(carousel, /ctx\.fillText\(title, 0, -28\)/);
   assert.match(carousel, /item\.coverMeta \|\| item\.subtitle/);
