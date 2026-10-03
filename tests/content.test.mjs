@@ -72,6 +72,7 @@ test('the homepage includes an accessible animated time stream', async () => {
   assert.match(page, /<TimeStream \/>/);
   assert.match(component, /时间流向哪里？/);
   assert.equal([...component.matchAll(/class="stream-layer /g)].length, 5);
+  assert.equal([...component.matchAll(/V420H0Z/g)].length, 1, 'only the bottom stream may extend to the chart baseline');
   assert.doesNotMatch(component, /<img\b/i);
   assert.match(styles, /body\.light \.time-stream/);
   assert.match(styles, /prefers-reduced-motion/);
