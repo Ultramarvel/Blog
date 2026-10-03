@@ -56,6 +56,12 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(script, /orbitalArt\.addEventListener\('pointermove'/);
 });
 
+test('light mode gives the brand mark a high-contrast color', async () => {
+  const styles = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
+  assert.match(styles, /body\.light \.brand-mark\{[^}]*border-color:#5d7334;[^}]*color:#5d7334/);
+  assert.match(styles, /body\.light \.brand-mark span\{[^}]*color:#5d7334/);
+});
+
 test('published Markdown posts do not contain image syntax', async () => {
   const files = (await readdir(postsDirectory)).filter((file) => file.endsWith('.md'));
   for (const file of files) {

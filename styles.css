@@ -123,3 +123,6 @@
 
 .empty-state{padding:50px 24px;border:1px solid #bfc1b5;color:#70766a;text-align:center;font:14px var(--serif)}
 .empty-state a{color:#667d3d;text-underline-offset:4px}
+
+body.light .brand-mark{background:var(--bg);border-color:#5d7334;color:#5d7334}
+body.light .brand-mark span{background:var(--bg);color:#5d7334}
