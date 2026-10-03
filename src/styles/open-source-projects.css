@@ -276,6 +276,71 @@
 .project-card__signal i:nth-of-type(2) { top: 48%; left: 17%; width: 34%; transform: rotate(28deg); }
 .project-card__signal i:nth-of-type(3) { top: 78%; left: 18%; width: 64%; transform: rotate(-2deg); }
 
+body.light .open-source {
+  border-bottom-color: #c7c9bc;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(166, 198, 102, .2), transparent 27%),
+    radial-gradient(circle at 12% 84%, rgba(209, 237, 120, .16), transparent 24%),
+    #e8e7dc;
+  color: #252920;
+}
+
+body.light .open-source__header h2 {
+  color: #252920;
+}
+
+body.light .open-source__header h2 span,
+body.light .open-source__header>div>p {
+  color: #657d38;
+}
+
+body.light .open-source__header>p {
+  color: #697064;
+}
+
+body.light .project-card:not(.project-card--featured) article {
+  border-color: rgba(82, 99, 72, .2);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(209, 237, 120, .16), transparent 31%),
+    linear-gradient(145deg, rgba(255, 255, 255, .68), rgba(211, 221, 195, .48));
+  box-shadow: inset 0 1px rgba(255, 255, 255, .88), 0 18px 45px rgba(65, 78, 55, .09);
+}
+
+body.light .project-card:not(.project-card--featured):hover article,
+body.light .project-card:not(.project-card--featured):focus-visible article {
+  border-color: rgba(104, 133, 59, .52);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(209, 237, 120, .25), transparent 33%),
+    linear-gradient(145deg, rgba(255, 255, 255, .82), rgba(207, 222, 181, .6));
+}
+
+body.light .project-card:not(.project-card--featured) .project-card__meta,
+body.light .project-card:not(.project-card--featured) .project-card__copy>p:last-child {
+  color: #606a5b;
+}
+
+body.light .project-card:not(.project-card--featured) .project-card__copy>p:first-child,
+body.light .project-card:not(.project-card--featured) .project-card__mark {
+  color: #617b34;
+}
+
+body.light .project-card:not(.project-card--featured) .project-card__copy h3 {
+  color: #252d22;
+}
+
+body.light .project-card:not(.project-card--featured) .project-card__mark {
+  border-color: rgba(47, 61, 40, .28);
+}
+
+body.light .project-card:not(.project-card--featured) li {
+  border-color: rgba(47, 61, 40, .2);
+  color: #5e6858;
+}
+
+body.light .project-card:not(.project-card--featured) .project-card__action {
+  color: #3e5035;
+}
+
 @media (max-width: 980px) {
   .open-source__grid {
     grid-template-columns: 1fr 1fr;

@@ -99,6 +99,10 @@
   will-change: left, top, opacity;
 }
 
+body.light .magic-bento-spotlight {
+  mix-blend-mode: multiply;
+}
+
 @media (max-width: 768px), (prefers-reduced-motion: reduce) {
   .magic-bento-spotlight,
   .magic-bento-particle,

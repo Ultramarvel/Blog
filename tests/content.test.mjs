@@ -168,6 +168,10 @@ test('the homepage showcases open source projects with green MagicBento interact
   });
   assert.match(styles, /grid-template-columns:\s*1\.35fr \.82fr \.82fr/);
   assert.match(styles, /\.project-card:hover article/);
+  assert.match(styles, /body\.light \.open-source\s*\{/);
+  assert.match(styles, /body\.light \.project-card:not\(\.project-card--featured\) article\s*\{/);
+  assert.match(styles, /linear-gradient\(145deg, rgba\(255, 255, 255, \.68\), rgba\(211, 221, 195, \.48\)\)/);
+  assert.match(magicStyles, /body\.light \.magic-bento-spotlight\s*\{[^}]*mix-blend-mode:\s*multiply/);
   assert.match(styles, /@media \(max-width:\s*650px\)/);
   assert.match(styles, /prefers-reduced-motion:\s*reduce/);
 });
