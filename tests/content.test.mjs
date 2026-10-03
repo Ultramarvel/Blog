@@ -100,7 +100,11 @@ test('the homepage presents published posts in the interactive recommended readi
   assert.match(page, /推荐阅读/);
   assert.match(page, /<RecommendedReading client:load items=\{recommendedItems\}/);
   assert.match(page, /generated-field-note-/);
+  assert.match(page, /coverMeta: `\$\{post\.data\.readingMinutes\} MIN READ/);
   assert.match(carousel, /createGeneratedCover/);
+  assert.match(carousel, /ctx\.rotate\(-22 \* Math\.PI \/ 180\)/);
+  assert.match(carousel, /ctx\.fillText\(title, 0, -28\)/);
+  assert.match(carousel, /item\.coverMeta \|\| item\.subtitle/);
   assert.match(page, /href: `\/posts\/\$\{post\.id\}\//);
   assert.doesNotMatch(page, /class="featured-card"/);
   assert.doesNotMatch(page, /class="post-list"/);

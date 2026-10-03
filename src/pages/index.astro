@@ -20,9 +20,10 @@ const recommendedItems = posts.map((post, index) => ({
   src: `generated-field-note-${index + 1}`,
   generated: true,
   accent: ['#d1ed78', '#f1f0e6', '#8eaa62', '#b9d28a'][index % 4],
-  alt: `${post.data.title}的抽象轨道封面`,
+  alt: `${post.data.title}的编辑式推荐封面`,
   title: post.data.title,
   subtitle: `${post.data.category} · ${formatDate(post.data.publishedAt)} · ${post.data.readingMinutes} MIN READ`,
+  coverMeta: `${post.data.readingMinutes} MIN READ  ·  ${post.data.category}  ↗`,
   href: `/posts/${post.id}/`,
 }));
 ---

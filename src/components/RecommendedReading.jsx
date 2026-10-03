@@ -7,6 +7,7 @@ import './RecommendedReading.css';
  *   alt: string;
  *   title: string;
  *   subtitle: string;
+ *   coverMeta?: string;
  *   href: string;
  *   generated?: boolean;
  *   accent?: string;

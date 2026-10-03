@@ -468,70 +468,58 @@ const FlexCarousel = ({
       const ctx = cover.getContext('2d');
       if (!ctx) return cover;
 
-      const accent = item.accent || '#d1ed78';
-      ctx.fillStyle = '#121713';
+      const background = ctx.createLinearGradient(90, 30, 1110, 870);
+      background.addColorStop(0, '#c2c5c2');
+      background.addColorStop(0.46, '#777b77');
+      background.addColorStop(1, '#282b28');
+      ctx.fillStyle = background;
       ctx.fillRect(0, 0, cover.width, cover.height);
 
-      ctx.strokeStyle = 'rgba(209, 237, 120, 0.08)';
-      ctx.lineWidth = 1;
-      for (let x = 0; x <= cover.width; x += 70) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, cover.height);
-        ctx.stroke();
-      }
-      for (let y = 0; y <= cover.height; y += 70) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(cover.width, y);
-        ctx.stroke();
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.055)';
+      for (let y = 24; y < cover.height; y += 28) {
+        for (let x = 24 + (y % 56 ? 12 : 0); x < cover.width; x += 28) {
+          ctx.beginPath();
+          ctx.arc(x, y, 1.4, 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
 
-      const glow = ctx.createRadialGradient(540, 360, 20, 600, 430, 330);
-      glow.addColorStop(0, `${accent}e6`);
-      glow.addColorStop(0.38, `${accent}35`);
-      glow.addColorStop(1, 'rgba(16, 20, 16, 0)');
-      ctx.fillStyle = glow;
-      ctx.beginPath();
-      ctx.arc(600, 430, 330, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.95)';
+      ctx.lineWidth = 18;
+      ctx.strokeRect(14, 14, cover.width - 28, cover.height - 28);
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(34, 34, cover.width - 68, cover.height - 68);
 
-      const drawOrbit = (rotation, radiusX, radiusY, color, width) => {
-        ctx.save();
-        ctx.translate(600, 430);
-        ctx.rotate(rotation);
-        ctx.strokeStyle = color;
-        ctx.lineWidth = width;
-        ctx.beginPath();
-        ctx.ellipse(0, 0, radiusX, radiusY, 0, 0, Math.PI * 2);
-        ctx.stroke();
-        ctx.restore();
-      };
-      drawOrbit((-24 + index * 8) * Math.PI / 180, 400, 132, `${accent}b8`, 3);
-      drawOrbit((38 - index * 7) * Math.PI / 180, 430, 180, 'rgba(233, 232, 221, 0.38)', 2);
+      ctx.save();
+      ctx.translate(600, 458);
+      ctx.rotate(-22 * Math.PI / 180);
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#fff';
 
-      ctx.fillStyle = '#1e291f';
-      ctx.strokeStyle = accent;
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.arc(600, 430, 136, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.stroke();
-      ctx.globalAlpha = 0.86;
-      ctx.fillStyle = accent;
-      ctx.beginPath();
-      ctx.arc(600, 430, 90, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.globalAlpha = 1;
+      let titleSize = 76;
+      const title = item.title || item.alt || `FIELD NOTE ${index + 1}`;
+      do {
+        ctx.font = `700 ${titleSize}px "Microsoft YaHei", sans-serif`;
+        titleSize -= 2;
+      } while (ctx.measureText(title).width > 980 && titleSize > 42);
+      ctx.fillText(title, 0, -28);
+
+      ctx.font = '500 28px "Microsoft YaHei", sans-serif';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.86)';
+      ctx.fillText(item.coverMeta || item.subtitle || '推荐阅读  ↗', 0, 48);
+      ctx.restore();
 
       const number = String(index + 1).padStart(2, '0');
-      ctx.fillStyle = '#e9e8dd';
-      ctx.font = '26px monospace';
-      ctx.fillText(`FIELD NOTE / ${number}`, 66, 92);
-      ctx.fillStyle = accent;
-      ctx.font = '700 96px monospace';
-      ctx.textAlign = 'right';
-      ctx.fillText(number, 1135, 830);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.78)';
+      ctx.font = '22px monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText(`SELECTED NOTE / ${number}`, 68, 82);
+      ctx.fillStyle = item.accent || '#d1ed78';
+      ctx.beginPath();
+      ctx.arc(1110, 78, 8, 0, Math.PI * 2);
+      ctx.fill();
       return cover;
     };
 
