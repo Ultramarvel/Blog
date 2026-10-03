@@ -74,6 +74,19 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.match(component, /时间流向哪里？/);
   assert.match(component, /streamBands\.map/);
   assert.equal(geometry.streamBands.length, 5);
+  const leftEdgeThicknesses = geometry.streamBands.map((_, layerIndex) => (
+    geometry.streamBoundaries[layerIndex + 1][0][1]
+      - geometry.streamBoundaries[layerIndex][0][1]
+  ));
+  assert.deepEqual(
+    leftEdgeThicknesses,
+    [0, 0, 0, 0, 420],
+    'only the family stream should occupy the left edge',
+  );
+  assert.ok(
+    geometry.sampleBoundaryY(geometry.streamBoundaries[1], 180) > 0,
+    'the study stream should gradually enter after the left edge',
+  );
   const pointCount = geometry.streamBoundaries[0].length;
   for (let pointIndex = 0; pointIndex < pointCount; pointIndex += 1) {
     for (let boundaryIndex = 1; boundaryIndex < geometry.streamBoundaries.length; boundaryIndex += 1) {

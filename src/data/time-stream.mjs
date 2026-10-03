@@ -4,10 +4,10 @@ const makeBoundary = (ys) => xs.map((x, index) => [x, ys[index]]);
 
 export const streamBoundaries = [
   makeBoundary([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-  makeBoundary([110, 110, 240, 250, 250, 170, 160, 145, 145, 145, 145, 120, 120]),
-  makeBoundary([110, 110, 245, 260, 270, 230, 225, 215, 245, 240, 235, 180, 178]),
-  makeBoundary([110, 115, 255, 280, 295, 300, 300, 305, 290, 285, 275, 235, 228]),
-  makeBoundary([110, 125, 285, 310, 330, 400, 395, 385, 345, 340, 330, 295, 270]),
+  makeBoundary([0, 0, 95, 250, 250, 170, 150, 145, 145, 145, 145, 105, 155]),
+  makeBoundary([0, 0, 95, 250, 250, 205, 195, 215, 220, 210, 205, 160, 195]),
+  makeBoundary([0, 0, 95, 250, 250, 235, 300, 300, 305, 300, 295, 230, 260]),
+  makeBoundary([0, 0, 95, 250, 250, 290, 380, 370, 355, 345, 335, 290, 315]),
   makeBoundary([420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420]),
 ];
 
@@ -58,7 +58,7 @@ const layerDefinitions = [
   { key: 'study', title: '学习', label: '学习', x: 300, y: 116, labelWidth: 52 },
   { key: 'movement', title: '音乐与运动', label: '音乐 / 运动', x: 900, y: 178, labelWidth: 128 },
   { key: 'game', title: '游戏', label: '游戏', x: 600, y: 265, labelWidth: 52 },
-  { key: 'work', title: '编程与工作', label: '编程 / 工作', x: 900, y: 318, labelWidth: 120 },
+  { key: 'work', title: '编程与工作', label: '编程 / 工作', x: 800, y: 328, labelWidth: 120 },
   { key: 'family', title: '社交与家庭', label: '社交 / 家庭', x: 100, y: 335, labelWidth: 140 },
 ];
 
