@@ -87,6 +87,11 @@ test('the homepage includes an accessible animated time stream with ordered band
     geometry.sampleBoundaryY(geometry.streamBoundaries[1], 180) > 0,
     'the study stream should gradually enter after the left edge',
   );
+  const earlyFamilyTop = geometry.sampleBoundaryY(geometry.streamBoundaries[4], 240);
+  assert.ok(
+    420 - earlyFamilyTop > 420 * 0.65,
+    'the family stream should dominate the left side of the chart',
+  );
   const pointCount = geometry.streamBoundaries[0].length;
   for (let pointIndex = 0; pointIndex < pointCount; pointIndex += 1) {
     for (let boundaryIndex = 1; boundaryIndex < geometry.streamBoundaries.length; boundaryIndex += 1) {
