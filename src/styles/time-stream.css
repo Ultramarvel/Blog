@@ -2,7 +2,7 @@
   --stream-study: #334039;
   --stream-movement: #526a53;
   --stream-game: #75934e;
-  --stream-work: #9fbd68;
+  --stream-work: #5d887f;
   --stream-family: #a8c75f;
   --stream-separator: rgba(235, 236, 228, .78);
   padding: 96px 7% 110px;
@@ -182,7 +182,7 @@ body.light .time-stream {
   --stream-study: #738176;
   --stream-movement: #849b80;
   --stream-game: #93ad68;
-  --stream-work: #aecb76;
+  --stream-work: #70998d;
   --stream-family: #b4cf70;
   --stream-separator: rgba(246, 247, 241, .9);
 }
