@@ -1,13 +1,13 @@
 .hero--orbit-only {
-  min-height: 680px;
-  padding: 38px 8% 72px;
+  min-height: 760px;
+  padding: 28px 8% 72px;
   grid-template-columns: 1fr;
   place-items: center;
 }
 
 .hero--orbit-only .hero-art {
-  width: min(100%, 780px);
-  height: 580px;
+  width: min(100%, 880px);
+  height: 680px;
   transform: none;
 }
 
@@ -37,7 +37,7 @@
   height: 580px;
   display: grid;
   place-items: center;
-  transform: translate3d(var(--detail-x), var(--detail-y), 0);
+  transform: translate3d(var(--detail-x), var(--detail-y), 0) scale(1.15);
   transition: transform .35s ease-out;
 }
 
