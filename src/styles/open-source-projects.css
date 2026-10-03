@@ -73,7 +73,6 @@
 
 .project-card:hover article,
 .project-card:focus-visible article {
-  transform: translateY(-9px);
   border-color: rgba(209, 237, 120, .48);
   background: linear-gradient(145deg, rgba(209, 237, 120, .08), rgba(255, 255, 255, .025));
 }

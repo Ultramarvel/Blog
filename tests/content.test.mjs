@@ -129,20 +129,36 @@ test('light mode gives the brand mark a high-contrast color', async () => {
   assert.match(styles, /body\.light \.brand-mark span\{[^}]*color:#5d7334/);
 });
 
-test('the homepage showcases maintainable open source project cards', async () => {
-  const [page, component, styles, data] = await Promise.all([
+test('the homepage showcases open source projects with green MagicBento interactions', async () => {
+  const [page, component, magicBento, magicStyles, styles, data, packageJson] = await Promise.all([
     readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
     readFile(new URL('../src/components/OpenSourceProjects.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/MagicBento.jsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/MagicBento.css', import.meta.url), 'utf8'),
     readFile(new URL('../src/styles/open-source-projects.css', import.meta.url), 'utf8'),
     import(new URL('../src/data/open-source-projects.mjs', import.meta.url).href),
+    readFile(new URL('../package.json', import.meta.url), 'utf8'),
   ]);
 
   assert.match(page, /<OpenSourceProjects \/>/);
   assert.match(component, /id="projects"/);
   assert.match(component, /aria-labelledby="projects-title"/);
-  assert.match(component, /openSourceProjects\.map/);
-  assert.match(component, /project\.tags\.map/);
+  assert.match(component, /<MagicBento[\s\S]*client:load/);
+  assert.match(component, /glowColor="183, 210, 103"/);
+  assert.match(component, /enableStars=\{true\}/);
+  assert.match(component, /enableSpotlight=\{true\}/);
+  assert.match(component, /enableBorderGlow=\{true\}/);
+  assert.match(component, /enableTilt=\{true\}/);
+  assert.match(component, /enableMagnetism=\{true\}/);
   assert.doesNotMatch(component, /<img\b/i);
+  assert.match(magicBento, /import gsap from 'gsap'/);
+  assert.match(magicBento, /projects\.map/);
+  assert.match(magicBento, /createParticleElement/);
+  assert.match(magicBento, /GlobalSpotlight/);
+  assert.match(magicBento, /prefers-reduced-motion: reduce/);
+  assert.match(magicStyles, /rgba\(var\(--glow-color\), calc\(var\(--glow-intensity\) \* \.92\)\)/);
+  assert.match(magicStyles, /\.magic-bento-spotlight/);
+  assert.match(packageJson, /"gsap"/);
   assert.equal(data.openSourceProjects.length, 3);
   data.openSourceProjects.forEach((project) => {
     assert.ok(project.title);

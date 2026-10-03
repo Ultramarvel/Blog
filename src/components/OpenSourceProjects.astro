@@ -1,5 +1,6 @@
 ---
 import { openSourceProjects } from '../data/open-source-projects.mjs';
+import MagicBento from './MagicBento.jsx';
 import '../styles/open-source-projects.css';
 ---
 
@@ -12,37 +13,17 @@ import '../styles/open-source-projects.css';
     <p>可复用的站点、组件与视觉实验，<br />把构建过程也作为作品的一部分。</p>
   </header>
 
-  <div class="open-source__grid">
-    {openSourceProjects.map((project) => (
-      <a
-        class:list={['project-card', { 'project-card--featured': project.featured }]}
-        href={project.href}
-        aria-label={`${project.action}：${project.title}`}
-      >
-        <article>
-          <div class="project-card__meta">
-            <span>PROJECT / {project.number}</span>
-            <span><i></i>{project.status}</span>
-          </div>
-          <div class="project-card__mark" aria-hidden="true">{project.code}</div>
-          <div class="project-card__copy">
-            <p>{project.englishTitle}</p>
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
-          </div>
-          <ul aria-label="技术栈">
-            {project.tags.map((tag) => <li>{tag}</li>)}
-          </ul>
-          <span class="project-card__action">{project.action}<i>↗</i></span>
-
-          {project.featured && (
-            <div class="project-card__signal" aria-hidden="true">
-              <span></span><span></span><span></span><span></span>
-              <i></i><i></i><i></i>
-            </div>
-          )}
-        </article>
-      </a>
-    ))}
-  </div>
+  <MagicBento
+    client:load
+    projects={openSourceProjects}
+    enableStars={true}
+    enableSpotlight={true}
+    enableBorderGlow={true}
+    enableTilt={true}
+    enableMagnetism={true}
+    clickEffect={true}
+    spotlightRadius={320}
+    particleCount={10}
+    glowColor="183, 210, 103"
+  />
 </section>

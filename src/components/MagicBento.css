@@ -1,0 +1,112 @@
+.bento-section {
+  position: relative;
+  perspective: 1200px;
+  user-select: none;
+}
+
+.magic-bento-card {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 320px;
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.magic-bento-card--border-glow::after {
+  content: '';
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(var(--glow-color), calc(var(--glow-intensity) * .92)) 0%,
+    rgba(var(--glow-color), calc(var(--glow-intensity) * .5)) 28%,
+    transparent 62%
+  );
+  pointer-events: none;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.magic-bento-card::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    calc(var(--glow-radius) * .72) circle at var(--glow-x) var(--glow-y),
+    rgba(var(--glow-color), calc(var(--glow-intensity) * .13)),
+    transparent 68%
+  );
+  pointer-events: none;
+}
+
+.magic-bento-particle {
+  position: absolute;
+  z-index: 4;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.magic-bento-particle::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: rgba(183, 210, 103, .14);
+}
+
+.magic-bento-ripple {
+  position: absolute;
+  z-index: 6;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--glow-color), .34) 0%,
+    rgba(var(--glow-color), .14) 34%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.magic-bento-spotlight {
+  --glow-color: 183, 210, 103;
+  position: fixed;
+  z-index: 8;
+  width: 720px;
+  height: 720px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(var(--glow-color), .14) 0%,
+    rgba(var(--glow-color), .07) 18%,
+    rgba(var(--glow-color), .025) 38%,
+    transparent 69%
+  );
+  mix-blend-mode: screen;
+  will-change: left, top, opacity;
+}
+
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  .magic-bento-spotlight,
+  .magic-bento-particle,
+  .magic-bento-ripple {
+    display: none;
+  }
+
+  .magic-bento-card {
+    transform: none !important;
+  }
+}
