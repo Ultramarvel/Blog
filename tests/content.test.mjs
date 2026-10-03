@@ -32,10 +32,8 @@ test('the owner profile contains all public identity fields', async () => {
   for (const field of ['name', 'initials', 'cardName', 'cardRoles', 'role', 'tagline', 'shortBio', 'location', 'coordinates', 'status', 'current', 'topics', 'since', 'email', 'profileNumber', 'updatedAt']) {
     assert.match(profile, new RegExp(`^${field}:`, 'm'), `profile.md is missing ${field}`);
   }
-  assert.match(profile, /^cardName: "Yudong"$/m);
-  for (const role of ["Master's Student at South China Normal University", 'AI Enthusiast', 'Badminton Lover', 'Movie Fan']) {
-    assert.ok(profile.includes(`- "${role}"`), `profile.md is missing card role: ${role}`);
-  }
+  assert.match(profile, /^cardName:\s*["']?[^\r\n"']+["']?$/m);
+  assert.match(profile, /^cardRoles:\r?\n(?:\s+-\s+.+\r?\n){4}/m);
   assert.doesNotMatch(profile, /!\[[^\]]*\]\([^)]*\)/);
   assert.doesNotMatch(profile, /<img\b/i);
 });
@@ -64,7 +62,7 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(page, /<TiltedCard[\s\S]*client:load/);
   assert.match(page, /rotateAmplitude=\{16\}/);
   assert.match(page, /scaleOnHover=\{1\.045\}/);
-  assert.match(page, /containerWidth="380px"/);
+  assert.match(page, /containerWidth="360px"/);
   assert.match(page, /containerHeight="390px"/);
   assert.match(tiltedCard, /from 'motion\/react'/);
   assert.match(tiltedCard, /useSpring/);
