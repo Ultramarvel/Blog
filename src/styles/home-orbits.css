@@ -305,8 +305,20 @@ body.light .orbit-card-panel {
   background: #fff;
 }
 
+body.light .orbit-circle--outer {
+  border-color: rgba(91, 112, 52, .46);
+}
+
 body.light .orbit-circle--middle {
-  border-color: rgba(47, 54, 42, .28);
+  border-color: rgba(53, 62, 47, .4);
+}
+
+body.light .orbit-circle--inner {
+  border-color: rgba(102, 126, 57, .38);
+}
+
+body.light .orbit-circle:after {
+  box-shadow: 0 0 0 3px rgba(104, 132, 54, .09), 0 0 10px rgba(104, 132, 54, .36);
 }
 
 @keyframes profile-orbit-spin {

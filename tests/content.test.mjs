@@ -48,6 +48,9 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(page, /profile\.data\.topics/);
   assert.match(styles, /@keyframes profile-orbit-spin/);
   assert.match(styles, /@keyframes profile-orbit-counter/);
+  for (const ring of ['outer', 'middle', 'inner']) {
+    assert.match(styles, new RegExp(`body\\.light \\.orbit-circle--${ring}`), `light mode is missing the ${ring} orbit contrast rule`);
+  }
   assert.match(styles, /prefers-reduced-motion/);
   assert.match(script, /orbitalArt\.addEventListener\('pointermove'/);
 });
