@@ -8,19 +8,15 @@ document.querySelectorAll('.time-stream__chart').forEach(chart=>{
   const layers=[...chart.querySelectorAll('.stream-layer')];
   const resetStream=()=>{
     delete chart.dataset.activeStream;
-    layers.forEach(layer=>{
-      layer.classList.remove('is-active');
-      layer.parentElement?.append(layer);
-    });
+    layers.forEach(layer=>layer.classList.remove('is-active'));
   };
   chart.querySelectorAll('[data-stream-target]').forEach(control=>{
     const activateStream=()=>{
-      const key=control.dataset.streamTarget;
-      const activeLayer=chart.querySelector(`.stream-layer--${key}`);
-      if(!activeLayer)return;
-      chart.dataset.activeStream=key;
+      const targetId=control.getAttribute('aria-controls');
+      const activeLayer=targetId?document.getElementById(targetId):null;
+      if(!activeLayer||!chart.contains(activeLayer))return;
+      chart.dataset.activeStream=control.dataset.streamTarget;
       layers.forEach(layer=>layer.classList.toggle('is-active',layer===activeLayer));
-      activeLayer.parentElement?.append(activeLayer);
     };
     control.addEventListener('pointerenter',activateStream);
     control.addEventListener('pointerleave',resetStream);

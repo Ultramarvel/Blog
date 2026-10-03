@@ -80,9 +80,7 @@
 
 .stream-layer {
   outline: none;
-  transform-box: fill-box;
-  transform-origin: center;
-  transition: opacity .3s ease, filter .3s ease, transform .35s cubic-bezier(.22, 1, .36, 1);
+  transition: opacity .3s ease, filter .3s ease;
 }
 
 .stream-layer path {
@@ -115,14 +113,12 @@
 }
 
 .time-stream__chart[data-active-stream] .stream-layer:not(.is-active) {
-  opacity: .22;
-  filter: saturate(.5) brightness(.72);
+  opacity: .35;
 }
 
 .time-stream__chart[data-active-stream] .stream-layer.is-active {
   opacity: 1;
-  transform: translateY(-8px) scale(1.008);
-  filter: brightness(1.24) saturate(1.18) drop-shadow(0 12px 10px rgba(0, 0, 0, .38));
+  filter: brightness(1.09) saturate(1.08);
 }
 
 .time-stream__legend {
