@@ -41,7 +41,9 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
     readFile(new URL('../script.js', import.meta.url), 'utf8'),
   ]);
   assert.match(page, /data-orbit-profile/);
+  assert.match(page, /hero--orbit-only/);
   assert.match(page, /orbit-card-panel/);
+  assert.doesNotMatch(page, /class="hero-copy"/);
   assert.match(page, /profile\.data\.name/);
   assert.match(page, /profile\.data\.topics/);
   assert.match(styles, /@keyframes profile-orbit-spin/);
