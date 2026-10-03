@@ -62,6 +62,22 @@ test('light mode gives the brand mark a high-contrast color', async () => {
   assert.match(styles, /body\.light \.brand-mark span\{[^}]*color:#5d7334/);
 });
 
+test('the homepage includes an accessible animated time stream', async () => {
+  const [page, component, styles, script] = await Promise.all([
+    readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/TimeStream.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../src/styles/time-stream.css', import.meta.url), 'utf8'),
+    readFile(new URL('../script.js', import.meta.url), 'utf8'),
+  ]);
+  assert.match(page, /<TimeStream \/>/);
+  assert.match(component, /时间流向哪里？/);
+  assert.equal([...component.matchAll(/class="stream-layer /g)].length, 5);
+  assert.doesNotMatch(component, /<img\b/i);
+  assert.match(styles, /body\.light \.time-stream/);
+  assert.match(styles, /prefers-reduced-motion/);
+  assert.match(script, /\.time-stream__chart/);
+});
+
 test('published Markdown posts do not contain image syntax', async () => {
   const files = (await readdir(postsDirectory)).filter((file) => file.endsWith('.md'));
   for (const file of files) {

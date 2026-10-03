@@ -1,0 +1,61 @@
+---
+import '../styles/time-stream.css';
+---
+
+<section class="time-stream" aria-labelledby="time-stream-title">
+  <header class="time-stream__header">
+    <div>
+      <p>TIME / LIFE DISTRIBUTION</p>
+      <h2 id="time-stream-title">时间流向哪里？</h2>
+    </div>
+    <p>把日常折叠成一条不断变化的河流，<br />看看注意力在不同阶段如何重新分配。</p>
+  </header>
+
+  <div class="time-stream__chart">
+    <div class="time-stream__canvas" tabindex="0" aria-label="横向滚动查看完整时间流图">
+      <svg class="time-stream__svg" viewBox="0 0 1200 460" role="img" aria-labelledby="time-stream-chart-title time-stream-chart-desc">
+        <title id="time-stream-chart-title">时间分配流图</title>
+        <desc id="time-stream-chart-desc">展示社交家庭、编程工作、游戏、音乐运动与学习五类活动随年龄变化的示意图。</desc>
+
+        <g class="stream-layer stream-layer--study" tabindex="0">
+          <title>学习</title>
+          <path d="M0 0H1200V420H0Z"></path>
+          <text x="330" y="116">学习</text>
+        </g>
+        <g class="stream-layer stream-layer--movement" tabindex="0">
+          <title>音乐与运动</title>
+          <path d="M0 420C220 420 305 420 390 250C450 188 520 177 620 160C710 145 760 135 820 140C940 151 1050 124 1200 120V420H0Z"></path>
+          <text x="865" y="178">音乐 / 运动</text>
+        </g>
+        <g class="stream-layer stream-layer--game" tabindex="0">
+          <title>游戏</title>
+          <path d="M0 420C340 420 402 350 470 265C540 220 630 245 700 245C810 245 900 221 980 210C1060 195 1110 175 1200 178V420H0Z"></path>
+          <text x="590" y="277">游戏</text>
+        </g>
+        <g class="stream-layer stream-layer--work" tabindex="0">
+          <title>编程与工作</title>
+          <path d="M0 420C420 420 500 390 560 330C620 290 690 285 760 285C880 285 950 282 1040 250C1110 230 1160 230 1200 228V420H0Z"></path>
+          <text x="850" y="327">编程 / 工作</text>
+        </g>
+        <g class="stream-layer stream-layer--family" tabindex="0">
+          <title>社交与家庭</title>
+          <path d="M0 110C90 100 160 205 250 260C330 300 400 305 470 360C540 405 590 405 670 370C760 330 900 345 990 310C1070 280 1130 285 1200 270V420H0Z"></path>
+          <text x="65" y="232">社交 / 家庭</text>
+        </g>
+
+        <g class="time-stream__axis" aria-hidden="true">
+          <text x="0" y="451">18</text><text x="238" y="451">22</text><text x="478" y="451">26</text>
+          <text x="718" y="451">30</text><text x="958" y="451">34</text><text x="1180" y="451">38</text>
+          <text class="time-stream__age" x="600" y="451">AGE</text>
+        </g>
+      </svg>
+    </div>
+    <div class="time-stream__legend" aria-label="图例">
+      <span><i class="legend-family"></i>社交 / 家庭</span>
+      <span><i class="legend-work"></i>编程 / 工作</span>
+      <span><i class="legend-game"></i>游戏</span>
+      <span><i class="legend-movement"></i>音乐 / 运动</span>
+      <span><i class="legend-study"></i>学习</span>
+    </div>
+  </div>
+</section>

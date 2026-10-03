@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TimeStream from '../components/TimeStream.astro';
 import '../styles/home-orbits.css';
 
 const [loadedPosts, profiles] = await Promise.all([
@@ -51,6 +52,8 @@ const formatDate = (date: Date) => date.toISOString().slice(0, 10).replaceAll('-
       </div>
       <div class="hero-index"><span>01</span><span class="index-line"></span><span>SCROLL TO EXPLORE</span></div>
     </section>
+
+    <TimeStream />
 
     <section class="notes-section" id="notes">
       <div class="section-heading">
