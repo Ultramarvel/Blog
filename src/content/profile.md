@@ -1,6 +1,12 @@
 ---
 name: "林"
 initials: "林"
+cardName: "Yudong"
+cardRoles:
+  - "Master's Student at South China Normal University"
+  - "AI Enthusiast"
+  - "Badminton Lover"
+  - "Movie Fan"
 role: "观察者、设计与技术实践者"
 tagline: "把好奇心种进日常。"
 shortBio: "我观察事物如何运作，也记录技术、设计与生活里那些容易被忽略的细节。这里是一张持续展开的工作台，也是一座缓慢生长的数字花园。"

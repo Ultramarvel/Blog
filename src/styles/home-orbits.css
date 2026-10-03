@@ -209,8 +209,8 @@
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 338px;
-  padding: 27px 29px 20px;
+  min-height: 390px;
+  padding: 34px 34px 28px;
   overflow: hidden;
   border: 1px solid rgba(17, 20, 17, .1);
   border-radius: 24px;
@@ -228,59 +228,41 @@
   background: linear-gradient(130deg, rgba(255, 255, 255, .7), transparent 44%);
 }
 
-.orbit-card-panel__meta,
-.orbit-card-panel footer {
+.orbit-card-panel__prompt {
   position: relative;
   z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  color: #83877e;
-  font: 7px var(--mono);
-  letter-spacing: .1em;
-}
-
-.orbit-card-panel__meta span:last-child,
-.orbit-card-panel footer span:last-child {
-  color: #667c3f;
-}
-
-.orbit-card-panel>p {
-  position: relative;
-  z-index: 1;
-  margin: 31px 0 0;
+  margin: 0;
   color: #5e6359;
-  font: 600 16px var(--sans);
+  font: 700 19px/1.25 var(--sans);
+  letter-spacing: -.035em;
 }
 
 .orbit-card-panel>strong {
   position: relative;
   z-index: 1;
   display: block;
-  margin-top: -2px;
+  margin-top: 3px;
   color: #617b35;
-  font: 700 62px/1.05 var(--serif);
+  font: 700 58px/1 var(--sans);
+  letter-spacing: -.055em;
 }
 
 .orbit-card-panel__rule {
   position: relative;
   z-index: 1;
   height: 1px;
-  margin: 29px 0 18px;
+  margin: 37px 0 19px;
   background: #ced1c7;
 }
 
-.orbit-card-panel>small {
-  position: relative;
-  z-index: 1;
-  color: #6f7469;
-  font: 8px var(--mono);
-  letter-spacing: .08em;
+.orbit-card-panel__prompt--roles {
+  font-size: 18px;
 }
 
 .orbit-card-panel ul {
   position: relative;
   z-index: 1;
-  margin: 10px 0 23px;
+  margin: 15px 0 0;
   padding: 0;
   list-style: none;
   text-align: right;
@@ -288,12 +270,8 @@
 
 .orbit-card-panel li {
   color: #30352d;
-  font: 500 13px/1.72 var(--sans);
-}
-
-.orbit-card-panel footer {
-  padding-top: 12px;
-  border-top: 1px solid #d7d9d1;
+  font: 500 12px/1.78 var(--sans);
+  white-space: nowrap;
 }
 
 .hero-art--circles.is-active .orbit-card-panel {

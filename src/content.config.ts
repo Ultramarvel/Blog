@@ -23,6 +23,8 @@ const profile = defineCollection({
   schema: z.object({
     name: z.string().min(1),
     initials: z.string().min(1).max(3),
+    cardName: z.string().min(1),
+    cardRoles: z.array(z.string().min(1)).min(1),
     role: z.string().min(1),
     tagline: z.string().min(1),
     shortBio: z.string().min(1),

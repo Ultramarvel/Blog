@@ -41,21 +41,19 @@ const formatDate = (date: Date) => date.toISOString().slice(0, 10).replaceAll('-
             <TiltedCard
               client:load
               className="orbit-card-tilt"
-              containerHeight="338px"
-              containerWidth="284px"
+              containerHeight="390px"
+              containerWidth="360px"
               rotateAmplitude={16}
               scaleOnHover={1.045}
               showMobileWarning={false}
               showTooltip={false}
             >
               <div class="orbit-card-panel">
-                <div class="orbit-card-panel__meta"><span>OBSERVER ID</span><span>{profile.data.profileNumber}</span></div>
-                <p>你好，我是</p>
-                <strong>{profile.data.name}</strong>
+                <p class="orbit-card-panel__prompt">My name is:</p>
+                <strong>{profile.data.cardName}</strong>
                 <div class="orbit-card-panel__rule"></div>
-                <small>正在观察</small>
-                <ul>{profile.data.topics.slice(0, 3).map((topic) => <li>{topic}</li>)}</ul>
-                <footer><span>{profile.data.location}</span><span>ACTIVE</span></footer>
+                <p class="orbit-card-panel__prompt orbit-card-panel__prompt--roles">I'm a:</p>
+                <ul>{profile.data.cardRoles.map((role) => <li>{role}</li>)}</ul>
               </div>
             </TiltedCard>
           </div>

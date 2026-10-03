@@ -21,14 +21,20 @@ test('the CMS exposes Markdown text controls without image fields', async () => 
   assert.match(config, /name: "body"[\s\S]*widget: "markdown"/);
   assert.match(config, /editor_components: \["code-block"\]/);
   assert.match(config, /modes: \["raw"\]/);
+  assert.match(config, /name: "cardName"/);
+  assert.match(config, /name: "cardRoles"/);
   assert.doesNotMatch(config, /rich_text/);
   assert.doesNotMatch(config, /widget: "image"/);
 });
 
 test('the owner profile contains all public identity fields', async () => {
   const profile = await readFile(new URL('../src/content/profile.md', import.meta.url), 'utf8');
-  for (const field of ['name', 'initials', 'role', 'tagline', 'shortBio', 'location', 'coordinates', 'status', 'current', 'topics', 'since', 'email', 'profileNumber', 'updatedAt']) {
+  for (const field of ['name', 'initials', 'cardName', 'cardRoles', 'role', 'tagline', 'shortBio', 'location', 'coordinates', 'status', 'current', 'topics', 'since', 'email', 'profileNumber', 'updatedAt']) {
     assert.match(profile, new RegExp(`^${field}:`, 'm'), `profile.md is missing ${field}`);
+  }
+  assert.match(profile, /^cardName: "Yudong"$/m);
+  for (const role of ["Master's Student at South China Normal University", 'AI Enthusiast', 'Badminton Lover', 'Movie Fan']) {
+    assert.ok(profile.includes(`- "${role}"`), `profile.md is missing card role: ${role}`);
   }
   assert.doesNotMatch(profile, /!\[[^\]]*\]\([^)]*\)/);
   assert.doesNotMatch(profile, /<img\b/i);
@@ -50,9 +56,16 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.doesNotMatch(page, /class="hero-copy"/);
   assert.match(page, /profile\.data\.name/);
   assert.match(page, /profile\.data\.topics/);
+  assert.match(page, /My name is:/);
+  assert.match(page, /I'm a:/);
+  assert.match(page, /profile\.data\.cardName/);
+  assert.match(page, /profile\.data\.cardRoles\.map/);
+  assert.doesNotMatch(page, /orbit-card-panel__meta/);
   assert.match(page, /<TiltedCard[\s\S]*client:load/);
   assert.match(page, /rotateAmplitude=\{16\}/);
   assert.match(page, /scaleOnHover=\{1\.045\}/);
+  assert.match(page, /containerWidth="360px"/);
+  assert.match(page, /containerHeight="390px"/);
   assert.match(tiltedCard, /from 'motion\/react'/);
   assert.match(tiltedCard, /useSpring/);
   assert.match(tiltedCard, /onMouseMove=\{handleMouse\}/);
