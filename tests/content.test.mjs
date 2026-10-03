@@ -76,7 +76,7 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(styles, /@keyframes profile-orbit-counter/);
   assert.match(styles, /\.orbit-card-panel__prompt\s*\{[^}]*font:\s*700 20px\/1\.2 var\(--serif\)/);
   assert.match(styles, /\.orbit-card-panel__prompt--roles\s*\{[^}]*font-size:\s*25px/);
-  assert.match(styles, /\.orbit-card-panel>strong\s*\{[^}]*font:\s*700 50px\/1 var\(--sans\)/);
+  assert.match(styles, /\.orbit-card-panel>strong\s*\{[^}]*font:\s*700 40px\/1 var\(--sans\)/);
   assert.match(styles, /\.orbit-card-panel li\s*\{[^}]*font:\s*500 13px\/1\.76 var\(--sans\)/);
   assert.match(styles, /scale\(1\.15\)/, 'desktop orbit composition should use the enlarged scale');
   for (const ring of ['outer', 'middle', 'inner']) {
