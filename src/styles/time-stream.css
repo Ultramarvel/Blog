@@ -131,20 +131,21 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 9px;
-  padding-top: 16px;
+  gap: 14px;
+  padding-top: 22px;
 }
 
 .time-stream__legend button {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 7px 11px;
+  gap: 10px;
+  min-height: 44px;
+  padding: 11px 18px;
   border: 1px solid var(--line);
   border-radius: 30px;
   background: transparent;
   color: var(--muted);
-  font: 8px var(--mono);
+  font: 11px var(--mono);
   cursor: pointer;
   transition: color .25s ease, border-color .25s ease, background .25s ease, transform .25s ease, box-shadow .25s ease;
 }
@@ -164,8 +165,9 @@
 }
 
 .time-stream__legend i {
-  width: 7px;
-  height: 7px;
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
   border-radius: 50%;
 }
 

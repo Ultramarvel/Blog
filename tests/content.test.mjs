@@ -123,6 +123,8 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.doesNotMatch(styles, /\.stream-layer\.is-active\s*\{[^}]*translateY/);
   assert.doesNotMatch(styles, /\.stream-layer\.is-active\s*\{[^}]*drop-shadow/);
   assert.match(styles, /\.time-stream__legend button:hover/);
+  assert.match(styles, /\.time-stream__legend button\s*\{[^}]*min-height:\s*44px;[^}]*padding:\s*11px 18px;[^}]*font:\s*11px var\(--mono\)/);
+  assert.match(styles, /\.time-stream__legend i\s*\{[^}]*width:\s*10px;[^}]*height:\s*10px/);
   assert.doesNotMatch(styles, /#263020/);
   assert.match(styles, /body\.light \.time-stream/);
   assert.match(styles, /prefers-reduced-motion/);
