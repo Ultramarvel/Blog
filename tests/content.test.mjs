@@ -73,6 +73,9 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.match(page, /<TimeStream \/>/);
   assert.match(component, /时间流向哪里？/);
   assert.match(component, /streamBands\.map/);
+  assert.match(component, /viewBox="0 0 1200 420"/);
+  assert.doesNotMatch(component, /time-stream__axis/);
+  assert.doesNotMatch(component, />AGE</);
   assert.equal(geometry.streamBands.length, 5);
   const leftEdgeThicknesses = geometry.streamBands.map((_, layerIndex) => (
     geometry.streamBoundaries[layerIndex + 1][0][1]

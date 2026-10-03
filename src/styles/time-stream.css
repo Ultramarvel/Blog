@@ -112,18 +112,6 @@
   filter: brightness(1.09) saturate(1.08);
 }
 
-.time-stream__axis text {
-  fill: #747c70;
-  font: 8px var(--mono);
-  letter-spacing: .08em;
-}
-
-.time-stream__axis .time-stream__age {
-  text-anchor: middle;
-  fill: var(--acid);
-  letter-spacing: .24em;
-}
-
 .time-stream__legend {
   display: flex;
   flex-wrap: wrap;
