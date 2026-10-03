@@ -61,7 +61,7 @@ const dateChinese = `${data.publishedAt.getFullYear()}年${data.publishedAt.getM
         <div class="author-card">
           <div class="author-avatar large">{data.author.slice(0, 1)}</div>
           <div><strong>{data.author}</strong><p>把好奇心种进日常。记录设计、技术与生活里微小但重要的事。</p></div>
-          <a href="/#about">更多关于{data.author} ↗</a>
+          <a href="/about/">更多关于{data.author} ↗</a>
         </div>
         {next && (
           <a class="next-article" href={`/posts/${next.id}/`}>

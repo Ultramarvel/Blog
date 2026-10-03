@@ -1,0 +1,67 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const profiles = await getCollection('profile');
+const profile = profiles[0];
+
+if (!profile) {
+  throw new Error('Profile content is missing.');
+}
+
+const { Content } = await render(profile);
+const updatedLabel = profile.data.updatedAt.toISOString().slice(0, 10).replaceAll('-', '.');
+---
+
+<BaseLayout title={`关于${profile.data.name} — 林间信号`} description={profile.data.shortBio}>
+  <main class="profile-page">
+    <header class="profile-hero">
+      <div class="profile-hero__meta">
+        <span>OBSERVER PROFILE / {profile.data.profileNumber}</span>
+        <span>LAST SIGNAL · {updatedLabel}</span>
+      </div>
+      <div class="profile-hero__grid">
+        <div class="profile-sigil profile-sigil--large" aria-hidden="true">
+          <span class="profile-sigil__orbit profile-sigil__orbit--one"></span>
+          <span class="profile-sigil__orbit profile-sigil__orbit--two"></span>
+          <span class="profile-sigil__dot"></span>
+          <strong>{profile.data.initials}</strong>
+        </div>
+        <div class="profile-hero__copy">
+          <p class="profile-kicker">你好，我是{profile.data.name}。</p>
+          <h1>{profile.data.tagline}</h1>
+          <p>{profile.data.role}</p>
+        </div>
+      </div>
+      <div class="profile-hero__coordinate">{profile.data.coordinates} · {profile.data.location}</div>
+    </header>
+
+    <section class="profile-story">
+      <aside class="profile-dossier">
+        <p>FIELD RECORD</p>
+        <dl>
+          <div><dt>NAME</dt><dd>{profile.data.name}</dd></div>
+          <div><dt>BASE</dt><dd>{profile.data.location}</dd></div>
+          <div><dt>SINCE</dt><dd>{profile.data.since}</dd></div>
+          <div><dt>STATUS</dt><dd>{profile.data.status}</dd></div>
+        </dl>
+      </aside>
+      <article class="profile-prose"><Content /></article>
+    </section>
+
+    <section class="profile-now" id="now">
+      <div class="profile-now__heading"><p>CURRENT SIGNAL</p><h2>现在正在做什么</h2><span>UPDATED {updatedLabel}</span></div>
+      <ol>
+        {profile.data.current.map((item, index) => (
+          <li><span>{String(index + 1).padStart(2, '0')}</span><strong>{item}</strong></li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="profile-topics">
+      <p>WRITING FIELD</p>
+      <div>{profile.data.topics.map((topic) => <span>{topic}</span>)}</div>
+      <a class="text-link" href={`mailto:${profile.data.email}`}>给我写信 <span>↗</span></a>
+    </section>
+  </main>
+</BaseLayout>

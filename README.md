@@ -37,6 +37,8 @@ noteNumber: "NO. 027"
 
 后台只开放文字、标题、列表、引用、链接和代码块等 Markdown 控件，不提供图片字段或图片编辑组件。
 
+博客主人资料保存在 `src/content/profile.md`，可以在后台的“博客主人 → 观察者档案”中维护。首页展示精简档案，`/about/` 展示完整介绍、“现在正在做什么”和写作主题。正文编辑器固定使用 Markdown 源码模式，避免富文本编辑器破坏 Markdown 结构。
+
 ## 发布配置
 
 当前 `public/admin/config.yml` 使用 `git-gateway`，并启用了本地后台。正式部署时需要在托管平台启用 Git Gateway 身份认证；也可以把 `backend` 改成 GitHub，并填写远程仓库地址和 OAuth 服务。当前本地仓库尚未配置 Git remote，因此线上登录需要在部署信息确定后完成。

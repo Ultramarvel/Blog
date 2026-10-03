@@ -18,4 +18,24 @@ const posts = defineCollection({
   }),
 });
 
-export const collections = { posts };
+const profile = defineCollection({
+  loader: glob({ pattern: 'profile.md', base: './src/content' }),
+  schema: z.object({
+    name: z.string().min(1),
+    initials: z.string().min(1).max(3),
+    role: z.string().min(1),
+    tagline: z.string().min(1),
+    shortBio: z.string().min(1),
+    location: z.string().min(1),
+    coordinates: z.string().min(1),
+    status: z.string().min(1),
+    current: z.array(z.string().min(1)).min(1),
+    topics: z.array(z.string().min(1)).min(1),
+    since: z.string().min(1),
+    email: z.email(),
+    profileNumber: z.string().min(1),
+    updatedAt: z.coerce.date(),
+  }),
+});
+
+export const collections = { posts, profile };

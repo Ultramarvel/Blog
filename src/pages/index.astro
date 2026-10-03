@@ -2,7 +2,12 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const posts = (await getCollection('posts'))
+const [loadedPosts, profiles] = await Promise.all([
+  getCollection('posts'),
+  getCollection('profile'),
+]);
+const profile = profiles[0];
+const posts = loadedPosts
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 
@@ -62,10 +67,36 @@ const formatDate = (date: Date) => date.toISOString().slice(0, 10).replaceAll('-
       </div>
     </section>
 
-    <section class="about-section" id="about">
-      <div class="about-kicker">A NOTE FROM THE AUTHOR <span>✳</span></div>
-      <div class="about-content"><h2>你好，我是<span>林。</span></h2><p>一个喜欢观察事物如何运作的人。写下正在学习的，也写下还没想明白的。希望这里像一张桌子，欢迎你带着自己的问题坐一会儿。</p><a href="mailto:hello@example.com" class="text-link">给我写信 <span>↗</span></a></div>
-      <div class="about-coordinate">MADE SLOWLY<br />ON PLANET EARTH</div>
-    </section>
+    {profile && (
+      <section class="profile-preview" id="about">
+        <div class="profile-preview__topline">
+          <span>OBSERVER PROFILE / {profile.data.profileNumber}</span>
+          <span>IDENTITY SIGNAL · ACTIVE</span>
+        </div>
+        <div class="profile-preview__grid">
+          <div class="profile-sigil" aria-hidden="true">
+            <span class="profile-sigil__orbit profile-sigil__orbit--one"></span>
+            <span class="profile-sigil__orbit profile-sigil__orbit--two"></span>
+            <span class="profile-sigil__dot"></span>
+            <strong>{profile.data.initials}</strong>
+          </div>
+          <div class="profile-preview__copy">
+            <p class="profile-kicker">你好，我是{profile.data.name}。</p>
+            <h2>{profile.data.tagline}</h2>
+            <p>{profile.data.shortBio}</p>
+            <div class="profile-actions">
+              <a class="text-link" href="/about/">完整介绍 <span>↗</span></a>
+              <a class="text-link profile-actions__secondary" href={`mailto:${profile.data.email}`}>给我写信 <span>↗</span></a>
+            </div>
+          </div>
+          <div class="profile-facts">
+            <div><span>BASE</span><strong>{profile.data.location}</strong><small>{profile.data.coordinates}</small></div>
+            <div><span>FIELD</span><strong>{profile.data.topics.slice(0, 3).join(' / ')}</strong></div>
+            <div class="profile-signal"><span>CURRENT SIGNAL</span><strong>{profile.data.status}</strong><i></i></div>
+            <div><span>SINCE</span><strong>{profile.data.since}</strong></div>
+          </div>
+        </div>
+      </section>
+    )}
   </main>
 </BaseLayout>

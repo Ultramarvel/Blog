@@ -20,7 +20,18 @@ test('the CMS exposes Markdown text controls without image fields', async () => 
   const config = await readFile(new URL('../public/admin/config.yml', import.meta.url), 'utf8');
   assert.match(config, /name: "body"[\s\S]*widget: "markdown"/);
   assert.match(config, /editor_components: \["code-block"\]/);
+  assert.match(config, /modes: \["raw"\]/);
+  assert.doesNotMatch(config, /rich_text/);
   assert.doesNotMatch(config, /widget: "image"/);
+});
+
+test('the owner profile contains all public identity fields', async () => {
+  const profile = await readFile(new URL('../src/content/profile.md', import.meta.url), 'utf8');
+  for (const field of ['name', 'initials', 'role', 'tagline', 'shortBio', 'location', 'coordinates', 'status', 'current', 'topics', 'since', 'email', 'profileNumber', 'updatedAt']) {
+    assert.match(profile, new RegExp(`^${field}:`, 'm'), `profile.md is missing ${field}`);
+  }
+  assert.doesNotMatch(profile, /!\[[^\]]*\]\([^)]*\)/);
+  assert.doesNotMatch(profile, /<img\b/i);
 });
 
 test('published Markdown posts do not contain image syntax', async () => {

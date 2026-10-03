@@ -12,6 +12,33 @@ media_folder: "public/.cms-media-disabled"
 public_folder: "/.cms-media-disabled"
 
 collections:
+  - name: "profile"
+    label: "博客主人"
+    files:
+      - name: "owner"
+        label: "观察者档案"
+        file: "src/content/profile.md"
+        fields:
+          - { label: "姓名", name: "name", widget: "string" }
+          - { label: "头像文字", name: "initials", widget: "string", hint: "显示在动态星球中心，建议 1–3 个字符" }
+          - { label: "身份", name: "role", widget: "string" }
+          - { label: "主标题", name: "tagline", widget: "string" }
+          - { label: "首页短介绍", name: "shortBio", widget: "text" }
+          - { label: "所在地", name: "location", widget: "string" }
+          - { label: "坐标", name: "coordinates", widget: "string" }
+          - { label: "当前状态", name: "status", widget: "string" }
+          - { label: "最近在做", name: "current", widget: "list", field: { label: "事项", name: "item", widget: "string" } }
+          - { label: "写作主题", name: "topics", widget: "list", field: { label: "主题", name: "topic", widget: "string" } }
+          - { label: "开始年份", name: "since", widget: "string" }
+          - { label: "联系邮箱", name: "email", widget: "string" }
+          - { label: "档案编号", name: "profileNumber", widget: "string" }
+          - { label: "更新时间", name: "updatedAt", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+          - label: "完整介绍"
+            name: "body"
+            widget: "markdown"
+            modes: ["raw"]
+            buttons: ["bold", "italic", "code", "link", "heading-two", "heading-three", "quote", "bulleted-list", "numbered-list"]
+            editor_components: ["code-block"]
   - name: "posts"
     label: "文章"
     label_singular: "文章"
@@ -39,6 +66,6 @@ collections:
       - label: "正文"
         name: "body"
         widget: "markdown"
-        modes: ["rich_text", "raw"]
+        modes: ["raw"]
         buttons: ["bold", "italic", "code", "link", "heading-two", "heading-three", "quote", "bulleted-list", "numbered-list"]
         editor_components: ["code-block"]
