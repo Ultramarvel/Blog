@@ -3,7 +3,7 @@
   --stream-movement: #526a53;
   --stream-game: #75934e;
   --stream-work: #9fbd68;
-  --stream-family: #d1ed78;
+  --stream-family: #a8c75f;
   --stream-separator: rgba(235, 236, 228, .78);
   padding: 96px 7% 110px;
   overflow: hidden;
@@ -121,6 +121,12 @@
   filter: brightness(1.09) saturate(1.08);
 }
 
+.stream-layer--family:hover,
+.stream-layer--family:focus,
+.time-stream__chart[data-active-stream] .stream-layer--family.is-active {
+  filter: brightness(1.02) saturate(1.02);
+}
+
 .time-stream__legend {
   display: flex;
   flex-wrap: wrap;
@@ -174,7 +180,7 @@ body.light .time-stream {
   --stream-movement: #849b80;
   --stream-game: #93ad68;
   --stream-work: #aecb76;
-  --stream-family: #d1ed78;
+  --stream-family: #b4cf70;
   --stream-separator: rgba(246, 247, 241, .9);
 }
 

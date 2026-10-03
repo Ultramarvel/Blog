@@ -118,6 +118,8 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.doesNotMatch(component, /<img\b/i);
   assert.match(styles, /\.stream-layer text\s*\{[^}]*fill:\s*#f0f1e9;/);
   assert.match(styles, /\[data-active-stream\][^{]*\.stream-layer\.is-active\s*\{[^}]*brightness\(1\.09\)[^}]*saturate\(1\.08\)/);
+  assert.match(styles, /--stream-family:\s*#a8c75f/);
+  assert.match(styles, /\.stream-layer--family\.is-active\s*\{[^}]*brightness\(1\.02\)[^}]*saturate\(1\.02\)/);
   assert.doesNotMatch(styles, /\.stream-layer\.is-active\s*\{[^}]*translateY/);
   assert.doesNotMatch(styles, /\.stream-layer\.is-active\s*\{[^}]*drop-shadow/);
   assert.match(styles, /\.time-stream__legend button:hover/);
