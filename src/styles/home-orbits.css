@@ -271,7 +271,7 @@
 
 .orbit-card-panel li {
   color: #30352d;
-  font: 500 13px/1.76 var(--sans);
+  font: 500 15px/1.7 "Microsoft YaHei", "微软雅黑", sans-serif;
   letter-spacing: -.025em;
   white-space: nowrap;
 }
