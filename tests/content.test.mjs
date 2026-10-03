@@ -51,7 +51,7 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(page, /profile\.data\.name/);
   assert.match(page, /profile\.data\.topics/);
   assert.match(page, /<TiltedCard[\s\S]*client:load/);
-  assert.match(page, /rotateAmplitude=\{10\}/);
+  assert.match(page, /rotateAmplitude=\{16\}/);
   assert.match(page, /scaleOnHover=\{1\.045\}/);
   assert.match(tiltedCard, /from 'motion\/react'/);
   assert.match(tiltedCard, /useSpring/);
