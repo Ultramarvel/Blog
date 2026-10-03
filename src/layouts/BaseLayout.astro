@@ -1,6 +1,7 @@
 ---
 import '../../styles.css';
 import '../styles/profile.css';
+import BlobCursor from '../components/BlobCursor.jsx';
 
 interface Props {
   title: string;
@@ -32,6 +33,25 @@ const {
   </head>
   <body class={bodyClass} id="top">
     <div class="grain" aria-hidden="true"></div>
+    <BlobCursor
+      client:load
+      blobType="circle"
+      fillColor="#b6d957"
+      trailCount={3}
+      sizes={[52, 96, 68]}
+      innerSizes={[11, 18, 13]}
+      innerColor="rgba(248, 250, 235, .72)"
+      opacities={[0.44, 0.2, 0.28]}
+      shadowColor="rgba(0, 0, 0, .32)"
+      shadowBlur={10}
+      shadowOffsetX={6}
+      shadowOffsetY={8}
+      filterStdDeviation={18}
+      useFilter={true}
+      fastDuration={0.12}
+      slowDuration={0.48}
+      zIndex={9}
+    />
     <header class="topbar">
       <a class="brand" href="/" aria-label="林间信号首页">
         <span class="brand-mark">L<span>✳</span></span>

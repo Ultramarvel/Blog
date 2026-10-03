@@ -77,6 +77,26 @@ test('light mode gives the brand mark a high-contrast color', async () => {
   assert.match(styles, /body\.light \.brand-mark span\{[^}]*color:#5d7334/);
 });
 
+test('the shared layout includes an accessible non-blocking BlobCursor trail', async () => {
+  const [layout, component, styles, packageJson] = await Promise.all([
+    readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/BlobCursor.jsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/BlobCursor.css', import.meta.url), 'utf8'),
+    readFile(new URL('../package.json', import.meta.url), 'utf8'),
+  ]);
+  assert.match(layout, /<BlobCursor[\s\S]*client:load/);
+  assert.match(layout, /fillColor="#b6d957"/);
+  assert.match(layout, /trailCount=\{3\}/);
+  assert.match(component, /import gsap from 'gsap'/);
+  assert.match(component, /window\.addEventListener\('pointermove', handleMove/);
+  assert.match(component, /aria-hidden="true"/);
+  assert.match(styles, /\.blob-cursor-layer\s*\{[^}]*position:\s*fixed;[^}]*pointer-events:\s*none/);
+  assert.match(styles, /body\.light \.blob-cursor-layer/);
+  assert.match(styles, /prefers-reduced-motion:\s*reduce/);
+  assert.match(styles, /pointer:\s*coarse/);
+  assert.match(packageJson, /"gsap"/);
+});
+
 test('the homepage includes an accessible animated time stream with ordered bands', async () => {
   const [page, component, styles, script, geometry] = await Promise.all([
     readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),

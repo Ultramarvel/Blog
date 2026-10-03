@@ -1,0 +1,44 @@
+.blob-cursor-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  user-select: none;
+  mix-blend-mode: screen;
+}
+
+.blob-cursor-filter {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.blob-cursor-main {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blob-cursor-blob {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform, opacity;
+  transform: translate(-50%, -50%);
+}
+
+.blob-cursor-dot {
+  position: absolute;
+}
+
+body.light .blob-cursor-layer {
+  opacity: .72;
+  mix-blend-mode: multiply;
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .blob-cursor-layer {
+    display: none;
+  }
+}
