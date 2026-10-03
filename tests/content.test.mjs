@@ -62,17 +62,27 @@ test('light mode gives the brand mark a high-contrast color', async () => {
   assert.match(styles, /body\.light \.brand-mark span\{[^}]*color:#5d7334/);
 });
 
-test('the homepage includes an accessible animated time stream', async () => {
-  const [page, component, styles, script] = await Promise.all([
+test('the homepage includes an accessible animated time stream with ordered bands', async () => {
+  const [page, component, styles, script, geometry] = await Promise.all([
     readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
     readFile(new URL('../src/components/TimeStream.astro', import.meta.url), 'utf8'),
     readFile(new URL('../src/styles/time-stream.css', import.meta.url), 'utf8'),
     readFile(new URL('../script.js', import.meta.url), 'utf8'),
+    import(new URL('../src/data/time-stream.mjs', import.meta.url).href),
   ]);
   assert.match(page, /<TimeStream \/>/);
   assert.match(component, /时间流向哪里？/);
-  assert.equal([...component.matchAll(/class="stream-layer /g)].length, 5);
-  assert.equal([...component.matchAll(/V420H0Z/g)].length, 1, 'only the bottom stream may extend to the chart baseline');
+  assert.match(component, /streamBands\.map/);
+  assert.equal(geometry.streamBands.length, 5);
+  const pointCount = geometry.streamBoundaries[0].length;
+  for (let pointIndex = 0; pointIndex < pointCount; pointIndex += 1) {
+    for (let boundaryIndex = 1; boundaryIndex < geometry.streamBoundaries.length; boundaryIndex += 1) {
+      const previous = geometry.streamBoundaries[boundaryIndex - 1][pointIndex];
+      const current = geometry.streamBoundaries[boundaryIndex][pointIndex];
+      assert.equal(current[0], previous[0], `boundary ${boundaryIndex} must share x coordinates`);
+      assert.ok(current[1] >= previous[1], `boundary ${boundaryIndex} crosses the layer above at point ${pointIndex}`);
+    }
+  }
   assert.doesNotMatch(component, /<img\b/i);
   assert.match(styles, /body\.light \.time-stream/);
   assert.match(styles, /prefers-reduced-motion/);

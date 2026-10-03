@@ -1,4 +1,5 @@
 ---
+import { streamBands } from '../data/time-stream.mjs';
 import '../styles/time-stream.css';
 ---
 
@@ -17,31 +18,13 @@ import '../styles/time-stream.css';
         <title id="time-stream-chart-title">时间分配流图</title>
         <desc id="time-stream-chart-desc">展示社交家庭、编程工作、游戏、音乐运动与学习五类活动随年龄变化的示意图。</desc>
 
-        <g class="stream-layer stream-layer--study" tabindex="0">
-          <title>学习</title>
-          <path d="M0 0H1200L1200 120C1080 122 960 150 820 140C720 145 640 135 520 165C450 180 410 250 300 250C180 245 120 110 0 110Z"></path>
-          <text x="330" y="116">学习</text>
-        </g>
-        <g class="stream-layer stream-layer--movement" tabindex="0">
-          <title>音乐与运动</title>
-          <path d="M0 110C120 110 180 245 300 250C410 250 450 180 520 165C640 135 720 145 820 140C960 150 1080 122 1200 120L1200 178C1080 175 960 230 820 240C720 245 650 210 540 225C470 235 430 270 320 260C210 245 140 110 0 110Z"></path>
-          <text x="865" y="178">音乐 / 运动</text>
-        </g>
-        <g class="stream-layer stream-layer--game" tabindex="0">
-          <title>游戏</title>
-          <path d="M0 110C140 110 210 245 320 260C430 270 470 235 540 225C650 210 720 245 820 240C960 230 1080 175 1200 178L1200 228C1100 230 1000 270 860 285C780 290 720 305 600 300C520 300 450 300 340 280C230 250 150 110 0 110Z"></path>
-          <text x="590" y="277">游戏</text>
-        </g>
-        <g class="stream-layer stream-layer--work" tabindex="0">
-          <title>编程与工作</title>
-          <path d="M0 110C150 110 230 250 340 280C450 300 520 300 600 300C720 305 780 290 860 285C1000 270 1100 230 1200 228L1200 270C1140 285 1090 280 1000 310C920 345 800 330 700 370C620 405 560 405 500 350C420 310 350 300 260 260C180 230 130 110 0 110Z"></path>
-          <text x="850" y="327">编程 / 工作</text>
-        </g>
-        <g class="stream-layer stream-layer--family" tabindex="0">
-          <title>社交与家庭</title>
-          <path d="M0 110C130 110 180 230 260 260C350 300 420 310 500 350C560 405 620 405 700 370C800 330 920 345 1000 310C1090 280 1140 285 1200 270V420H0Z"></path>
-          <text x="65" y="232">社交 / 家庭</text>
-        </g>
+        {streamBands.map((layer) => (
+          <g class={`stream-layer stream-layer--${layer.key}`} tabindex="0">
+            <title>{layer.title}</title>
+            <path d={layer.path}></path>
+            <text x={layer.x} y={layer.y}>{layer.label}</text>
+          </g>
+        ))}
 
         <g class="time-stream__axis" aria-hidden="true">
           <text x="0" y="451">18</text><text x="238" y="451">22</text><text x="478" y="451">26</text>
