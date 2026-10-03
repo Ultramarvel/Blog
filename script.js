@@ -4,6 +4,31 @@ if(localStorage.getItem('field-notes-theme')==='light')document.body.classList.a
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
 document.querySelectorAll('.time-stream__chart,.section-heading,.featured-card,.post-row,.about-content').forEach(el=>{el.classList.add('reveal');observer.observe(el)});
 
+document.querySelectorAll('.time-stream__chart').forEach(chart=>{
+  const layers=[...chart.querySelectorAll('.stream-layer')];
+  const resetStream=()=>{
+    delete chart.dataset.activeStream;
+    layers.forEach(layer=>{
+      layer.classList.remove('is-active');
+      layer.parentElement?.append(layer);
+    });
+  };
+  chart.querySelectorAll('[data-stream-target]').forEach(control=>{
+    const activateStream=()=>{
+      const key=control.dataset.streamTarget;
+      const activeLayer=chart.querySelector(`.stream-layer--${key}`);
+      if(!activeLayer)return;
+      chart.dataset.activeStream=key;
+      layers.forEach(layer=>layer.classList.toggle('is-active',layer===activeLayer));
+      activeLayer.parentElement?.append(activeLayer);
+    };
+    control.addEventListener('pointerenter',activateStream);
+    control.addEventListener('pointerleave',resetStream);
+    control.addEventListener('focus',activateStream);
+    control.addEventListener('blur',resetStream);
+  });
+});
+
 const orbitalArt=document.querySelector('.hero-art');
 const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 if(orbitalArt&&!reduceMotion.matches){

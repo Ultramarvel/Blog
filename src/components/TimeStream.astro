@@ -19,7 +19,7 @@ import '../styles/time-stream.css';
         <desc id="time-stream-chart-desc">展示社交家庭、编程工作、游戏、音乐运动与学习五类活动随年龄变化的示意图。</desc>
 
         {streamBands.map((layer) => (
-          <g class={`stream-layer stream-layer--${layer.key}`} tabindex="0">
+          <g id={`stream-${layer.key}`} class={`stream-layer stream-layer--${layer.key}`} tabindex="0">
             <title>{layer.title}</title>
             <path d={layer.path}></path>
             <text x={layer.x} y={layer.y}>{layer.label}</text>
@@ -29,11 +29,11 @@ import '../styles/time-stream.css';
       </svg>
     </div>
     <div class="time-stream__legend" aria-label="图例">
-      <span><i class="legend-family"></i>社交 / 家庭</span>
-      <span><i class="legend-work"></i>编程 / 工作</span>
-      <span><i class="legend-game"></i>游戏</span>
-      <span><i class="legend-movement"></i>音乐 / 运动</span>
-      <span><i class="legend-study"></i>学习</span>
+      <button type="button" data-stream-target="family" aria-controls="stream-family"><i class="legend-family"></i>社交 / 家庭</button>
+      <button type="button" data-stream-target="work" aria-controls="stream-work"><i class="legend-work"></i>编程 / 工作</button>
+      <button type="button" data-stream-target="game" aria-controls="stream-game"><i class="legend-game"></i>游戏</button>
+      <button type="button" data-stream-target="movement" aria-controls="stream-movement"><i class="legend-movement"></i>音乐 / 运动</button>
+      <button type="button" data-stream-target="study" aria-controls="stream-study"><i class="legend-study"></i>学习</button>
     </div>
   </div>
 </section>

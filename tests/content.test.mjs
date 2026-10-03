@@ -76,6 +76,8 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.match(component, /viewBox="0 0 1200 420"/);
   assert.doesNotMatch(component, /time-stream__axis/);
   assert.doesNotMatch(component, />AGE</);
+  assert.equal((component.match(/data-stream-target=/g) ?? []).length, 5);
+  assert.equal((component.match(/aria-controls="stream-/g) ?? []).length, 5);
   assert.equal(geometry.streamBands.length, 5);
   const leftEdgeThicknesses = geometry.streamBands.map((_, layerIndex) => (
     geometry.streamBoundaries[layerIndex + 1][0][1]
@@ -115,10 +117,14 @@ test('the homepage includes an accessible animated time stream with ordered band
   });
   assert.doesNotMatch(component, /<img\b/i);
   assert.match(styles, /\.stream-layer text\s*\{[^}]*fill:\s*#f0f1e9;/);
+  assert.match(styles, /\[data-active-stream\][^{]*\.stream-layer\.is-active\s*\{[^}]*translateY\(-8px\)[^}]*drop-shadow/);
+  assert.match(styles, /\.time-stream__legend button:hover/);
   assert.doesNotMatch(styles, /#263020/);
   assert.match(styles, /body\.light \.time-stream/);
   assert.match(styles, /prefers-reduced-motion/);
   assert.match(script, /\.time-stream__chart/);
+  assert.match(script, /control\.addEventListener\('pointerenter',activateStream\)/);
+  assert.match(script, /control\.addEventListener\('focus',activateStream\)/);
 });
 
 test('published Markdown posts do not contain image syntax', async () => {

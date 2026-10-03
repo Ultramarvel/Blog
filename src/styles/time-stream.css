@@ -80,7 +80,9 @@
 
 .stream-layer {
   outline: none;
-  transition: opacity .3s ease, filter .3s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity .3s ease, filter .3s ease, transform .35s cubic-bezier(.22, 1, .36, 1);
 }
 
 .stream-layer path {
@@ -112,6 +114,17 @@
   filter: brightness(1.09) saturate(1.08);
 }
 
+.time-stream__chart[data-active-stream] .stream-layer:not(.is-active) {
+  opacity: .22;
+  filter: saturate(.5) brightness(.72);
+}
+
+.time-stream__chart[data-active-stream] .stream-layer.is-active {
+  opacity: 1;
+  transform: translateY(-8px) scale(1.008);
+  filter: brightness(1.24) saturate(1.18) drop-shadow(0 12px 10px rgba(0, 0, 0, .38));
+}
+
 .time-stream__legend {
   display: flex;
   flex-wrap: wrap;
@@ -120,15 +133,32 @@
   padding-top: 16px;
 }
 
-.time-stream__legend span {
+.time-stream__legend button {
   display: inline-flex;
   align-items: center;
   gap: 7px;
   padding: 7px 11px;
   border: 1px solid var(--line);
   border-radius: 30px;
+  background: transparent;
   color: var(--muted);
   font: 8px var(--mono);
+  cursor: pointer;
+  transition: color .25s ease, border-color .25s ease, background .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+
+.time-stream__legend button:hover,
+.time-stream__legend button:focus-visible {
+  border-color: var(--acid);
+  background: color-mix(in srgb, var(--acid) 9%, transparent);
+  color: var(--ink);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .18);
+}
+
+.time-stream__legend button:focus-visible {
+  outline: 1px solid var(--acid);
+  outline-offset: 3px;
 }
 
 .time-stream__legend i {
@@ -192,6 +222,11 @@ body.light .time-stream__chart {
 @media (prefers-reduced-motion: reduce) {
   .time-stream__svg {
     clip-path: none !important;
+    transition: none !important;
+  }
+
+  .stream-layer,
+  .time-stream__legend button {
     transition: none !important;
   }
 }
