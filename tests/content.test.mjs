@@ -84,11 +84,13 @@ test('the homepage includes an accessible animated time stream with ordered band
     }
   }
   geometry.streamBands.forEach((layer, layerIndex) => {
-    const pointIndex = geometry.streamBoundaries[0].findIndex(([x]) => x === layer.x);
-    assert.notEqual(pointIndex, -1, `${layer.key} label must align to a tested control point`);
-    const upperY = geometry.streamBoundaries[layerIndex][pointIndex][1];
-    const lowerY = geometry.streamBoundaries[layerIndex + 1][pointIndex][1];
-    assert.ok(layer.y > upperY && layer.y < lowerY, `${layer.key} label must stay inside its own stream`);
+    const sampleXs = [layer.x, layer.x + layer.labelWidth / 2, layer.x + layer.labelWidth];
+    sampleXs.forEach((sampleX) => {
+      const upperY = geometry.sampleBoundaryY(geometry.streamBoundaries[layerIndex], sampleX);
+      const lowerY = geometry.sampleBoundaryY(geometry.streamBoundaries[layerIndex + 1], sampleX);
+      assert.ok(layer.y - 22 > upperY, `${layer.key} label top leaves its stream at x=${sampleX}`);
+      assert.ok(layer.y < lowerY, `${layer.key} label baseline leaves its stream at x=${sampleX}`);
+    });
   });
   assert.doesNotMatch(component, /<img\b/i);
   assert.match(styles, /\.stream-layer text\s*\{[^}]*fill:\s*#f0f1e9;/);

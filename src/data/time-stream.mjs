@@ -11,6 +11,22 @@ export const streamBoundaries = [
   makeBoundary([420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420, 420]),
 ];
 
+export const sampleBoundaryY = (points, x) => {
+  const clampedX = Math.max(points[0][0], Math.min(points[points.length - 1][0], x));
+  const segment = Math.min(Math.floor(clampedX / 300), 3);
+  const startIndex = segment * 3;
+  const start = points[startIndex];
+  const controlOne = points[startIndex + 1];
+  const controlTwo = points[startIndex + 2];
+  const end = points[startIndex + 3];
+  const progress = (clampedX - start[0]) / (end[0] - start[0]);
+  const inverse = 1 - progress;
+  return inverse ** 3 * start[1]
+    + 3 * inverse ** 2 * progress * controlOne[1]
+    + 3 * inverse * progress ** 2 * controlTwo[1]
+    + progress ** 3 * end[1];
+};
+
 const boundaryPath = (points) => {
   let path = `M${points[0][0]} ${points[0][1]}`;
   for (let index = 1; index < points.length; index += 3) {
@@ -39,11 +55,11 @@ const bandPath = (upper, lower) => {
 };
 
 const layerDefinitions = [
-  { key: 'study', title: '学习', label: '学习', x: 300, y: 116 },
-  { key: 'movement', title: '音乐与运动', label: '音乐 / 运动', x: 900, y: 178 },
-  { key: 'game', title: '游戏', label: '游戏', x: 600, y: 265 },
-  { key: 'work', title: '编程与工作', label: '编程 / 工作', x: 900, y: 318 },
-  { key: 'family', title: '社交与家庭', label: '社交 / 家庭', x: 100, y: 232 },
+  { key: 'study', title: '学习', label: '学习', x: 300, y: 116, labelWidth: 52 },
+  { key: 'movement', title: '音乐与运动', label: '音乐 / 运动', x: 900, y: 178, labelWidth: 128 },
+  { key: 'game', title: '游戏', label: '游戏', x: 600, y: 265, labelWidth: 52 },
+  { key: 'work', title: '编程与工作', label: '编程 / 工作', x: 900, y: 318, labelWidth: 120 },
+  { key: 'family', title: '社交与家庭', label: '社交 / 家庭', x: 100, y: 335, labelWidth: 140 },
 ];
 
 export const streamBands = layerDefinitions.map((layer, index) => ({
