@@ -1,0 +1,44 @@
+locale: zh_Hans
+
+backend:
+  name: git-gateway
+  branch: master
+
+local_backend: true
+publish_mode: editorial_workflow
+
+# Decap CMS 要求声明媒体目录；后台字段和 Markdown 工具栏均未开放图片功能。
+media_folder: "public/.cms-media-disabled"
+public_folder: "/.cms-media-disabled"
+
+collections:
+  - name: "posts"
+    label: "文章"
+    label_singular: "文章"
+    folder: "src/content/posts"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    summary: "{{title}} · {{publishedAt}}"
+    sortable_fields: ["publishedAt", "title", "category"]
+    view_filters:
+      - { label: "草稿", field: "draft", pattern: true }
+      - { label: "已发布", field: "draft", pattern: false }
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "摘要", name: "summary", widget: "text" }
+      - { label: "分类", name: "category", widget: "string", default: "随笔" }
+      - { label: "发布日期", name: "publishedAt", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "阅读分钟", name: "readingMinutes", widget: "number", value_type: "int", min: 1, default: 5 }
+      - { label: "首页推荐", name: "featured", widget: "boolean", default: false }
+      - { label: "保存为草稿", name: "draft", widget: "boolean", default: true }
+      - { label: "作者", name: "author", widget: "string", default: "林" }
+      - { label: "写作地点", name: "location", widget: "string", default: "上海" }
+      - { label: "笔记编号", name: "noteNumber", widget: "string", required: false }
+      - label: "正文"
+        name: "body"
+        widget: "markdown"
+        modes: ["rich_text", "raw"]
+        buttons: ["bold", "italic", "code", "link", "heading-two", "heading-three", "quote", "bulleted-list", "numbered-list"]
+        editor_components: ["code-block"]

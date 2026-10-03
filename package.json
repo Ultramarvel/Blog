@@ -1,0 +1,23 @@
+{
+  "name": "field-notes-blog",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "cms": "decap-server",
+    "dev:cms": "concurrently -k \"cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev\" \"decap-server\"",
+    "build": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "check": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "test": "node --test tests/*.test.mjs",
+    "verify": "npm run test && npm run check && npm run build"
+  },
+  "devDependencies": {
+    "@astrojs/check": "latest",
+    "astro": "latest",
+    "concurrently": "latest",
+    "cross-env": "latest",
+    "decap-server": "latest",
+    "typescript": "latest"
+  }
+}

@@ -120,3 +120,6 @@
 @media(prefers-reduced-motion:reduce){
   .hero-art{--planet-x:0px!important;--planet-y:0px!important;--detail-x:0px!important;--detail-y:0px!important}
 }
+
+.empty-state{padding:50px 24px;border:1px solid #bfc1b5;color:#70766a;text-align:center;font:14px var(--serif)}
+.empty-state a{color:#667d3d;text-underline-offset:4px}

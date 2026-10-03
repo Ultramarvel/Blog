@@ -1,0 +1,77 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import '../../article.css';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+  next?: CollectionEntry<'posts'>;
+  sections: Heading[];
+}
+
+const { post, next, sections } = Astro.props;
+const data = post.data;
+const dateISO = data.publishedAt.toISOString().slice(0, 10);
+const dateLabel = dateISO.replaceAll('-', '.');
+const dateChinese = `${data.publishedAt.getFullYear()}年${data.publishedAt.getMonth() + 1}月${data.publishedAt.getDate()}日`;
+---
+
+<BaseLayout title={`${data.title} — 林间信号`} description={data.summary} bodyClass="article-page">
+  <div class="reading-progress"><span></span></div>
+  <main class="article-shell">
+    <a class="back-link" href="/#notes">← 返回文章列表</a>
+    <header class="article-header">
+      <div class="post-meta">
+        <span>{data.category}</span><i>·</i><time datetime={dateISO}>{dateLabel}</time>
+        <span class="read-time">{data.readingMinutes} MIN READ</span>
+      </div>
+      <h1>{data.title}</h1>
+      <p class="article-deck">{data.summary}</p>
+      <div class="author-line">
+        <div class="author-avatar">{data.author.slice(0, 1)}</div>
+        <span>{data.author}<br /><small>写于{data.location} · {dateChinese}</small></span>
+        <span class="share-note">FIELD NOTE&nbsp; / &nbsp;{data.noteNumber ?? post.id.toUpperCase()}</span>
+      </div>
+    </header>
+    <div class="article-cover" aria-hidden="true">
+      <div class="cover-grid"></div><div class="cover-disc"></div><div class="cover-ring"></div>
+      <span>GENERATED COVER — NO IMAGE ASSET</span>
+    </div>
+    <div class="article-layout">
+      <aside class="toc" aria-label="文章目录">
+        <p>IN THIS NOTE</p>
+        {sections.map((heading, index) => (
+          <a href={`#${heading.slug}`} class={index === 0 ? 'current' : ''}>
+            {String(index + 1).padStart(2, '0')} &nbsp;{heading.text}
+          </a>
+        ))}
+        <div class="toc-line"></div>
+        <span>{data.readingMinutes} MIN<br />READ</span>
+      </aside>
+      <article class="prose">
+        <slot />
+        <div class="article-end">✳</div>
+        <div class="article-tags"><span>{data.category}</span><span>Markdown</span></div>
+        <div class="author-card">
+          <div class="author-avatar large">{data.author.slice(0, 1)}</div>
+          <div><strong>{data.author}</strong><p>把好奇心种进日常。记录设计、技术与生活里微小但重要的事。</p></div>
+          <a href="/#about">更多关于{data.author} ↗</a>
+        </div>
+        {next && (
+          <a class="next-article" href={`/posts/${next.id}/`}>
+            <span>NEXT NOTE</span><strong>{next.data.title} ↗</strong>
+          </a>
+        )}
+      </article>
+    </div>
+  </main>
+  <script>
+    import '../../article.js';
+  </script>
+</BaseLayout>

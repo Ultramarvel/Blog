@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('posts'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+const featured = posts.find((post) => post.data.featured) ?? posts[0];
+const remaining = posts.filter((post) => post.id !== featured?.id);
+const formatDate = (date: Date) => date.toISOString().slice(0, 10).replaceAll('-', '.');
+---
+
+<BaseLayout title="林间信号 — Notes from elsewhere">
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><i></i> 一座缓慢生长的数字花园 <span>VOL. 01—26</span></p>
+        <h1 id="hero-title">把好奇心<br />种进<span class="serif">日常。</span></h1>
+        <p class="hero-intro">关于设计、技术，以及那些值得停下来多看一眼的事。<br />这里收集正在发生的想法，也记录尚未抵达的答案。</p>
+        <a class="text-link" href="#notes">向下，开始阅读 <span>↓</span></a>
+      </div>
+      <div class="hero-art" aria-label="动态轨道与星体插画" role="img">
+        <div class="art-label label-top">OBSERVATION No. 026</div>
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div>
+        <div class="planet"><div class="planet-shine"></div></div>
+        <div class="satellite"></div><div class="star star-one">✳</div><div class="star star-two">✳</div>
+        <div class="art-label label-bottom">31° 13′ N&nbsp; / &nbsp;121° 28′ E</div>
+      </div>
+      <div class="hero-index"><span>01</span><span class="index-line"></span><span>SCROLL TO EXPLORE</span></div>
+    </section>
+
+    <section class="notes-section" id="notes">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE JOURNAL <span>— 近期记录</span></p><h2>最近在想<span class="accent">什么</span></h2></div>
+        <a class="archive-link" href="#archive">浏览全部 <span>↗</span></a>
+      </div>
+      {featured ? (
+        <div class="featured-card">
+          <a class="featured-visual" href={`/posts/${featured.id}/`} aria-label={`阅读${featured.data.title}`}>
+            <div class="visual-grid"></div><div class="visual-sun"></div><div class="visual-orbit"></div><div class="visual-orbit second"></div>
+            <span class="visual-caption">GENERATED COVER — NO IMAGE ASSET</span><span class="visual-number">01</span>
+          </a>
+          <div class="featured-copy">
+            <div class="post-meta"><span>{featured.data.category}</span><i>·</i><time datetime={featured.data.publishedAt.toISOString()}>{formatDate(featured.data.publishedAt)}</time><span class="read-time">{featured.data.readingMinutes} MIN READ</span></div>
+            <h3><a href={`/posts/${featured.id}/`}>{featured.data.title}</a></h3>
+            <p>{featured.data.summary}</p>
+            <a class="round-arrow" href={`/posts/${featured.id}/`} aria-label="阅读全文">↗</a>
+          </div>
+        </div>
+      ) : (
+        <p class="empty-state">还没有已发布的文章。可以前往 <a href="/admin/">管理后台</a> 创建第一篇。</p>
+      )}
+      <div class="post-list" id="archive">
+        {remaining.map((post, index) => (
+          <a class="post-row" href={`/posts/${post.id}/`}>
+            <span class="row-number">{String(index + 2).padStart(2, '0')}</span>
+            <span class="row-title">{post.data.title}</span><span class="row-tag">{post.data.category}</span>
+            <time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt)}</time><span class="row-arrow">↗</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="about-kicker">A NOTE FROM THE AUTHOR <span>✳</span></div>
+      <div class="about-content"><h2>你好，我是<span>林。</span></h2><p>一个喜欢观察事物如何运作的人。写下正在学习的，也写下还没想明白的。希望这里像一张桌子，欢迎你带着自己的问题坐一会儿。</p><a href="mailto:hello@example.com" class="text-link">给我写信 <span>↗</span></a></div>
+      <div class="about-coordinate">MADE SLOWLY<br />ON PLANET EARTH</div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,59 @@
+---
+import '../../styles.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  bodyClass?: string;
+}
+
+const {
+  title,
+  description = '林间信号 — 关于设计、技术与日常观察的个人笔记。',
+  bodyClass = '',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111311" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class={bodyClass} id="top">
+    <div class="grain" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="林间信号首页">
+        <span class="brand-mark">L<span>✳</span></span>
+        <span>林间信号<small>FIELD NOTES / 2026</small></span>
+      </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="/#notes">文章</a>
+        <a href="/#about">关于</a>
+        <a href="/admin/">管理 ↗</a>
+      </nav>
+      <button class="theme-toggle" aria-label="切换色彩模式" title="切换色彩模式"><span></span></button>
+    </header>
+    <slot />
+    <footer class="footer">
+      <a class="brand" href="#top">
+        <span class="brand-mark">L<span>✳</span></span>
+        <span>林间信号<small>FIELD NOTES / 2026</small></span>
+      </a>
+      <span>写给仍然好奇的人。<span class="footer-star">✳</span></span>
+      <span>© 2026 LIN · SHANGHAI</span>
+    </footer>
+    <script>
+      import '../../script.js';
+    </script>
+  </body>
+</html>

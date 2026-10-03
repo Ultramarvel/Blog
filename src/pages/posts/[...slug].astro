@@ -1,0 +1,23 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('posts'))
+    .filter((post) => !post.data.draft)
+    .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+  return posts.map((post, index) => ({
+    params: { slug: post.id },
+    props: { post, next: posts[index + 1] },
+  }));
+}
+
+const { post, next } = Astro.props;
+const { Content, headings } = await render(post);
+const sections = headings.filter((heading) => heading.depth === 2);
+---
+
+<ArticleLayout {post} {next} {sections}>
+  <Content />
+</ArticleLayout>
