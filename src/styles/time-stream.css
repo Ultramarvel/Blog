@@ -13,7 +13,7 @@
 }
 
 .time-stream__header {
-  max-width: 1420px;
+  max-width: 1240px;
   margin: 0 auto 35px;
   display: flex;
   align-items: end;
@@ -44,7 +44,8 @@
 }
 
 .time-stream__chart {
-  max-width: 1420px;
+  width: 100%;
+  max-width: none;
   margin: auto;
   padding: 22px 22px 16px;
   border: 1px solid var(--line);
