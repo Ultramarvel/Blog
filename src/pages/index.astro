@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TiltedCard from '../components/TiltedCard.jsx';
 import TimeStream from '../components/TimeStream.astro';
 import '../styles/home-orbits.css';
 
@@ -37,15 +38,26 @@ const formatDate = (date: Date) => date.toISOString().slice(0, 10).replaceAll('-
             <div class="orbit-carrier orbit-carrier--signal">
               <div class="orbit-badge"><i></i><small>SIGNAL</small></div>
             </div>
-            <div class="orbit-card-panel">
-              <div class="orbit-card-panel__meta"><span>OBSERVER ID</span><span>{profile.data.profileNumber}</span></div>
-              <p>你好，我是</p>
-              <strong>{profile.data.name}</strong>
-              <div class="orbit-card-panel__rule"></div>
-              <small>正在观察</small>
-              <ul>{profile.data.topics.slice(0, 3).map((topic) => <li>{topic}</li>)}</ul>
-              <footer><span>{profile.data.location}</span><span>ACTIVE</span></footer>
-            </div>
+            <TiltedCard
+              client:load
+              className="orbit-card-tilt"
+              containerHeight="338px"
+              containerWidth="284px"
+              rotateAmplitude={10}
+              scaleOnHover={1.045}
+              showMobileWarning={false}
+              showTooltip={false}
+            >
+              <div class="orbit-card-panel">
+                <div class="orbit-card-panel__meta"><span>OBSERVER ID</span><span>{profile.data.profileNumber}</span></div>
+                <p>你好，我是</p>
+                <strong>{profile.data.name}</strong>
+                <div class="orbit-card-panel__rule"></div>
+                <small>正在观察</small>
+                <ul>{profile.data.topics.slice(0, 3).map((topic) => <li>{topic}</li>)}</ul>
+                <footer><span>{profile.data.location}</span><span>ACTIVE</span></footer>
+              </div>
+            </TiltedCard>
           </div>
         )}
         <div class="art-label label-bottom">{profile?.data.coordinates ?? '31° 13′ N / 121° 28′ E'}</div>

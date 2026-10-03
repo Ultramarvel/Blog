@@ -195,12 +195,20 @@
   animation: profile-signal-pulse 2s ease-in-out infinite;
 }
 
-.orbit-card-panel {
+.orbit-card-tilt {
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 5;
-  width: 284px;
+  margin: 0;
+  transform: translate(-50%, -50%) translate3d(var(--planet-x), var(--planet-y), 0) rotate(-.8deg);
+  transition: transform .25s ease-out;
+}
+
+.orbit-card-panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
   min-height: 338px;
   padding: 27px 29px 20px;
   overflow: hidden;
@@ -209,8 +217,7 @@
   color: #22261f;
   background: #f1f2ec;
   box-shadow: 0 22px 48px rgba(0, 0, 0, .34);
-  transform: translate(-50%, -50%) translate3d(var(--planet-x), var(--planet-y), 0) rotate(-.8deg);
-  transition: transform .25s ease-out, box-shadow .35s ease;
+  transition: box-shadow .35s ease;
 }
 
 .orbit-card-panel:after {
@@ -362,7 +369,7 @@ body.light .orbit-circle:after {
     animation: none !important;
   }
 
-  .orbit-card-panel {
+  .orbit-card-tilt {
     transform: translate(-50%, -50%) !important;
   }
 }

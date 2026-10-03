@@ -35,10 +35,14 @@ test('the owner profile contains all public identity fields', async () => {
 });
 
 test('the homepage orbit card is compact, animated, and driven by the owner profile', async () => {
-  const [page, styles, script] = await Promise.all([
+  const [page, styles, script, tiltedCard, tiltedStyles, astroConfig, packageJson] = await Promise.all([
     readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
     readFile(new URL('../src/styles/home-orbits.css', import.meta.url), 'utf8'),
     readFile(new URL('../script.js', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/TiltedCard.jsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/TiltedCard.css', import.meta.url), 'utf8'),
+    readFile(new URL('../astro.config.mjs', import.meta.url), 'utf8'),
+    readFile(new URL('../package.json', import.meta.url), 'utf8'),
   ]);
   assert.match(page, /data-orbit-profile/);
   assert.match(page, /hero--orbit-only/);
@@ -46,6 +50,17 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.doesNotMatch(page, /class="hero-copy"/);
   assert.match(page, /profile\.data\.name/);
   assert.match(page, /profile\.data\.topics/);
+  assert.match(page, /<TiltedCard[\s\S]*client:load/);
+  assert.match(page, /rotateAmplitude=\{10\}/);
+  assert.match(page, /scaleOnHover=\{1\.045\}/);
+  assert.match(tiltedCard, /from 'motion\/react'/);
+  assert.match(tiltedCard, /useSpring/);
+  assert.match(tiltedCard, /onMouseMove=\{handleMouse\}/);
+  assert.match(tiltedCard, /useReducedMotion/);
+  assert.match(tiltedStyles, /perspective:\s*800px/);
+  assert.match(tiltedStyles, /transform-style:\s*preserve-3d/);
+  assert.match(astroConfig, /integrations:\s*\[react\(\)\]/);
+  assert.match(packageJson, /"motion"/);
   assert.match(styles, /@keyframes profile-orbit-spin/);
   assert.match(styles, /@keyframes profile-orbit-counter/);
   assert.match(styles, /scale\(1\.15\)/, 'desktop orbit composition should use the enlarged scale');
