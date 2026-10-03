@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import RecommendedReading from '../components/RecommendedReading.jsx';
 import TiltedCard from '../components/TiltedCard.jsx';
 import TimeStream from '../components/TimeStream.astro';
 import '../styles/home-orbits.css';
@@ -14,9 +15,16 @@ const posts = loadedPosts
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 
-const featured = posts.find((post) => post.data.featured) ?? posts[0];
-const remaining = posts.filter((post) => post.id !== featured?.id);
 const formatDate = (date: Date) => date.toISOString().slice(0, 10).replaceAll('-', '.');
+const recommendedItems = posts.map((post, index) => ({
+  src: `generated-field-note-${index + 1}`,
+  generated: true,
+  accent: ['#d1ed78', '#f1f0e6', '#8eaa62', '#b9d28a'][index % 4],
+  alt: `${post.data.title}的抽象轨道封面`,
+  title: post.data.title,
+  subtitle: `${post.data.category} · ${formatDate(post.data.publishedAt)} · ${post.data.readingMinutes} MIN READ`,
+  href: `/posts/${post.id}/`,
+}));
 ---
 
 <BaseLayout title="林间信号 — Notes from elsewhere">
@@ -65,36 +73,12 @@ const formatDate = (date: Date) => date.toISOString().slice(0, 10).replaceAll('-
 
     <TimeStream />
 
-    <section class="notes-section" id="notes">
+    <section class="recommendations-section" id="notes">
       <div class="section-heading">
-        <div><p class="eyebrow">THE JOURNAL <span>— 近期记录</span></p><h2>最近在想<span class="accent">什么</span></h2></div>
-        <a class="archive-link" href="#archive">浏览全部 <span>↗</span></a>
+        <div><p class="eyebrow">SELECTED NOTES <span>— 推荐阅读</span></p><h2>值得停留的<span class="accent">文章</span></h2></div>
+        <p class="recommendations-section__hint">拖动选择 · 点击阅读</p>
       </div>
-      {featured ? (
-        <div class="featured-card">
-          <a class="featured-visual" href={`/posts/${featured.id}/`} aria-label={`阅读${featured.data.title}`}>
-            <div class="visual-grid"></div><div class="visual-sun"></div><div class="visual-orbit"></div><div class="visual-orbit second"></div>
-            <span class="visual-caption">GENERATED COVER — NO IMAGE ASSET</span><span class="visual-number">01</span>
-          </a>
-          <div class="featured-copy">
-            <div class="post-meta"><span>{featured.data.category}</span><i>·</i><time datetime={featured.data.publishedAt.toISOString()}>{formatDate(featured.data.publishedAt)}</time><span class="read-time">{featured.data.readingMinutes} MIN READ</span></div>
-            <h3><a href={`/posts/${featured.id}/`}>{featured.data.title}</a></h3>
-            <p>{featured.data.summary}</p>
-            <a class="round-arrow" href={`/posts/${featured.id}/`} aria-label="阅读全文">↗</a>
-          </div>
-        </div>
-      ) : (
-        <p class="empty-state">还没有已发布的文章。可以前往 <a href="/admin/">管理后台</a> 创建第一篇。</p>
-      )}
-      <div class="post-list" id="archive">
-        {remaining.map((post, index) => (
-          <a class="post-row" href={`/posts/${post.id}/`}>
-            <span class="row-number">{String(index + 2).padStart(2, '0')}</span>
-            <span class="row-title">{post.data.title}</span><span class="row-tag">{post.data.category}</span>
-            <time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt)}</time><span class="row-arrow">↗</span>
-          </a>
-        ))}
-      </div>
+      <RecommendedReading client:load items={recommendedItems} />
     </section>
 
     {profile && (

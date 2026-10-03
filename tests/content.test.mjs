@@ -86,6 +86,33 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(script, /orbitalArt\.addEventListener\('pointermove'/);
 });
 
+test('the homepage presents published posts in the interactive recommended reading carousel', async () => {
+  const [page, recommendedReading, carousel, carouselStyles, packageJson] = await Promise.all([
+    readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/RecommendedReading.jsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/FlexCarousel.jsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/RecommendedReading.css', import.meta.url), 'utf8'),
+    readFile(new URL('../package.json', import.meta.url), 'utf8'),
+  ]);
+
+  assert.match(page, /class="recommendations-section"/);
+  assert.match(page, /SELECTED NOTES/);
+  assert.match(page, /推荐阅读/);
+  assert.match(page, /<RecommendedReading client:load items=\{recommendedItems\}/);
+  assert.match(page, /generated-field-note-/);
+  assert.match(carousel, /createGeneratedCover/);
+  assert.match(page, /href: `\/posts\/\$\{post\.id\}\//);
+  assert.doesNotMatch(page, /class="featured-card"/);
+  assert.doesNotMatch(page, /class="post-list"/);
+  assert.match(recommendedReading, /preset="liquid"/);
+  assert.match(recommendedReading, /intro="rise"/);
+  assert.match(recommendedReading, /window\.location\.assign\(item\.href\)/);
+  assert.match(carousel, /from 'ogl'/);
+  assert.match(carousel, /aria-label=\{ariaLabel\}/);
+  assert.match(carouselStyles, /\.recommended-reading\s*\{/);
+  assert.match(packageJson, /"ogl"/);
+});
+
 test('light mode gives the brand mark a high-contrast color', async () => {
   const styles = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
   assert.match(styles, /body\.light \.brand-mark\{[^}]*border-color:#5d7334;[^}]*color:#5d7334/);
