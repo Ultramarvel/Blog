@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/home-identity.css';
 
 const [loadedPosts, profiles] = await Promise.all([
   getCollection('posts'),
@@ -16,24 +17,57 @@ const remaining = posts.filter((post) => post.id !== featured?.id);
 const formatDate = (date: Date) => date.toISOString().slice(0, 10).replaceAll('-', '.');
 ---
 
-<BaseLayout title="林间信号 — Notes from elsewhere">
+<BaseLayout title="林间信号 — Notes from elsewhere" bodyClass="home-page">
   <main>
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow"><i></i> 一座缓慢生长的数字花园 <span>VOL. 01—26</span></p>
-        <h1 id="hero-title">把好奇心<br />种进<span class="serif">日常。</span></h1>
-        <p class="hero-intro">关于设计、技术，以及那些值得停下来多看一眼的事。<br />这里收集正在发生的想法，也记录尚未抵达的答案。</p>
-        <a class="text-link" href="#notes">向下，开始阅读 <span>↓</span></a>
-      </div>
-      <div class="hero-art" aria-label="动态轨道与星体插画" role="img">
-        <div class="art-label label-top">OBSERVATION No. 026</div>
-        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div>
-        <div class="planet"><div class="planet-shine"></div></div>
-        <div class="satellite"></div><div class="star star-one">✳</div><div class="star star-two">✳</div>
-        <div class="art-label label-bottom">31° 13′ N&nbsp; / &nbsp;121° 28′ E</div>
-      </div>
-      <div class="hero-index"><span>01</span><span class="index-line"></span><span>SCROLL TO EXPLORE</span></div>
-    </section>
+    {profile && (
+      <section class="identity-stage" data-identity-stage aria-labelledby="hero-title">
+        <p class="identity-stage__ghost" aria-hidden="true">CURIOUS OBSERVER</p>
+        <div class="identity-stage__grid" aria-hidden="true"></div>
+        <div class="identity-orbits" aria-hidden="true">
+          <span class="identity-orbit identity-orbit--outer"></span>
+          <span class="identity-orbit identity-orbit--middle"></span>
+          <span class="identity-orbit identity-orbit--inner"></span>
+        </div>
+
+        <div class="identity-token identity-token--idea" aria-hidden="true">
+          <span>IDEA</span><strong>✦</strong>
+        </div>
+        <div class="identity-token identity-token--field" aria-hidden="true">
+          <span>FIELD</span><strong>{profile.data.initials}</strong>
+        </div>
+        <div class="identity-token identity-token--signal" aria-hidden="true">
+          <i></i><span>SIGNAL<br />ACTIVE</span>
+        </div>
+
+        <div class="identity-card-wrap">
+          <div class="identity-card__tab" aria-hidden="true">ID</div>
+          <article class="identity-card">
+            <div class="identity-card__meta">
+              <span>OBSERVER ID</span>
+              <span>{profile.data.profileNumber}</span>
+            </div>
+            <p class="identity-card__label">你好，我是：</p>
+            <h1 id="hero-title">{profile.data.name}</h1>
+            <div class="identity-card__rule"></div>
+            <p class="identity-card__label">我正在观察：</p>
+            <ul>
+              {profile.data.topics.slice(0, 4).map((topic) => <li>{topic}</li>)}
+            </ul>
+            <footer>
+              <span>{profile.data.role}</span>
+              <span>{profile.data.location} · {profile.data.since}</span>
+            </footer>
+          </article>
+          <span class="identity-card__weight" aria-hidden="true"></span>
+        </div>
+
+        <div class="identity-stage__intro">
+          <span>PERSONAL FIELD NOTES · VOL. 01</span>
+          <p>{profile.data.tagline}</p>
+        </div>
+        <a class="identity-stage__enter" href="#notes">进入观察现场 <span>↓</span></a>
+      </section>
+    )}
 
     <section class="notes-section" id="notes">
       <div class="section-heading">
