@@ -493,7 +493,6 @@ const FlexCarousel = ({
 
       ctx.save();
       ctx.translate(600, 458);
-      ctx.rotate(-22 * Math.PI / 180);
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillStyle = '#fff';

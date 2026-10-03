@@ -102,7 +102,7 @@ test('the homepage presents published posts in the interactive recommended readi
   assert.match(page, /generated-field-note-/);
   assert.match(page, /coverMeta: `\$\{post\.data\.readingMinutes\} MIN READ/);
   assert.match(carousel, /createGeneratedCover/);
-  assert.match(carousel, /ctx\.rotate\(-22 \* Math\.PI \/ 180\)/);
+  assert.doesNotMatch(carousel, /ctx\.rotate\([^)]*Math\.PI/);
   assert.match(carousel, /ctx\.fillText\(title, 0, -28\)/);
   assert.match(carousel, /item\.coverMeta \|\| item\.subtitle/);
   assert.match(page, /href: `\/posts\/\$\{post\.id\}\//);
