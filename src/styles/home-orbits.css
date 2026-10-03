@@ -1,0 +1,335 @@
+.hero-art--circles:before {
+  width: 390px;
+  height: 390px;
+  background: radial-gradient(circle, rgba(209, 237, 120, .07), transparent 70%);
+}
+
+.hero-art--circles:after {
+  width: 290px;
+  height: 290px;
+  background: radial-gradient(circle, rgba(255, 255, 255, .035), transparent 68%);
+}
+
+.orbit-profile {
+  position: relative;
+  width: 440px;
+  height: 440px;
+  display: grid;
+  place-items: center;
+  transform: translate3d(var(--detail-x), var(--detail-y), 0);
+  transition: transform .35s ease-out;
+}
+
+.orbit-circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  transform-origin: center;
+}
+
+.orbit-circle:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--acid);
+  box-shadow: 0 0 13px rgba(209, 237, 120, .82);
+}
+
+.orbit-circle--outer {
+  width: 420px;
+  height: 420px;
+  margin: -210px;
+  border: 1px dashed rgba(209, 237, 120, .27);
+  animation: profile-orbit-spin 46s linear infinite;
+}
+
+.orbit-circle--middle {
+  width: 330px;
+  height: 330px;
+  margin: -165px;
+  border: 1px dashed rgba(233, 232, 221, .21);
+  animation: profile-orbit-spin 36s linear infinite reverse;
+}
+
+.orbit-circle--middle:after {
+  left: auto;
+  right: 7%;
+  top: 17%;
+  width: 5px;
+  height: 5px;
+  background: #f1f0e6;
+  box-shadow: 0 0 11px rgba(241, 240, 230, .48);
+}
+
+.orbit-circle--inner {
+  width: 238px;
+  height: 238px;
+  margin: -119px;
+  border: 1px solid rgba(209, 237, 120, .18);
+  animation: profile-orbit-spin 28s linear infinite;
+}
+
+.orbit-circle--inner:after {
+  left: 13%;
+  top: 13%;
+  width: 4px;
+  height: 4px;
+}
+
+.orbit-carrier {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  border-radius: 50%;
+  animation: profile-orbit-spin var(--orbit-duration) linear infinite;
+  animation-delay: var(--orbit-delay);
+}
+
+.orbit-carrier--idea {
+  --orbit-duration: 25s;
+  --orbit-delay: -8s;
+  width: 420px;
+  height: 420px;
+  margin: -210px;
+}
+
+.orbit-carrier--field {
+  --orbit-duration: 19s;
+  --orbit-delay: -13s;
+  width: 330px;
+  height: 330px;
+  margin: -165px;
+}
+
+.orbit-carrier--signal {
+  --orbit-duration: 14s;
+  --orbit-delay: -3s;
+  width: 238px;
+  height: 238px;
+  margin: -119px;
+}
+
+.orbit-badge {
+  position: absolute;
+  left: calc(50% - 31px);
+  top: -31px;
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(233, 232, 221, .24);
+  border-radius: 50%;
+  color: var(--ink);
+  background: #151815;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, .24);
+  animation: profile-orbit-counter var(--orbit-duration) linear infinite;
+  animation-delay: var(--orbit-delay);
+}
+
+.orbit-badge b {
+  color: var(--acid);
+  font: 400 16px var(--mono);
+}
+
+.orbit-badge small {
+  position: absolute;
+  bottom: 11px;
+  color: #777e71;
+  font: 5px var(--mono);
+  letter-spacing: .11em;
+}
+
+.orbit-carrier--field .orbit-badge {
+  left: calc(50% - 37px);
+  top: -37px;
+  width: 74px;
+  height: 74px;
+  border-color: rgba(209, 237, 120, .48);
+}
+
+.orbit-carrier--field .orbit-badge b {
+  font-size: 21px;
+}
+
+.orbit-carrier--signal .orbit-badge {
+  left: calc(50% - 27px);
+  top: -27px;
+  width: 54px;
+  height: 54px;
+}
+
+.orbit-carrier--signal .orbit-badge i {
+  width: 8px;
+  height: 8px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--acid);
+  box-shadow: 0 0 0 5px rgba(209, 237, 120, .09), 0 0 13px rgba(209, 237, 120, .5);
+  animation: profile-signal-pulse 2s ease-in-out infinite;
+}
+
+.orbit-card-panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 5;
+  width: 224px;
+  min-height: 272px;
+  padding: 21px 23px 17px;
+  overflow: hidden;
+  border: 1px solid rgba(17, 20, 17, .1);
+  border-radius: 20px;
+  color: #22261f;
+  background: #f1f2ec;
+  box-shadow: 0 22px 48px rgba(0, 0, 0, .34);
+  transform: translate(-50%, -50%) translate3d(var(--planet-x), var(--planet-y), 0) rotate(-.8deg);
+  transition: transform .25s ease-out, box-shadow .35s ease;
+}
+
+.orbit-card-panel:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(130deg, rgba(255, 255, 255, .7), transparent 44%);
+}
+
+.orbit-card-panel__meta,
+.orbit-card-panel footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  color: #83877e;
+  font: 6px var(--mono);
+  letter-spacing: .1em;
+}
+
+.orbit-card-panel__meta span:last-child,
+.orbit-card-panel footer span:last-child {
+  color: #667c3f;
+}
+
+.orbit-card-panel>p {
+  position: relative;
+  z-index: 1;
+  margin: 24px 0 0;
+  color: #5e6359;
+  font: 600 13px var(--sans);
+}
+
+.orbit-card-panel>strong {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: -2px;
+  color: #617b35;
+  font: 700 49px/1.05 var(--serif);
+}
+
+.orbit-card-panel__rule {
+  position: relative;
+  z-index: 1;
+  height: 1px;
+  margin: 22px 0 14px;
+  background: #ced1c7;
+}
+
+.orbit-card-panel>small {
+  position: relative;
+  z-index: 1;
+  color: #6f7469;
+  font: 7px var(--mono);
+  letter-spacing: .08em;
+}
+
+.orbit-card-panel ul {
+  position: relative;
+  z-index: 1;
+  margin: 8px 0 18px;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+}
+
+.orbit-card-panel li {
+  color: #30352d;
+  font: 500 11px/1.65 var(--sans);
+}
+
+.orbit-card-panel footer {
+  padding-top: 12px;
+  border-top: 1px solid #d7d9d1;
+}
+
+.hero-art--circles.is-active .orbit-card-panel {
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .43), 0 0 45px rgba(209, 237, 120, .08);
+}
+
+.hero-art--circles.is-active .orbit-profile {
+  transition-duration: .14s;
+}
+
+body.light .orbit-badge {
+  background: #262b24;
+}
+
+body.light .orbit-card-panel {
+  background: #fff;
+}
+
+body.light .orbit-circle--middle {
+  border-color: rgba(47, 54, 42, .28);
+}
+
+@keyframes profile-orbit-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes profile-orbit-counter {
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes profile-signal-pulse {
+  0%, 100% { opacity: .55; transform: scale(.82); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+@media (max-width: 850px) {
+  .orbit-profile {
+    transform: scale(.88) translate3d(var(--detail-x), var(--detail-y), 0);
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-art--circles {
+    height: 305px;
+    margin-top: 7px;
+  }
+
+  .orbit-profile {
+    transform: scale(.68) translate3d(var(--detail-x), var(--detail-y), 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-profile {
+    transform: none !important;
+  }
+
+  .orbit-circle,
+  .orbit-carrier,
+  .orbit-badge {
+    animation: none !important;
+  }
+
+  .orbit-card-panel {
+    transform: translate(-50%, -50%) !important;
+  }
+}

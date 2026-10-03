@@ -34,18 +34,20 @@ test('the owner profile contains all public identity fields', async () => {
   assert.doesNotMatch(profile, /<img\b/i);
 });
 
-test('the homepage identity card is driven by the editable owner profile', async () => {
+test('the homepage orbit card is compact, animated, and driven by the owner profile', async () => {
   const [page, styles, script] = await Promise.all([
     readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
-    readFile(new URL('../src/styles/home-identity.css', import.meta.url), 'utf8'),
+    readFile(new URL('../src/styles/home-orbits.css', import.meta.url), 'utf8'),
     readFile(new URL('../script.js', import.meta.url), 'utf8'),
   ]);
-  assert.match(page, /data-identity-stage/);
+  assert.match(page, /data-orbit-profile/);
+  assert.match(page, /orbit-card-panel/);
   assert.match(page, /profile\.data\.name/);
   assert.match(page, /profile\.data\.topics/);
-  assert.match(styles, /@keyframes identity-orbit-spin/);
+  assert.match(styles, /@keyframes profile-orbit-spin/);
+  assert.match(styles, /@keyframes profile-orbit-counter/);
   assert.match(styles, /prefers-reduced-motion/);
-  assert.match(script, /identityStage\.addEventListener\('pointermove'/);
+  assert.match(script, /orbitalArt\.addEventListener\('pointermove'/);
 });
 
 test('published Markdown posts do not contain image syntax', async () => {
