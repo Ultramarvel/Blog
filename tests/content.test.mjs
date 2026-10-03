@@ -117,6 +117,9 @@ test('the homepage presents published posts in the interactive recommended readi
   assert.match(carousel, /from 'ogl'/);
   assert.match(carousel, /aria-label=\{ariaLabel\}/);
   assert.match(carouselStyles, /\.recommended-reading\s*\{/);
+  assert.match(carouselStyles, /backdrop-filter:\s*blur\(24px\) saturate\(125%\)/);
+  assert.match(carouselStyles, /linear-gradient\(145deg, rgba\(255, 255, 255, \.34\), rgba\(223, 235, 205, \.16\) 72%\)/);
+  assert.doesNotMatch(carouselStyles, /linear-gradient\(145deg, #151a16, #0d100e 72%\)/);
   assert.match(packageJson, /"ogl"/);
 });
 
