@@ -129,6 +129,33 @@ test('light mode gives the brand mark a high-contrast color', async () => {
   assert.match(styles, /body\.light \.brand-mark span\{[^}]*color:#5d7334/);
 });
 
+test('the homepage showcases maintainable open source project cards', async () => {
+  const [page, component, styles, data] = await Promise.all([
+    readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/OpenSourceProjects.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../src/styles/open-source-projects.css', import.meta.url), 'utf8'),
+    import(new URL('../src/data/open-source-projects.mjs', import.meta.url).href),
+  ]);
+
+  assert.match(page, /<OpenSourceProjects \/>/);
+  assert.match(component, /id="projects"/);
+  assert.match(component, /aria-labelledby="projects-title"/);
+  assert.match(component, /openSourceProjects\.map/);
+  assert.match(component, /project\.tags\.map/);
+  assert.doesNotMatch(component, /<img\b/i);
+  assert.equal(data.openSourceProjects.length, 3);
+  data.openSourceProjects.forEach((project) => {
+    assert.ok(project.title);
+    assert.ok(project.description);
+    assert.ok(project.href);
+    assert.ok(project.tags.length >= 3);
+  });
+  assert.match(styles, /grid-template-columns:\s*1\.35fr \.82fr \.82fr/);
+  assert.match(styles, /\.project-card:hover article/);
+  assert.match(styles, /@media \(max-width:\s*650px\)/);
+  assert.match(styles, /prefers-reduced-motion:\s*reduce/);
+});
+
 test('the shared layout includes an accessible non-blocking BlobCursor trail', async () => {
   const [layout, component, styles, packageJson] = await Promise.all([
     readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8'),

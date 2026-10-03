@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import OpenSourceProjects from '../components/OpenSourceProjects.astro';
 import RecommendedReading from '../components/RecommendedReading.jsx';
 import TiltedCard from '../components/TiltedCard.jsx';
 import TimeStream from '../components/TimeStream.astro';
@@ -81,6 +82,8 @@ const recommendedItems = posts.map((post, index) => ({
       </div>
       <RecommendedReading client:load items={recommendedItems} />
     </section>
+
+    <OpenSourceProjects />
 
     {profile && (
       <section class="profile-preview" id="about">
