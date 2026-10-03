@@ -39,11 +39,11 @@ const bandPath = (upper, lower) => {
 };
 
 const layerDefinitions = [
-  { key: 'study', title: '学习', label: '学习', x: 330, y: 116 },
-  { key: 'movement', title: '音乐与运动', label: '音乐 / 运动', x: 865, y: 178 },
-  { key: 'game', title: '游戏', label: '游戏', x: 620, y: 265 },
-  { key: 'work', title: '编程与工作', label: '编程 / 工作', x: 850, y: 318 },
-  { key: 'family', title: '社交与家庭', label: '社交 / 家庭', x: 65, y: 232 },
+  { key: 'study', title: '学习', label: '学习', x: 300, y: 116 },
+  { key: 'movement', title: '音乐与运动', label: '音乐 / 运动', x: 900, y: 178 },
+  { key: 'game', title: '游戏', label: '游戏', x: 600, y: 265 },
+  { key: 'work', title: '编程与工作', label: '编程 / 工作', x: 900, y: 318 },
+  { key: 'family', title: '社交与家庭', label: '社交 / 家庭', x: 100, y: 232 },
 ];
 
 export const streamBands = layerDefinitions.map((layer, index) => ({

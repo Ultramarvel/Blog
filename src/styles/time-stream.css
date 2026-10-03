@@ -101,8 +101,6 @@
 .stream-layer--game path { fill: var(--stream-game); }
 .stream-layer--work path { fill: var(--stream-work); }
 .stream-layer--family path { fill: var(--stream-family); }
-.stream-layer--family text,
-.stream-layer--work text { fill: #263020; }
 
 .time-stream__svg:has(.stream-layer:hover) .stream-layer:not(:hover),
 .time-stream__svg:has(.stream-layer:focus) .stream-layer:not(:focus) {

@@ -83,7 +83,16 @@ test('the homepage includes an accessible animated time stream with ordered band
       assert.ok(current[1] >= previous[1], `boundary ${boundaryIndex} crosses the layer above at point ${pointIndex}`);
     }
   }
+  geometry.streamBands.forEach((layer, layerIndex) => {
+    const pointIndex = geometry.streamBoundaries[0].findIndex(([x]) => x === layer.x);
+    assert.notEqual(pointIndex, -1, `${layer.key} label must align to a tested control point`);
+    const upperY = geometry.streamBoundaries[layerIndex][pointIndex][1];
+    const lowerY = geometry.streamBoundaries[layerIndex + 1][pointIndex][1];
+    assert.ok(layer.y > upperY && layer.y < lowerY, `${layer.key} label must stay inside its own stream`);
+  });
   assert.doesNotMatch(component, /<img\b/i);
+  assert.match(styles, /\.stream-layer text\s*\{[^}]*fill:\s*#f0f1e9;/);
+  assert.doesNotMatch(styles, /#263020/);
   assert.match(styles, /body\.light \.time-stream/);
   assert.match(styles, /prefers-reduced-motion/);
   assert.match(script, /\.time-stream__chart/);
