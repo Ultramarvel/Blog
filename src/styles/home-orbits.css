@@ -323,7 +323,7 @@ body.light .orbit-circle:after {
 
 @media (max-width: 850px) {
   .orbit-profile {
-    transform: scale(.88) translate3d(calc(var(--detail-x) - 125px), calc(var(--detail-y) - 155px), 0);
+    transform: scale(.88) translate3d(calc(var(--detail-x) - 125px), calc(var(--detail-y) - 200px), 0);
   }
 }
 
@@ -334,7 +334,7 @@ body.light .orbit-circle:after {
   }
 
   .orbit-profile {
-    transform: scale(.68) translate3d(calc(var(--detail-x) - 185px), calc(var(--detail-y) - 185px), 0);
+    transform: scale(.68) translate3d(calc(var(--detail-x) - 185px), calc(var(--detail-y) - 240px), 0);
   }
 }
 
