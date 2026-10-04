@@ -1,8 +1,16 @@
 locale: zh_Hans
 
 backend:
-  name: git-gateway
+  name: github
+  repo: Ultramarvel/Blog
   branch: master
+  auth_scope: public_repo
+  site_domain: aesthetic-selkie-0b6598.netlify.app
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+site_url: https://blog-of-qyd.xyz
+display_url: https://blog-of-qyd.xyz
 
 local_backend: true
 publish_mode: editorial_workflow
