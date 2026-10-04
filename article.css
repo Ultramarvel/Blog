@@ -3,9 +3,6 @@
 @media(max-width:600px){.article-shell{padding:34px 6% 75px}.article-header{margin:47px auto 34px}.article-header h1{font-size:39px;line-height:1.55;margin:23px 0 12px}.article-deck{font-size:13px}.share-note{font-size:7px}.article-cover{height:250px;margin-bottom:49px}.cover-disc{width:140px;height:140px}.cover-ring{width:360px;height:120px}.article-cover span{font-size:7px;left:16px;bottom:16px}.article-layout{display:block}.toc{position:relative;top:auto;display:flex;gap:12px;align-items:center;overflow-x:auto;white-space:nowrap;border-bottom:1px solid var(--line);padding:0 0 12px;margin-bottom:30px}.toc p{margin:0 7px 0 0}.toc a{padding:2px 0;font-size:8px}.toc-line,.toc>span{display:none}.prose{font-size:14px;line-height:2.1}.prose .lead{font-size:16px}.prose h2{font-size:23px;margin:53px 0 18px}.prose blockquote{font-size:17px;padding-left:18px}.article-pullquote{margin:43px -7px;padding:24px 8px;font-size:18px}.article-pullquote span{font-size:14px}.author-card{grid-template-columns:45px 1fr;gap:10px}.author-card>a{grid-column:2}.article-page .footer{padding-left:6%;padding-right:6%}}
 
 /* Markdown content */
-.prose{counter-reset:article-section}
-.prose h2{counter-increment:article-section}
-.prose h2:before{content:counter(article-section,decimal-leading-zero);font:10px var(--mono);color:var(--acid);vertical-align:middle;margin-right:15px;letter-spacing:.05em}
 .prose h3{font:500 20px/1.6 var(--serif);letter-spacing:-.025em;color:#e8e9de;margin:42px 0 16px}
 .prose ul,.prose ol{margin:0 0 28px;padding-left:1.4em}
 .prose li{padding-left:.35em;margin:.35em 0}

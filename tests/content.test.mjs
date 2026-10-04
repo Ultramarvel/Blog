@@ -175,6 +175,13 @@ test('light mode keeps article summary and list markers clearly visible', async 
   assert.match(styles, /body\.light \.prose ul li::marker\{color:#536b2c;font-size:\.9em\}/);
 });
 
+test('article section headings do not receive automatic number labels', async () => {
+  const styles = await readFile(new URL('../article.css', import.meta.url), 'utf8');
+  assert.doesNotMatch(styles, /counter-reset:article-section/);
+  assert.doesNotMatch(styles, /counter-increment:article-section/);
+  assert.doesNotMatch(styles, /counter\(article-section/);
+});
+
 test('the homepage showcases open source projects with green MagicBento interactions', async () => {
   const [page, component, magicBento, magicStyles, styles, data, packageJson] = await Promise.all([
     readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
