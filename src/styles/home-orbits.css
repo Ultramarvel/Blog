@@ -320,7 +320,16 @@ body.light .orbit-circle:after {
 
 @media (max-width: 850px) {
   .orbit-profile {
+    --outer-orbit-size: min(650px, calc((100vw - 16px) * 1.1364));
     transform: scale(.88) translate3d(calc(var(--detail-x) - 125px), calc(var(--detail-y) - 200px), 0);
+  }
+
+  .orbit-circle--outer,
+  .orbit-carrier--idea {
+    width: var(--outer-orbit-size);
+    height: var(--outer-orbit-size);
+    margin: 0;
+    translate: -50% -50%;
   }
 }
 
@@ -331,6 +340,7 @@ body.light .orbit-circle:after {
   }
 
   .orbit-profile {
+    --outer-orbit-size: min(620px, calc((100vw - 8px) * 1.4706));
     transform: scale(.68) translate3d(calc(var(--detail-x) - 185px), calc(var(--detail-y) - 240px), 0);
   }
 
