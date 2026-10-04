@@ -50,6 +50,7 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   ]);
   assert.match(page, /data-orbit-profile/);
   assert.match(page, /hero--orbit-only/);
+  assert.doesNotMatch(page, /OBSERVATION No\. 026|label-top/);
   assert.match(page, /orbit-card-panel/);
   assert.doesNotMatch(page, /class="hero-copy"/);
   assert.match(page, /profile\.data\.name/);

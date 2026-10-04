@@ -11,10 +11,6 @@
   transform: none;
 }
 
-.hero--orbit-only .label-top {
-  right: 42px;
-}
-
 .hero--orbit-only .label-bottom {
   left: 42px;
 }
