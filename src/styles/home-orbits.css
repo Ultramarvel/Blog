@@ -192,12 +192,13 @@
 }
 
 .orbit-card-tilt {
+  --orbit-card-scale: 1;
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 5;
   margin: 0;
-  transform: translate(-50%, -50%) translate3d(var(--planet-x), var(--planet-y), 0) rotate(-.8deg);
+  transform: translate(-50%, -50%) translate3d(var(--planet-x), var(--planet-y), 0) rotate(-.8deg) scale(var(--orbit-card-scale));
   transition: transform .25s ease-out;
 }
 
@@ -332,6 +333,10 @@ body.light .orbit-circle:after {
   .orbit-profile {
     transform: scale(.68) translate3d(calc(var(--detail-x) - 185px), calc(var(--detail-y) - 240px), 0);
   }
+
+  .orbit-card-tilt {
+    --orbit-card-scale: 1.15;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -346,6 +351,6 @@ body.light .orbit-circle:after {
   }
 
   .orbit-card-tilt {
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%) scale(var(--orbit-card-scale)) !important;
   }
 }
