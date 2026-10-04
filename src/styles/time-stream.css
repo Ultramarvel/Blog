@@ -204,6 +204,7 @@ body.light .time-stream__chart {
 
 @media (max-width: 700px) {
   .time-stream {
+    margin-top: -112px;
     padding: 72px 6% 80px;
   }
 

@@ -77,7 +77,7 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(styles, /@keyframes profile-orbit-counter/);
   assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.orbit-card-tilt\s*\{\s*--orbit-card-scale: 1\.15/, 'mobile profile card should be enlarged independently of the orbit artwork');
   assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.orbit-card-panel li\s*\{\s*font-size: 18px;\s*line-height: 1\.55;/, 'mobile profile roles should use a larger readable type size');
-  assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.hero--orbit-only \.label-bottom\s*\{\s*bottom: 119px;[\s\S]*?\.hero--orbit-only \.hero-index\s*\{\s*bottom: 120px;/, 'mobile orbit metadata should sit closer to the orbit artwork');
+  assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.hero--orbit-only \.label-bottom\s*\{\s*bottom: 231px;[\s\S]*?\.hero--orbit-only \.hero-index\s*\{\s*bottom: 232px;/, 'mobile orbit metadata should sit closer to the orbit artwork');
   assert.match(styles, /--outer-orbit-size: min\(620px, calc\(\(100vw - 8px\) \* 1\.4706\)\)/, 'mobile outer orbit should grow responsively without exceeding the viewport');
   assert.match(styles, /\.orbit-circle--outer,\s*\.orbit-carrier--idea\s*\{[^}]*width: var\(--outer-orbit-size\);[^}]*height: var\(--outer-orbit-size\)/s, 'outer orbit ring and its badge carrier should stay aligned');
   assert.match(styles, /\.orbit-card-panel__prompt\s*\{[^}]*font:\s*700 20px\/1\.2 var\(--serif\)/);
@@ -304,6 +304,7 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.match(styles, /\.time-stream__header\s*\{[^}]*max-width:\s*1240px/);
   assert.match(styles, /\.time-stream__chart\s*\{[^}]*width:\s*100%;[^}]*max-width:\s*none/);
   assert.match(styles, /\.time-stream__axis-label\s*\{[^}]*width:\s*max-content;[^}]*margin:\s*11px auto -4px;[^}]*transform:\s*translateX\(22px\);[^}]*font:\s*600 13px var\(--mono\);[^}]*letter-spacing:\s*\.32em/);
+  assert.match(styles, /@media \(max-width: 700px\)[\s\S]*?\.time-stream\s*\{\s*margin-top:\s*-112px;/, 'the mobile section divider should rise with the orbit metadata');
   assert.doesNotMatch(styles, /#263020/);
   assert.match(styles, /body\.light \.time-stream/);
   assert.match(styles, /prefers-reduced-motion/);
