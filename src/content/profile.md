@@ -1,30 +1,32 @@
 ---
-name: "林"
-initials: "林"
-cardName: "Yudong"
+name: 秦
+initials: 秦
+cardName: Yudong
 cardRoles:
-  - "Master's Student at South China Normal University"
-  - "AI Enthusiast"
-  - "Badminton Lover"
-  - "Movie Fan"
-role: "观察者、设计与技术实践者"
-tagline: "把好奇心种进日常。"
-shortBio: "我观察事物如何运作，也记录技术、设计与生活里那些容易被忽略的细节。这里是一张持续展开的工作台，也是一座缓慢生长的数字花园。"
-location: "上海"
-coordinates: "31° 13′ N / 121° 28′ E"
-status: "正在建造一座缓慢生长的数字花园"
+  - MEng Student at SCNU
+  - AI Enthusiast
+  - Badminton Lover
+  - Movie Fan
+  - Music Lover
+  - . . .
+role: 观察者、设计与技术实践者
+tagline: 把好奇心种进日常。
+shortBio: 我观察事物如何运作，也记录技术、设计与生活里那些容易被忽略的细节。这里是一张持续展开的工作台，也是一座缓慢生长的数字花园。
+location: 广东
+coordinates: 23° 8′ 48″ N / 113° 1′ 42″ E
+status: 正在建造一座缓慢生长的数字花园
 current:
-  - "学习创意编程与动态视觉"
-  - "整理关于注意力的长期笔记"
-  - "寻找更安静的软件交互方式"
+  - 学习创意编程与动态视觉
+  - 整理关于注意力的长期笔记
+  - 寻找更安静的软件交互方式
 topics:
-  - "设计观察"
-  - "技术随笔"
-  - "工作方法"
-  - "生活切片"
+  - 设计观察
+  - 技术随笔
+  - 工作方法
+  - 生活切片
 since: "2026"
-email: "hello@example.com"
-profileNumber: "NO. 001"
+email: hello@example.com
+profileNumber: NO. 001
 updatedAt: 2026-10-03
 ---
 
