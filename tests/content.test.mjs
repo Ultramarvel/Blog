@@ -76,6 +76,7 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(styles, /@keyframes profile-orbit-spin/);
   assert.match(styles, /@keyframes profile-orbit-counter/);
   assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.orbit-card-tilt\s*\{\s*--orbit-card-scale: 1\.15/, 'mobile profile card should be enlarged independently of the orbit artwork');
+  assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.hero--orbit-only \.label-bottom\s*\{\s*bottom: 119px;[\s\S]*?\.hero--orbit-only \.hero-index\s*\{\s*bottom: 120px;/, 'mobile orbit metadata should sit closer to the orbit artwork');
   assert.match(styles, /--outer-orbit-size: min\(620px, calc\(\(100vw - 8px\) \* 1\.4706\)\)/, 'mobile outer orbit should grow responsively without exceeding the viewport');
   assert.match(styles, /\.orbit-circle--outer,\s*\.orbit-carrier--idea\s*\{[^}]*width: var\(--outer-orbit-size\);[^}]*height: var\(--outer-orbit-size\)/s, 'outer orbit ring and its badge carrier should stay aligned');
   assert.match(styles, /\.orbit-card-panel__prompt\s*\{[^}]*font:\s*700 20px\/1\.2 var\(--serif\)/);

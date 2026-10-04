@@ -339,6 +339,14 @@ body.light .orbit-circle:after {
     margin-top: 7px;
   }
 
+  .hero--orbit-only .label-bottom {
+    bottom: 119px;
+  }
+
+  .hero--orbit-only .hero-index {
+    bottom: 120px;
+  }
+
   .orbit-profile {
     --outer-orbit-size: min(620px, calc((100vw - 8px) * 1.4706));
     transform: scale(.68) translate3d(calc(var(--detail-x) - 175px), calc(var(--detail-y) - 240px), 0);
