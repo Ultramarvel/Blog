@@ -25,28 +25,6 @@
   cursor: grabbing;
 }
 
-.curved-loop-jacket::before,
-.curved-loop-jacket::after {
-  position: absolute;
-  z-index: 2;
-  bottom: 11px;
-  color: #6f7869;
-  font: 8px var(--mono);
-  letter-spacing: .12em;
-  pointer-events: none;
-}
-
-.curved-loop-jacket::before {
-  content: 'CURVED SIGNAL / 00';
-  left: 7%;
-  color: #aeca63;
-}
-
-.curved-loop-jacket::after {
-  content: 'DRAG TO SHIFT DIRECTION';
-  right: 7%;
-}
-
 .curved-loop-svg {
   display: block;
   width: 100%;
@@ -85,14 +63,6 @@ body.light .home-curved-loop__text {
   stroke: rgba(73, 96, 49, .1);
 }
 
-body.light .curved-loop-jacket::before {
-  color: #607934;
-}
-
-body.light .curved-loop-jacket::after {
-  color: #737a6d;
-}
-
 @media (max-width: 650px) {
   .curved-loop-jacket {
     height: 112px;
@@ -102,14 +72,6 @@ body.light .curved-loop-jacket::after {
     width: 190%;
     max-width: none;
     font-size: 38px;
-  }
-
-  .curved-loop-jacket::before {
-    left: 6%;
-  }
-
-  .curved-loop-jacket::after {
-    display: none;
   }
 }
 
