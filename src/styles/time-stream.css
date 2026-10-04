@@ -103,13 +103,11 @@
 .stream-layer--work path { fill: var(--stream-work); }
 .stream-layer--family path { fill: var(--stream-family); }
 
-.time-stream__svg:has(.stream-layer:hover) .stream-layer:not(:hover),
-.time-stream__svg:has(.stream-layer:focus) .stream-layer:not(:focus) {
+.time-stream__svg:has(.stream-layer:hover) .stream-layer:not(:hover) {
   opacity: .35;
 }
 
-.stream-layer:hover,
-.stream-layer:focus {
+.stream-layer:hover {
   filter: brightness(1.09) saturate(1.08);
 }
 
@@ -123,7 +121,6 @@
 }
 
 .stream-layer--family:hover,
-.stream-layer--family:focus,
 .time-stream__chart[data-active-stream] .stream-layer--family.is-active {
   filter: brightness(1.02) saturate(1.02);
 }

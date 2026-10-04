@@ -20,8 +20,6 @@ document.querySelectorAll('.time-stream__chart').forEach(chart=>{
     };
     control.addEventListener('pointerenter',activateStream);
     control.addEventListener('pointerleave',resetStream);
-    control.addEventListener('focus',activateStream);
-    control.addEventListener('blur',resetStream);
   });
 });
 

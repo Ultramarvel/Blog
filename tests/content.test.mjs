@@ -241,6 +241,7 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.doesNotMatch(component, />AGE</);
   assert.equal((component.match(/data-stream-target=/g) ?? []).length, 5);
   assert.equal((component.match(/aria-controls="stream-/g) ?? []).length, 5);
+  assert.doesNotMatch(component, /class=\{`stream-layer[^>]*tabindex=/);
   assert.equal(geometry.streamBands.length, 5);
   const leftEdgeThicknesses = geometry.streamBands.map((_, layerIndex) => (
     geometry.streamBoundaries[layerIndex + 1][0][1]
@@ -297,7 +298,9 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.match(styles, /prefers-reduced-motion/);
   assert.match(script, /\.time-stream__chart/);
   assert.match(script, /control\.addEventListener\('pointerenter',activateStream\)/);
-  assert.match(script, /control\.addEventListener\('focus',activateStream\)/);
+  assert.match(script, /control\.addEventListener\('pointerleave',resetStream\)/);
+  assert.doesNotMatch(script, /control\.addEventListener\('(?:focus|blur)'/);
+  assert.doesNotMatch(styles, /\.stream-layer:focus/);
   assert.match(script, /document\.getElementById\(targetId\)/);
   assert.doesNotMatch(script, /activeLayer\.parentElement\?\.append/);
 });
