@@ -292,7 +292,7 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.match(styles, /\.time-stream__legend i\s*\{[^}]*width:\s*10px;[^}]*height:\s*10px/);
   assert.match(styles, /\.time-stream__header\s*\{[^}]*max-width:\s*1240px/);
   assert.match(styles, /\.time-stream__chart\s*\{[^}]*width:\s*100%;[^}]*max-width:\s*none/);
-  assert.match(styles, /\.time-stream__axis-label\s*\{[^}]*text-align:\s*center;[^}]*letter-spacing:\s*\.32em/);
+  assert.match(styles, /\.time-stream__axis-label\s*\{[^}]*width:\s*max-content;[^}]*margin:\s*11px auto -4px;[^}]*font:\s*600 13px var\(--mono\);[^}]*letter-spacing:\s*\.32em/);
   assert.doesNotMatch(styles, /#263020/);
   assert.match(styles, /body\.light \.time-stream/);
   assert.match(styles, /prefers-reduced-motion/);

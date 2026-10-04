@@ -80,10 +80,11 @@
 }
 
 .time-stream__axis-label {
-  margin: 11px 0 -4px;
+  width: max-content;
+  margin: 11px auto -4px;
+  padding-left: .32em;
   color: var(--muted);
-  text-align: center;
-  font: 600 10px var(--mono);
+  font: 600 13px var(--mono);
   letter-spacing: .32em;
 }
 
