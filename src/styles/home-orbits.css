@@ -355,6 +355,11 @@ body.light .orbit-circle:after {
   .orbit-card-tilt {
     --orbit-card-scale: 1.15;
   }
+
+  .orbit-card-panel li {
+    font-size: 18px;
+    line-height: 1.55;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
