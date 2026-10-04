@@ -10,9 +10,8 @@
   background:
     linear-gradient(rgba(209, 237, 120, .025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(209, 237, 120, .025) 1px, transparent 1px),
-    radial-gradient(circle at 50% 100%, rgba(209, 237, 120, .1), transparent 42%),
-    #111311;
-  background-size: 54px 54px, 54px 54px, auto, auto;
+    var(--bg);
+  background-size: 54px 54px, 54px 54px, auto;
   cursor: grab;
   touch-action: pan-y;
   transition: opacity .25s ease;
@@ -75,9 +74,8 @@ body.light .curved-loop-jacket {
   background:
     linear-gradient(rgba(91, 112, 70, .035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(91, 112, 70, .035) 1px, transparent 1px),
-    radial-gradient(circle at 50% 100%, rgba(165, 195, 105, .2), transparent 44%),
-    #ecebe2;
-  background-size: 54px 54px, 54px 54px, auto, auto;
+    var(--bg);
+  background-size: 54px 54px, 54px 54px, auto;
 }
 
 body.light .curved-loop-svg {

@@ -106,7 +106,9 @@ test('the homepage opens with an accessible interactive curved text loop', async
   assert.doesNotMatch(component, /<img\b/i);
   assert.match(styles, /height:\s*clamp\(120px, 10vw, 150px\)/);
   assert.match(styles, /font-size:\s*clamp\(30px, 3vw, 42px\)/);
+  assert.match(styles, /\.curved-loop-jacket\s*\{[\s\S]*?background:[\s\S]*?var\(--bg\)/);
   assert.match(styles, /body\.light \.curved-loop-jacket/);
+  assert.doesNotMatch(styles, /radial-gradient\(circle at 50% 100%/);
   assert.match(styles, /fill:\s*#c8e671/);
   assert.match(styles, /@media \(max-width:\s*650px\)/);
 });
