@@ -86,6 +86,31 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(script, /orbitalArt\.addEventListener\('pointermove'/);
 });
 
+test('the homepage opens with an accessible interactive curved text loop', async () => {
+  const [page, component, styles] = await Promise.all([
+    readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/CurvedLoop.jsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/CurvedLoop.css', import.meta.url), 'utf8'),
+  ]);
+
+  assert.match(page, /<CurvedLoop[\s\S]*client:load/);
+  assert.match(page, /marqueeText="观察 ✦ 构建 ✦ 记录 ✦ 保持好奇 ✦"/);
+  assert.match(page, /curveAmount=\{90\}/);
+  assert.ok(page.indexOf('<CurvedLoop') < page.indexOf('class="hero hero--orbit-only"'));
+  assert.match(component, /requestAnimationFrame/);
+  assert.match(component, /document\.fonts\?\.ready\.then\(measure\)/);
+  assert.match(component, /setPointerCapture/);
+  assert.match(component, /prefers-reduced-motion: reduce/);
+  assert.match(component, /role="img"/);
+  assert.match(component, /aria-label=\{`\$\{marqueeText\}/);
+  assert.doesNotMatch(component, /<img\b/i);
+  assert.match(styles, /height:\s*clamp\(120px, 10vw, 150px\)/);
+  assert.match(styles, /font-size:\s*clamp\(42px, 4\.4vw, 62px\)/);
+  assert.match(styles, /body\.light \.curved-loop-jacket/);
+  assert.match(styles, /fill:\s*#c8e671/);
+  assert.match(styles, /@media \(max-width:\s*650px\)/);
+});
+
 test('the homepage presents published posts in the interactive recommended reading carousel', async () => {
   const [page, recommendedReading, carousel, carouselStyles, packageJson] = await Promise.all([
     readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),

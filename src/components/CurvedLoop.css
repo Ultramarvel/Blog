@@ -1,0 +1,123 @@
+.curved-loop-jacket {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: clamp(120px, 10vw, 150px);
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  background:
+    linear-gradient(rgba(209, 237, 120, .025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(209, 237, 120, .025) 1px, transparent 1px),
+    radial-gradient(circle at 50% 100%, rgba(209, 237, 120, .1), transparent 42%),
+    #111311;
+  background-size: 54px 54px, 54px 54px, auto, auto;
+  cursor: grab;
+  touch-action: pan-y;
+  transition: opacity .25s ease;
+}
+
+.curved-loop-jacket[data-interactive='false'] {
+  cursor: default;
+}
+
+.curved-loop-jacket[data-interactive='true']:active {
+  cursor: grabbing;
+}
+
+.curved-loop-jacket::before,
+.curved-loop-jacket::after {
+  position: absolute;
+  z-index: 2;
+  bottom: 11px;
+  color: #6f7869;
+  font: 8px var(--mono);
+  letter-spacing: .12em;
+  pointer-events: none;
+}
+
+.curved-loop-jacket::before {
+  content: 'CURVED SIGNAL / 00';
+  left: 7%;
+  color: #aeca63;
+}
+
+.curved-loop-jacket::after {
+  content: 'DRAG TO SHIFT DIRECTION';
+  right: 7%;
+}
+
+.curved-loop-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: #c8e671;
+  font-family: var(--serif);
+  font-size: clamp(42px, 4.4vw, 62px);
+  font-weight: 600;
+  letter-spacing: -.055em;
+  line-height: 1;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.home-curved-loop__text {
+  paint-order: stroke fill;
+  stroke: rgba(209, 237, 120, .12);
+  stroke-width: 1px;
+}
+
+body.light .curved-loop-jacket {
+  border-bottom-color: #c3c5b8;
+  background:
+    linear-gradient(rgba(91, 112, 70, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 112, 70, .035) 1px, transparent 1px),
+    radial-gradient(circle at 50% 100%, rgba(165, 195, 105, .2), transparent 44%),
+    #ecebe2;
+  background-size: 54px 54px, 54px 54px, auto, auto;
+}
+
+body.light .curved-loop-svg {
+  fill: #617b34;
+}
+
+body.light .home-curved-loop__text {
+  stroke: rgba(73, 96, 49, .1);
+}
+
+body.light .curved-loop-jacket::before {
+  color: #607934;
+}
+
+body.light .curved-loop-jacket::after {
+  color: #737a6d;
+}
+
+@media (max-width: 650px) {
+  .curved-loop-jacket {
+    height: 112px;
+  }
+
+  .curved-loop-svg {
+    width: 190%;
+    max-width: none;
+    font-size: 45px;
+  }
+
+  .curved-loop-jacket::before {
+    left: 6%;
+  }
+
+  .curved-loop-jacket::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curved-loop-jacket {
+    cursor: default;
+  }
+}

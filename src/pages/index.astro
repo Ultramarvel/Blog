@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CurvedLoop from '../components/CurvedLoop.jsx';
 import OpenSourceProjects from '../components/OpenSourceProjects.astro';
 import RecommendedReading from '../components/RecommendedReading.jsx';
 import TiltedCard from '../components/TiltedCard.jsx';
@@ -31,6 +32,16 @@ const recommendedItems = posts.map((post, index) => ({
 
 <BaseLayout title="林间信号 — Notes from elsewhere">
   <main>
+    <CurvedLoop
+      client:load
+      marqueeText="观察 ✦ 构建 ✦ 记录 ✦ 保持好奇 ✦"
+      speed={1.15}
+      curveAmount={90}
+      direction="left"
+      interactive={true}
+      className="home-curved-loop__text"
+    />
+
     <section class="hero hero--orbit-only" aria-label="观察者动态轨道">
       <div class="hero-art hero-art--circles" data-orbit-profile aria-label="动态同心圆观察轨道" role="img">
         <div class="art-label label-top">OBSERVATION No. 026</div>
