@@ -81,6 +81,9 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(styles, /scale\(1\.15\)/, 'desktop orbit composition should use the enlarged scale');
   assert.ok(styles.includes('transform: scale(.88) translate3d(calc(var(--detail-x) - 125px), calc(var(--detail-y) - 200px), 0);'), 'narrow tablet orbit should remain centered and move upward in the viewport');
   assert.ok(styles.includes('transform: scale(.68) translate3d(calc(var(--detail-x) - 185px), calc(var(--detail-y) - 240px), 0);'), 'mobile orbit should remain centered and move upward on the phone screen');
+  assert.match(styles, /@media \(max-width: 850px\)[\s\S]*?\.hero--orbit-only \.label-bottom\s*\{\s*transform: translateY\(-100px\)/, 'narrow-screen coordinates should move upward with the orbit artwork');
+  assert.match(styles, /\.hero--orbit-only \.hero-index\s*\{\s*bottom: 133px/, 'narrow-screen scroll indicator should move upward with the coordinates');
+  assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.hero--orbit-only \.hero-index\s*\{\s*bottom: 128px/, 'mobile scroll indicator should retain the upward offset');
   for (const ring of ['outer', 'middle', 'inner']) {
     assert.match(styles, new RegExp(`body\\.light \\.orbit-circle--${ring}`), `light mode is missing the ${ring} orbit contrast rule`);
   }
