@@ -1,14 +1,14 @@
 ---
-title: "普通日子里的光"
-summary: "记录一些没有名字的时刻：墙上的树影、傍晚的窗，以及雨停之后的空气。"
-category: "生活切片"
+title: 普通日子里的光还在吗？
+summary: 记录一些没有名字的时刻：墙上的树影、傍晚的窗，以及雨停之后的空气。
+category: 生活切片
 publishedAt: 2026-03-08
 readingMinutes: 3
 featured: false
 draft: false
-author: "林"
-location: "上海"
-noteNumber: "NO. 023"
+author: 林
+location: 上海
+noteNumber: NO. 023
 ---
 
 下午四点，太阳从楼与楼之间穿过来，在桌面上留下一块很窄的亮色。它只停留了几分钟，然后缓慢地移到墙上。
