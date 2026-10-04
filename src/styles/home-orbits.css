@@ -334,7 +334,7 @@ body.light .orbit-circle:after {
   }
 
   .orbit-profile {
-    transform: scale(.68) translate3d(var(--detail-x), var(--detail-y), 0);
+    transform: scale(.68) translate3d(calc(var(--detail-x) - 100px), var(--detail-y), 0);
   }
 }
 
