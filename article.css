@@ -21,6 +21,7 @@
 .prose th,.prose td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}
 .prose th{color:var(--acid);font:10px var(--mono);letter-spacing:.04em}
 body.light .prose h3,body.light .prose strong{color:#252920}
+body.light .article-deck{color:#5c6357}
 body.light .prose ul li::marker{color:#536b2c;font-size:.9em}
 body.light .prose code{background:#dfe1d6;border-color:#c3c8ba;color:#52672f}
 body.light .prose pre{background:#252b24;color:#e8eedc}

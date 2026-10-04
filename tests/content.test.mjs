@@ -169,8 +169,9 @@ test('light mode gives the brand mark a high-contrast color', async () => {
   assert.match(styles, /body\.light \.brand-mark span\{[^}]*color:#5d7334/);
 });
 
-test('light mode keeps article list markers clearly visible', async () => {
+test('light mode keeps article summary and list markers clearly visible', async () => {
   const styles = await readFile(new URL('../article.css', import.meta.url), 'utf8');
+  assert.match(styles, /body\.light \.article-deck\{color:#5c6357\}/);
   assert.match(styles, /body\.light \.prose ul li::marker\{color:#536b2c;font-size:\.9em\}/);
 });
 
