@@ -325,14 +325,6 @@ body.light .orbit-circle:after {
   .orbit-profile {
     transform: scale(.88) translate3d(calc(var(--detail-x) - 125px), calc(var(--detail-y) - 200px), 0);
   }
-
-  .hero--orbit-only .label-bottom {
-    transform: translateY(-100px);
-  }
-
-  .hero--orbit-only .hero-index {
-    bottom: 133px;
-  }
 }
 
 @media (max-width: 600px) {
@@ -343,10 +335,6 @@ body.light .orbit-circle:after {
 
   .orbit-profile {
     transform: scale(.68) translate3d(calc(var(--detail-x) - 185px), calc(var(--detail-y) - 240px), 0);
-  }
-
-  .hero--orbit-only .hero-index {
-    bottom: 128px;
   }
 }
 
