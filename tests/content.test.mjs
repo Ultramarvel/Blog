@@ -148,7 +148,10 @@ test('the homepage presents published posts in the interactive recommended readi
   assert.match(carouselStyles, /\.recommended-reading\s*\{/);
   assert.match(carouselStyles, /backdrop-filter:\s*blur\(24px\) saturate\(125%\)/);
   assert.match(carouselStyles, /linear-gradient\(145deg, rgba\(255, 255, 255, \.34\), rgba\(223, 235, 205, \.16\) 72%\)/);
-  assert.doesNotMatch(carouselStyles, /linear-gradient\(145deg, #151a16, #0d100e 72%\)/);
+  assert.match(carouselStyles, /body:not\(\.light\) \.recommendations-section\s*\{/);
+  assert.match(carouselStyles, /body:not\(\.light\) \.recommended-reading\s*\{[^}]*linear-gradient\(145deg, rgba\(39, 48, 39, \.88\), rgba\(20, 26, 22, \.94\) 72%\)/);
+  assert.match(carouselStyles, /body:not\(\.light\) \.recommended-reading canvas\s*\{\s*filter:\s*brightness\(\.68\) saturate\(\.84\)/);
+  assert.match(carouselStyles, /body:not\(\.light\) \.recommended-reading__carousel \.flex-carousel__caption\s*\{\s*color:\s*#f0f1e9/);
   assert.match(packageJson, /"ogl"/);
 });
 
