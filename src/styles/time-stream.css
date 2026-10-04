@@ -79,6 +79,14 @@
   clip-path: inset(0 0 0 0);
 }
 
+.time-stream__axis-label {
+  margin: 11px 0 -4px;
+  color: var(--muted);
+  text-align: center;
+  font: 600 10px var(--mono);
+  letter-spacing: .32em;
+}
+
 .stream-layer {
   outline: none;
   transition: opacity .3s ease, filter .3s ease;
@@ -218,6 +226,10 @@ body.light .time-stream__chart {
 
   .time-stream__legend {
     justify-content: flex-start;
+  }
+
+  .time-stream__axis-label {
+    margin-top: 9px;
   }
 }
 

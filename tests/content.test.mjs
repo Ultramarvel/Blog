@@ -237,8 +237,7 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.match(component, /时间流向哪里？/);
   assert.match(component, /streamBands\.map/);
   assert.match(component, /viewBox="0 0 1200 420"/);
-  assert.doesNotMatch(component, /time-stream__axis/);
-  assert.doesNotMatch(component, />AGE</);
+  assert.match(component, /class="time-stream__axis-label">AGE<\/p>/);
   assert.equal((component.match(/data-stream-target=/g) ?? []).length, 5);
   assert.equal((component.match(/aria-controls="stream-/g) ?? []).length, 5);
   assert.doesNotMatch(component, /class=\{`stream-layer[^>]*tabindex=/);
@@ -293,6 +292,7 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.match(styles, /\.time-stream__legend i\s*\{[^}]*width:\s*10px;[^}]*height:\s*10px/);
   assert.match(styles, /\.time-stream__header\s*\{[^}]*max-width:\s*1240px/);
   assert.match(styles, /\.time-stream__chart\s*\{[^}]*width:\s*100%;[^}]*max-width:\s*none/);
+  assert.match(styles, /\.time-stream__axis-label\s*\{[^}]*text-align:\s*center;[^}]*letter-spacing:\s*\.32em/);
   assert.doesNotMatch(styles, /#263020/);
   assert.match(styles, /body\.light \.time-stream/);
   assert.match(styles, /prefers-reduced-motion/);
