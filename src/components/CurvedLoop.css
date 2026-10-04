@@ -55,7 +55,7 @@
   overflow: visible;
   fill: #c8e671;
   font-family: var(--serif);
-  font-size: clamp(42px, 4.4vw, 62px);
+  font-size: clamp(30px, 3vw, 42px);
   font-weight: 600;
   letter-spacing: -.055em;
   line-height: 1;
@@ -104,7 +104,7 @@ body.light .curved-loop-jacket::after {
   .curved-loop-svg {
     width: 190%;
     max-width: none;
-    font-size: 45px;
+    font-size: 38px;
   }
 
   .curved-loop-jacket::before {

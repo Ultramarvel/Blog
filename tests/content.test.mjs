@@ -105,7 +105,7 @@ test('the homepage opens with an accessible interactive curved text loop', async
   assert.match(component, /aria-label=\{`\$\{marqueeText\}/);
   assert.doesNotMatch(component, /<img\b/i);
   assert.match(styles, /height:\s*clamp\(120px, 10vw, 150px\)/);
-  assert.match(styles, /font-size:\s*clamp\(42px, 4\.4vw, 62px\)/);
+  assert.match(styles, /font-size:\s*clamp\(30px, 3vw, 42px\)/);
   assert.match(styles, /body\.light \.curved-loop-jacket/);
   assert.match(styles, /fill:\s*#c8e671/);
   assert.match(styles, /@media \(max-width:\s*650px\)/);
