@@ -94,7 +94,7 @@ test('the homepage opens with an accessible interactive curved text loop', async
   ]);
 
   assert.match(page, /<CurvedLoop[\s\S]*client:load/);
-  assert.match(page, /marqueeText="观察 ✦ 构建 ✦ 记录 ✦ 保持好奇 ✦"/);
+  assert.match(page, /marqueeText="Think ✦ Act ✦ Observe ✦"/);
   assert.match(page, /curveAmount=\{90\}/);
   assert.ok(page.indexOf('<CurvedLoop') < page.indexOf('class="hero hero--orbit-only"'));
   assert.match(component, /requestAnimationFrame/);
