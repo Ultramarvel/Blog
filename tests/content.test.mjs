@@ -187,6 +187,15 @@ test('article typography uses Microsoft YaHei with cross-platform fallbacks', as
   assert.match(styles, /\.article-page\{[^}]*--serif:'Microsoft YaHei','微软雅黑','PingFang SC','Noto Sans SC',sans-serif/);
 });
 
+test('article pages do not render a generated cover illustration', async () => {
+  const [layout, styles] = await Promise.all([
+    readFile(new URL('../src/layouts/ArticleLayout.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../article.css', import.meta.url), 'utf8'),
+  ]);
+  assert.doesNotMatch(layout, /article-cover|GENERATED COVER/);
+  assert.doesNotMatch(styles, /article-cover|cover-grid|cover-disc|cover-ring/);
+});
+
 test('the homepage showcases open source projects with green MagicBento interactions', async () => {
   const [page, component, magicBento, magicStyles, styles, data, packageJson] = await Promise.all([
     readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
