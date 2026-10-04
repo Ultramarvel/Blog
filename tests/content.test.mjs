@@ -84,7 +84,7 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(styles, /\.orbit-card-panel li\s*\{[^}]*font:\s*500 15px\/1\.7 "Microsoft YaHei", "微软雅黑", sans-serif/);
   assert.match(styles, /scale\(1\.15\)/, 'desktop orbit composition should use the enlarged scale');
   assert.ok(styles.includes('transform: scale(.88) translate3d(calc(var(--detail-x) - 125px), calc(var(--detail-y) - 200px), 0);'), 'narrow tablet orbit should remain centered and move upward in the viewport');
-  assert.ok(styles.includes('transform: scale(.68) translate3d(calc(var(--detail-x) - 185px), calc(var(--detail-y) - 240px), 0);'), 'mobile orbit should remain centered and move upward on the phone screen');
+  assert.ok(styles.includes('transform: scale(.68) translate3d(calc(var(--detail-x) - 175px), calc(var(--detail-y) - 240px), 0);'), 'mobile orbit and card should remain centered and move upward on the phone screen');
   for (const ring of ['outer', 'middle', 'inner']) {
     assert.match(styles, new RegExp(`body\\.light \\.orbit-circle--${ring}`), `light mode is missing the ${ring} orbit contrast rule`);
   }
