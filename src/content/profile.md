@@ -25,7 +25,7 @@ topics:
   - 工作方法
   - 生活切片
 since: "2026"
-email: hello@example.com
+email: qinyudong_stu@163.com
 profileNumber: NO. 001
 updatedAt: 2026-10-03
 ---
