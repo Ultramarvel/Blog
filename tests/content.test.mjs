@@ -171,8 +171,9 @@ test('light mode gives the brand mark a high-contrast color', async () => {
 
 test('light mode keeps article summary and list markers clearly visible', async () => {
   const styles = await readFile(new URL('../article.css', import.meta.url), 'utf8');
-  assert.match(styles, /body\.light \.article-deck\{color:#5c6357\}/);
-  assert.match(styles, /body\.light \.prose ul li::marker\{color:#536b2c;font-size:\.9em\}/);
+  assert.match(styles, /\.article-page\.light\s*\{[\s\S]*?--article-muted: #5c625c;[\s\S]*?--article-green-deep: #5b7a5a;/);
+  assert.match(styles, /\.article-deck\s*\{[\s\S]*?background: var\(--article-soft\);[\s\S]*?color: var\(--article-green-deep\);/);
+  assert.match(styles, /\.prose li::marker\s*\{[\s\S]*?color: var\(--article-green-deep\);[\s\S]*?font-size: \.9em;/);
 });
 
 test('article section headings do not receive automatic number labels', async () => {
@@ -184,7 +185,7 @@ test('article section headings do not receive automatic number labels', async ()
 
 test('article typography uses Microsoft YaHei with cross-platform fallbacks', async () => {
   const styles = await readFile(new URL('../article.css', import.meta.url), 'utf8');
-  assert.match(styles, /\.article-page\{[^}]*--serif:'Microsoft YaHei','微软雅黑','PingFang SC','Noto Sans SC',sans-serif/);
+  assert.match(styles, /--serif: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Noto Sans SC', sans-serif;/);
 });
 
 test('article pages do not render a generated cover illustration', async () => {
@@ -194,6 +195,22 @@ test('article pages do not render a generated cover illustration', async () => {
   ]);
   assert.doesNotMatch(layout, /article-cover|GENERATED COVER/);
   assert.doesNotMatch(styles, /article-cover|cover-grid|cover-disc|cover-ring/);
+});
+
+test('article pages use a reading column with a card-style table of contents', async () => {
+  const [layout, page, styles] = await Promise.all([
+    readFile(new URL('../src/layouts/ArticleLayout.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../src/pages/posts/[...slug].astro', import.meta.url), 'utf8'),
+    readFile(new URL('../article.css', import.meta.url), 'utf8'),
+  ]);
+  assert.match(layout, /class="article-main"/);
+  assert.match(layout, /class="article-header-tags"/);
+  assert.match(layout, /class="article-header-rule"/);
+  assert.match(layout, /class="toc-list"/);
+  assert.match(layout, /toc-link--h\$\{heading\.depth\}/);
+  assert.match(page, /heading\.depth === 2 \|\| heading\.depth === 3/);
+  assert.match(styles, /grid-template-columns: minmax\(0, var\(--reading-width\)\) 240px;/);
+  assert.match(styles, /\.toc\s*\{[\s\S]*?position: sticky;[\s\S]*?border-radius: 16px;[\s\S]*?background: var\(--article-card\);/);
 });
 
 test('the homepage showcases open source projects with green MagicBento interactions', async () => {

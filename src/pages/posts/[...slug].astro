@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 
 const { post, next } = Astro.props;
 const { Content, headings } = await render(post);
-const sections = headings.filter((heading) => heading.depth === 2);
+const sections = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 ---
 
 <ArticleLayout {post} {next} {sections}>
