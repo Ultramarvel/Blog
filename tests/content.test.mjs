@@ -169,6 +169,11 @@ test('light mode gives the brand mark a high-contrast color', async () => {
   assert.match(styles, /body\.light \.brand-mark span\{[^}]*color:#5d7334/);
 });
 
+test('light mode keeps article list markers clearly visible', async () => {
+  const styles = await readFile(new URL('../article.css', import.meta.url), 'utf8');
+  assert.match(styles, /body\.light \.prose ul li::marker\{color:#536b2c;font-size:\.9em\}/);
+});
+
 test('the homepage showcases open source projects with green MagicBento interactions', async () => {
   const [page, component, magicBento, magicStyles, styles, data, packageJson] = await Promise.all([
     readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
