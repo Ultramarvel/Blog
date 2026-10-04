@@ -6,7 +6,7 @@
   overflow: hidden;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  border-bottom: 0;
   background:
     linear-gradient(rgba(209, 237, 120, .025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(209, 237, 120, .025) 1px, transparent 1px),
@@ -70,7 +70,6 @@
 }
 
 body.light .curved-loop-jacket {
-  border-bottom-color: #c3c5b8;
   background:
     linear-gradient(rgba(91, 112, 70, .035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(91, 112, 70, .035) 1px, transparent 1px),
