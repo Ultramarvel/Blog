@@ -83,7 +83,7 @@
   width: max-content;
   margin: 11px auto -4px;
   padding-left: .32em;
-  transform: translateX(10px);
+  transform: translateX(22px);
   color: var(--muted);
   font: 600 13px var(--mono);
   letter-spacing: .32em;
