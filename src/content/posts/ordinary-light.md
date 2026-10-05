@@ -3,7 +3,7 @@ title: 如何评估一个Agent？
 summary: 本文从工具调用、执行轨迹、任务结果和线上业务四个层面，介绍如何系统评估 Agent，并判断它是否真正可靠、合规且具备上线条件。
 category: 技术分享
 publishedAt: 2026-10-05
-readingMinutes: 3
+readingMinutes: 8
 featured: true
 draft: false
 author: 林
