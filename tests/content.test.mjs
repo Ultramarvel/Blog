@@ -301,6 +301,8 @@ test('the site footer exposes live total visits and unique visitors', async () =
   assert.match(layout, /id="busuanzi_site_uv">--<\/span>/);
   assert.match(layout, /class="footer-stats" aria-label="网站访问统计"/);
   assert.match(styles, /\.footer-stats\{color:var\(--muted\)\}/);
+  assert.doesNotMatch(layout, /写给仍然好奇的人|footer-star/);
+  assert.match(styles, /@media\(max-width:600px\)\{\s*\.footer>\.footer-meta\{display:flex;/);
 });
 
 test('the homepage showcases open source projects with green MagicBento interactions', async () => {

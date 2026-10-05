@@ -138,5 +138,5 @@ body.light .brand-mark span{background:var(--bg);color:#5d7334}
 .footer-stats span{font-variant-numeric:tabular-nums}
 
 @media(max-width:600px){
-  .footer-meta{align-items:flex-end}
+  .footer>.footer-meta{display:flex;align-items:flex-end}
 }
