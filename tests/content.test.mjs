@@ -84,12 +84,10 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(styles, /@media \(min-width: 851px\)[\s\S]*?\.hero--orbit-only\s*\{\s*min-height: 716px;\s*padding-bottom: 8px;[\s\S]*?\.hero--orbit-only \.label-bottom\s*\{\s*bottom: 91px;/, 'desktop orbit metadata and the following divider should move upward together');
   assert.match(styles, /--outer-orbit-size: min\(620px, calc\(\(100vw - 8px\) \* 1\.4706\)\)/, 'mobile outer orbit should grow responsively without exceeding the viewport');
   assert.match(styles, /\.orbit-circle--outer,\s*\.orbit-carrier--idea\s*\{[^}]*width: var\(--outer-orbit-size\);[^}]*height: var\(--outer-orbit-size\)/s, 'outer orbit ring and its badge carrier should stay aligned');
-  assert.match(styles, /\.orbit-carrier\s*\{[^}]*z-index:\s*6;/, 'badges must orbit above the profile card instead of being sliced by its edge');
+  assert.match(styles, /\.orbit-carrier\s*\{[^}]*z-index:\s*2;/, 'orbiting badges must stay behind the profile card');
   assert.match(styles, /\.orbit-carrier\s*\{[^}]*pointer-events:\s*none;/, 'the wide orbit rings must not swallow pointer events aimed at the profile card');
-  assert.match(styles, /\.orbit-card-tilt\s*\{[^}]*z-index:\s*5;/, 'the profile card must stay below the orbiting badges');
-  assert.match(styles, /\.hero-art--circles:has\(\.orbit-card-tilt:hover\) \.orbit-carrier\s*\{\s*opacity: \.5;/, 'hovering the card should fade the orbiting badges');
+  assert.match(styles, /\.orbit-card-tilt\s*\{[^}]*z-index:\s*5;/, 'the profile card must stay above the orbiting badges');
   assert.doesNotMatch(styles, /\.orbit-carrier--(?:field|signal)\s*\{[^}]*display:\s*none/, 'all three orbiting badges must keep rendering');
-  assert.match(styles, /\.orbit-card-tilt:hover \.orbit-card-panel\s*\{[^}]*background:\s*rgba\(241, 242, 236, \.9\)/, 'the card should soften while a badge passes in front of it');
   assert.match(styles, /\.orbit-card-panel__prompt\s*\{[^}]*font:\s*700 20px\/1\.2 var\(--serif\)/);
   assert.match(styles, /\.orbit-card-panel__prompt--roles\s*\{[^}]*font-size:\s*25px/);
   assert.match(styles, /\.orbit-card-panel>strong\s*\{[^}]*font:\s*700 40px\/1 var\(--sans\)/);
