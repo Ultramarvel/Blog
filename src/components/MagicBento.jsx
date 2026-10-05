@@ -293,9 +293,12 @@ export default function MagicBento({
             'particle-container',
             enableBorderGlow ? 'magic-bento-card--border-glow' : '',
           ].filter(Boolean).join(' ');
+          const externalLink = /^https?:\/\//.test(project.href)
+            ? { target: '_blank', rel: 'noreferrer noopener' }
+            : {};
 
           return (
-            <a className={classes} href={project.href} aria-label={`${project.action}：${project.title}`} key={project.number}>
+            <a className={classes} href={project.href} aria-label={`${project.action}：${project.title}`} key={project.number} {...externalLink}>
               <ParticleCard
                 className={cardClasses}
                 disableAnimations={animationsDisabled || !enableStars}

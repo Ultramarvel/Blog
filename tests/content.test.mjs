@@ -313,6 +313,39 @@ test('the homepage showcases open source projects with green MagicBento interact
   assert.match(styles, /prefers-reduced-motion:\s*reduce/);
 });
 
+test('the open source showcase presents the EduFlow and FlyCode repositories', async () => {
+  const [data, magicBento] = await Promise.all([
+    import(new URL('../src/data/open-source-projects.mjs', import.meta.url).href),
+    readFile(new URL('../src/components/MagicBento.jsx', import.meta.url), 'utf8'),
+  ]);
+
+  const byTitle = new Map(data.openSourceProjects.map((project) => [project.title, project]));
+  const expected = {
+    EduFlow: 'https://github.com/Ultramarvel/EduFlow',
+    FlyCode: 'https://github.com/Ultramarvel/FlyCode',
+  };
+
+  for (const [title, href] of Object.entries(expected)) {
+    const project = byTitle.get(title);
+    assert.ok(project, `the showcase should include the ${title} project`);
+    assert.equal(project.href, href, `${title} should link to its GitHub repository`);
+    assert.equal(project.action, '查看仓库', `${title} should offer a repository action`);
+    assert.equal(project.featured, false, `${title} should not take the featured slot`);
+    assert.ok(project.englishTitle, `${title} needs an English kicker`);
+    assert.ok(project.description.length >= 20, `${title} needs a descriptive summary`);
+  }
+
+  assert.ok(byTitle.get('EduFlow').tags.includes('Python'));
+  assert.ok(byTitle.get('FlyCode').tags.includes('Java'));
+
+  const serialized = JSON.stringify(data.openSourceProjects);
+  assert.doesNotMatch(serialized, /时间流图|液态阅读轮播/, 'replaced showcase entries should be gone');
+
+  assert.match(magicBento, /const externalLink = \/\^https\?:\\\/\\\/\//);
+  assert.match(magicBento, /target: '_blank', rel: 'noreferrer noopener'/);
+  assert.match(magicBento, /\{\.\.\.externalLink\}/);
+});
+
 test('the shared layout includes an accessible non-blocking BlobCursor trail', async () => {
   const [layout, component, styles, packageJson] = await Promise.all([
     readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8'),
