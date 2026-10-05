@@ -346,11 +346,11 @@ body.light .orbit-circle:after {
 
 @media (max-width: 600px) {
   .hero--orbit-only {
-    min-height: 540px;
+    min-height: 420px;
     padding-bottom: 10px;
   }
 
-  .hero-art--circles {
+  .hero--orbit-only .hero-art--circles {
     height: 305px;
     margin-top: 7px;
   }
