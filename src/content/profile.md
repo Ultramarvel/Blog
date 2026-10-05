@@ -1,12 +1,13 @@
 ---
 name: 秦
+initials: " "
 cardName: Yudong
 cardRoles:
   - MEng Student at SCNU
   - AI Enthusiast
   - Badminton Lover
   - Movie Fan
-  - Music Lover
+  - Music Collector
   - . . .
 role: 观察者、设计与技术实践者
 tagline: 把好奇心种进日常。
