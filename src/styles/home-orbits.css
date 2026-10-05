@@ -212,7 +212,7 @@
   top: 50%;
   z-index: 5;
   margin: 0;
-  transform: translate(-50%, -50%) translate3d(var(--planet-x), var(--planet-y), 0) rotate(-.8deg) scale(var(--orbit-card-scale));
+  transform: translate(-50%, -50%) translate3d(var(--planet-x), var(--planet-y), 0) scale(var(--orbit-card-scale));
   transition: transform .25s ease-out;
 }
 

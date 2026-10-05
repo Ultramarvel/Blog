@@ -114,6 +114,7 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(styles, /\.orbit-carrier\s*\{[^}]*z-index:\s*2;/, 'orbiting badges must stay behind the profile card');
   assert.match(styles, /\.orbit-carrier\s*\{[^}]*pointer-events:\s*none;/, 'the wide orbit rings must not swallow pointer events aimed at the profile card');
   assert.match(styles, /\.orbit-card-tilt\s*\{[^}]*z-index:\s*5;/, 'the profile card must stay above the orbiting badges');
+  assert.doesNotMatch(styles, /\.orbit-card-tilt\s*\{[^}]*rotate\(/, 'the profile card should start upright before pointer interaction');
   assert.doesNotMatch(styles, /\.orbit-carrier--(?:field|signal)\s*\{[^}]*display:\s*none/, 'all three orbiting badges must keep rendering');
   assert.match(styles, /\.orbit-card-panel__prompt\s*\{[^}]*font:\s*700 20px\/1\.2 var\(--serif\)/);
   assert.match(styles, /\.orbit-card-panel__prompt--roles\s*\{[^}]*font-size:\s*25px/);
