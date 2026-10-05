@@ -15,6 +15,17 @@
   left: 42px;
 }
 
+@media (min-width: 851px) {
+  .hero--orbit-only {
+    min-height: 716px;
+    padding-bottom: 8px;
+  }
+
+  .hero--orbit-only .label-bottom {
+    bottom: 91px;
+  }
+}
+
 .hero-art--circles:before {
   width: 510px;
   height: 510px;

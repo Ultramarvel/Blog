@@ -78,6 +78,7 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.orbit-card-tilt\s*\{\s*--orbit-card-scale: 1\.15/, 'mobile profile card should be enlarged independently of the orbit artwork');
   assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.orbit-card-panel li\s*\{\s*font-size: 18px;\s*line-height: 1\.55;/, 'mobile profile roles should use a larger readable type size');
   assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.hero--orbit-only \.label-bottom\s*\{\s*bottom: 231px;[\s\S]*?\.hero--orbit-only \.hero-index\s*\{\s*bottom: 232px;/, 'mobile orbit metadata should sit closer to the orbit artwork');
+  assert.match(styles, /@media \(min-width: 851px\)[\s\S]*?\.hero--orbit-only\s*\{\s*min-height: 716px;\s*padding-bottom: 8px;[\s\S]*?\.hero--orbit-only \.label-bottom\s*\{\s*bottom: 91px;/, 'desktop orbit metadata and the following divider should move upward together');
   assert.match(styles, /--outer-orbit-size: min\(620px, calc\(\(100vw - 8px\) \* 1\.4706\)\)/, 'mobile outer orbit should grow responsively without exceeding the viewport');
   assert.match(styles, /\.orbit-circle--outer,\s*\.orbit-carrier--idea\s*\{[^}]*width: var\(--outer-orbit-size\);[^}]*height: var\(--outer-orbit-size\)/s, 'outer orbit ring and its badge carrier should stay aligned');
   assert.match(styles, /\.orbit-card-panel__prompt\s*\{[^}]*font:\s*700 20px\/1\.2 var\(--serif\)/);
