@@ -190,19 +190,19 @@
   position: relative;
   z-index: 2;
   display: flex;
-  gap: 7px;
+  gap: 8px;
   margin: auto 0 0;
-  padding: 30px 0 0;
+  padding: 30px 118px 0 0;
   flex-wrap: wrap;
   list-style: none;
 }
 
 .project-card li {
-  padding: 6px 9px;
+  padding: 7px 12px;
   border: 1px solid rgba(233, 232, 221, .15);
   border-radius: 999px;
   color: #9ba292;
-  font: 9px var(--mono);
+  font: 11px var(--mono);
 }
 
 .project-card--featured li {
@@ -219,7 +219,7 @@
   align-items: center;
   gap: 10px;
   color: #c1c7b8;
-  font: 10px var(--mono);
+  font: 11px var(--mono);
 }
 
 .project-card--featured .project-card__action {
