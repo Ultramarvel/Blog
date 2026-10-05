@@ -233,6 +233,7 @@ body.light .time-stream__chart {
 
   .time-stream__axis-label {
     margin-top: 9px;
+    transform: translateX(0);
   }
 }
 

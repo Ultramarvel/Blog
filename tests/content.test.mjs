@@ -485,6 +485,7 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.match(styles, /\.time-stream__chart\s*\{[^}]*width:\s*100%;[^}]*max-width:\s*none/);
   assert.match(styles, /\.time-stream__axis-label\s*\{[^}]*width:\s*max-content;[^}]*margin:\s*11px auto -4px;[^}]*transform:\s*translateX\(22px\);[^}]*font:\s*600 13px var\(--mono\);[^}]*letter-spacing:\s*\.32em/);
   assert.match(styles, /@media \(max-width: 700px\)[\s\S]*?\.time-stream\s*\{\s*margin-top:\s*0;/, 'the mobile time stream should remain below the open source cards');
+  assert.match(styles, /@media \(max-width: 700px\)[\s\S]*?\.time-stream__axis-label\s*\{[^}]*transform:\s*translateX\(0\);/, 'the mobile AGE label should be visually centered');
   assert.doesNotMatch(styles, /\.time-stream\s*\{[^}]*margin-top:\s*-[\d.]+px;/, 'the time stream must not overlap the preceding section');
   assert.doesNotMatch(styles, /#263020/);
   assert.match(styles, /body\.light \.time-stream/);
