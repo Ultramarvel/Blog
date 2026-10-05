@@ -125,10 +125,11 @@ test('the homepage opens with an accessible interactive curved text loop', async
 });
 
 test('the homepage presents published posts in the interactive recommended reading carousel', async () => {
-  const [page, recommendedReading, carousel, carouselStyles, packageJson] = await Promise.all([
+  const [page, recommendedReading, carousel, flexCarouselStyles, carouselStyles, packageJson] = await Promise.all([
     readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
     readFile(new URL('../src/components/RecommendedReading.jsx', import.meta.url), 'utf8'),
     readFile(new URL('../src/components/FlexCarousel.jsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/components/FlexCarousel.css', import.meta.url), 'utf8'),
     readFile(new URL('../src/components/RecommendedReading.css', import.meta.url), 'utf8'),
     readFile(new URL('../package.json', import.meta.url), 'utf8'),
   ]);
@@ -154,6 +155,11 @@ test('the homepage presents published posts in the interactive recommended readi
   assert.match(recommendedReading, /window\.location\.assign\(item\.href\)/);
   assert.match(carousel, /from 'ogl'/);
   assert.match(carousel, /aria-label=\{ariaLabel\}/);
+  assert.match(flexCarouselStyles, /touch-action:\s*pan-y pinch-zoom/);
+  assert.match(flexCarouselStyles, /overscroll-behavior-x:\s*contain/);
+  assert.match(flexCarouselStyles, /overscroll-behavior-y:\s*auto/);
+  assert.doesNotMatch(flexCarouselStyles, /overscroll-behavior:\s*contain/);
+  assert.match(carousel, /Math\.abs\(dy\) > slop && Math\.abs\(dy\) > Math\.abs\(dx\)/);
   assert.match(carouselStyles, /\.recommended-reading\s*\{/);
   assert.match(carouselStyles, /backdrop-filter:\s*blur\(24px\) saturate\(125%\)/);
   assert.match(carouselStyles, /linear-gradient\(145deg, rgba\(255, 255, 255, \.34\), rgba\(223, 235, 205, \.16\) 72%\)/);
