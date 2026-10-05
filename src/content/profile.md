@@ -1,6 +1,5 @@
 ---
 name: 秦
-initials: 秦
 cardName: Yudong
 cardRoles:
   - MEng Student at SCNU

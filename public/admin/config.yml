@@ -28,7 +28,6 @@ collections:
         file: "src/content/profile.md"
         fields:
           - { label: "姓名", name: "name", widget: "string" }
-          - { label: "头像文字", name: "initials", widget: "string", hint: "显示在动态星球中心，建议 1–3 个字符" }
           - { label: "首页卡片姓名", name: "cardName", widget: "string", default: "Yudong" }
           - { label: "首页卡片身份", name: "cardRoles", widget: "list", field: { label: "身份", name: "role", widget: "string" } }
           - { label: "身份", name: "role", widget: "string" }

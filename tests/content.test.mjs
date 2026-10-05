@@ -29,13 +29,24 @@ test('the CMS exposes Markdown text controls without image fields', async () => 
 
 test('the owner profile contains all public identity fields', async () => {
   const profile = await readFile(new URL('../src/content/profile.md', import.meta.url), 'utf8');
-  for (const field of ['name', 'initials', 'cardName', 'cardRoles', 'role', 'tagline', 'shortBio', 'location', 'coordinates', 'status', 'current', 'topics', 'since', 'email', 'profileNumber', 'updatedAt']) {
+  for (const field of ['name', 'cardName', 'cardRoles', 'role', 'tagline', 'shortBio', 'location', 'coordinates', 'status', 'current', 'topics', 'since', 'email', 'profileNumber', 'updatedAt']) {
     assert.match(profile, new RegExp(`^${field}:`, 'm'), `profile.md is missing ${field}`);
   }
   assert.match(profile, /^cardName:\s*["']?[^\r\n"']+["']?$/m);
   assert.match(profile, /^cardRoles:\r?\n(?:\s+-\s+.+\r?\n){4}/m);
   assert.doesNotMatch(profile, /!\[[^\]]*\]\([^)]*\)/);
   assert.doesNotMatch(profile, /<img\b/i);
+});
+
+test('profile planets do not render text in their center', async () => {
+  const [home, about, styles] = await Promise.all([
+    readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../src/pages/about/index.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../src/styles/profile.css', import.meta.url), 'utf8'),
+  ]);
+  assert.doesNotMatch(home, /profile\.data\.initials/);
+  assert.doesNotMatch(about, /profile\.data\.initials/);
+  assert.doesNotMatch(styles, /\.profile-sigil(?:--large)? strong/);
 });
 
 test('the homepage orbit card is compact, animated, and driven by the owner profile', async () => {

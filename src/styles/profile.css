@@ -4,7 +4,6 @@
 .profile-preview__grid{display:grid;grid-template-columns:minmax(180px,.7fr) minmax(360px,1.35fr) minmax(250px,.8fr);gap:7%;align-items:center;padding-top:56px}
 .profile-sigil{width:190px;height:190px;position:relative;display:grid;place-items:center}
 .profile-sigil:before{content:'';position:absolute;width:112px;height:112px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#f5dda4,#db895b 48%,#4b3530 100%);box-shadow:0 0 42px rgba(239,135,89,.17);animation:profile-core-float 6s ease-in-out infinite}
-.profile-sigil strong{position:relative;z-index:2;color:#242720;font:500 27px var(--serif);text-shadow:0 1px rgba(255,255,255,.25)}
 .profile-sigil__orbit{position:absolute;border:1px solid rgba(209,237,120,.38);border-radius:50%;width:188px;height:68px;animation:profile-orbit-one 19s linear infinite}
 .profile-sigil__orbit--two{width:168px;height:58px;border-color:rgba(239,135,89,.34);animation:profile-orbit-two 25s linear infinite reverse}
 .profile-sigil__dot{position:absolute;top:34px;right:25px;width:7px;height:7px;border-radius:50%;background:var(--acid);box-shadow:0 0 14px var(--acid);animation:profile-dot 2.4s ease-in-out infinite}
@@ -24,7 +23,6 @@
 .profile-hero__grid{display:grid;grid-template-columns:.8fr 1.45fr;gap:8%;align-items:center;margin-top:50px}
 .profile-sigil--large{width:330px;height:330px;justify-self:center}
 .profile-sigil--large:before{width:188px;height:188px}
-.profile-sigil--large strong{font-size:43px}
 .profile-sigil--large .profile-sigil__orbit{width:326px;height:118px}
 .profile-sigil--large .profile-sigil__orbit--two{width:282px;height:96px}
 .profile-sigil--large .profile-sigil__dot{top:54px;right:44px;width:9px;height:9px}
