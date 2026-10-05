@@ -199,10 +199,11 @@ test('article pages do not render a generated cover illustration', async () => {
 });
 
 test('article pages use a reading column with a card-style table of contents', async () => {
-  const [layout, page, styles] = await Promise.all([
+  const [layout, page, styles, script] = await Promise.all([
     readFile(new URL('../src/layouts/ArticleLayout.astro', import.meta.url), 'utf8'),
     readFile(new URL('../src/pages/posts/[...slug].astro', import.meta.url), 'utf8'),
     readFile(new URL('../article.css', import.meta.url), 'utf8'),
+    readFile(new URL('../article.js', import.meta.url), 'utf8'),
   ]);
   assert.match(layout, /class="article-main"/);
   assert.match(layout, /class="article-header-tags"/);
@@ -212,6 +213,13 @@ test('article pages use a reading column with a card-style table of contents', a
   assert.match(page, /heading\.depth === 2 \|\| heading\.depth === 3/);
   assert.match(styles, /grid-template-columns: minmax\(0, var\(--reading-width\)\) 240px;/);
   assert.match(styles, /\.toc\s*\{[\s\S]*?position: sticky;[\s\S]*?border-radius: 16px;[\s\S]*?background: var\(--article-card\);/);
+  assert.match(script, /const updateTableOfContents = \(\) =>/);
+  assert.match(script, /document\.getElementById\(decodeURIComponent\(link\.hash\.slice\(1\)\)\)/);
+  assert.doesNotMatch(script, /document\.querySelector\(link\.getAttribute\('href'\)\)/);
+  assert.match(script, /getBoundingClientRect\(\)\.top <= activationLine/);
+  assert.match(script, /link\.classList\.toggle\('current', link === activeItem\.link\)/);
+  assert.match(script, /addEventListener\('scroll', requestPageUpdate, \{ passive: true \}\)/);
+  assert.doesNotMatch(script, /IntersectionObserver/);
 });
 
 test('the homepage showcases open source projects with green MagicBento interactions', async () => {
