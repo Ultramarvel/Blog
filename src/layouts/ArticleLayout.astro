@@ -47,7 +47,6 @@ const dateChinese = `${data.publishedAt.getFullYear()}年${data.publishedAt.getM
           <slot />
           <footer class="article-content-footer">
             <div class="article-end">✳</div>
-            <div class="article-tags"><span>{data.category}</span><span>Markdown</span></div>
             {next && (
               <a class="next-article" href={`/posts/${next.id}/`}>
                 <span class="next-article__copy">

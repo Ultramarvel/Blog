@@ -241,6 +241,16 @@ test('article pages do not render the author profile card', async () => {
   assert.doesNotMatch(styles, /author-card|author-avatar/);
 });
 
+test('article pages only show tags above the title', async () => {
+  const [layout, styles] = await Promise.all([
+    readFile(new URL('../src/layouts/ArticleLayout.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../article.css', import.meta.url), 'utf8'),
+  ]);
+  assert.match(layout, /class="article-header-tags"/);
+  assert.doesNotMatch(layout, /class="article-tags"/);
+  assert.doesNotMatch(styles, /\.article-tags/);
+});
+
 test('the next article card uses a balanced horizontal layout', async () => {
   const [layout, styles] = await Promise.all([
     readFile(new URL('../src/layouts/ArticleLayout.astro', import.meta.url), 'utf8'),

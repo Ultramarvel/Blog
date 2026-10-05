@@ -119,8 +119,7 @@
   margin-bottom: 20px;
 }
 
-.article-header-tags span,
-.article-tags span {
+.article-header-tags span {
   border: 1px solid var(--article-line);
   border-radius: 999px;
   color: var(--article-muted);
@@ -420,16 +419,6 @@
   color: var(--article-green);
   font-size: 20px;
   text-align: center;
-}
-
-.article-tags {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 24px;
-}
-
-.article-tags span {
-  padding: 5px 12px;
 }
 
 .next-article {
