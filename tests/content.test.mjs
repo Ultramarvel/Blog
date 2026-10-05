@@ -54,6 +54,12 @@ test('light mode uses a readable mid-tone green for profile labels', async () =>
   assert.match(styles, /body\.light \.profile-preview__topline span:first-child[^\n]*body\.light \.profile-kicker[^\n]*\{color:#58702f!important\}/);
 });
 
+test('mobile profile facts use more width and hide the base coordinates', async () => {
+  const styles = await readFile(new URL('../src/styles/profile.css', import.meta.url), 'utf8');
+  assert.match(styles, /@media\(max-width:600px\)\{\s*\.profile-facts\{margin:47px -3% 0;gap:0 16px\}/);
+  assert.match(styles, /@media\(max-width:600px\)[\s\S]*?\.profile-facts small\{display:none\}/);
+});
+
 test('the homepage orbit card is compact, animated, and driven by the owner profile', async () => {
   const [page, styles, script, tiltedCard, tiltedStyles, astroConfig, packageJson] = await Promise.all([
     readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
