@@ -96,7 +96,7 @@ noteNumber: "NO. 027"     # 可选
 
 - `draft: true` 的文章不会生成页面，也不会出现在首页推荐阅读中；发布时改为 `false`。
 - 文章按 `publishedAt` 倒序排列，详情页「下一篇」按同一顺序取相邻文章。
-- 文件名决定 URL，例如 `src/content/posts/attention.md` → `/posts/attention/`。
+- 文件名决定 URL，例如文章文件名为 `my-note.md` 时，页面地址为 `/posts/my-note/`。
 - 正文中的 `##` / `###` 标题会用于生成右侧目录，建议保持层级连贯。
 
 ### 博客主人档案

@@ -56,6 +56,11 @@ test('every repository path mentioned in the README exists', () => {
   }
 });
 
+test('the README uses a durable post URL example', () => {
+  assert.match(readme, /`my-note\.md`[^\n]*`\/posts\/my-note\/`/);
+  assert.doesNotMatch(readme, /src\/content\/posts\/attention\.md/);
+});
+
 test('the README deploy notes match the workflow and CMS configuration', async () => {
   const [workflow, cmsConfig] = await Promise.all([
     readFile(new URL('.github/workflows/deploy.yml', root), 'utf8'),
