@@ -212,6 +212,15 @@ test('article pages do not render a generated cover illustration', async () => {
   assert.doesNotMatch(styles, /article-cover|cover-grid|cover-disc|cover-ring/);
 });
 
+test('article pages do not render the author profile card', async () => {
+  const [layout, styles] = await Promise.all([
+    readFile(new URL('../src/layouts/ArticleLayout.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../article.css', import.meta.url), 'utf8'),
+  ]);
+  assert.doesNotMatch(layout, /author-card|author-avatar|更多关于/);
+  assert.doesNotMatch(styles, /author-card|author-avatar/);
+});
+
 test('article pages use a reading column with a card-style table of contents', async () => {
   const [layout, page, styles, script] = await Promise.all([
     readFile(new URL('../src/layouts/ArticleLayout.astro', import.meta.url), 'utf8'),

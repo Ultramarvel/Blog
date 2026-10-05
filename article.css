@@ -432,48 +432,6 @@
   padding: 5px 12px;
 }
 
-.author-card {
-  display: grid;
-  grid-template-columns: 44px 1fr auto;
-  gap: 14px;
-  align-items: center;
-  margin-bottom: 48px;
-  padding: 20px 22px;
-  border: 1px solid var(--article-line);
-  border-radius: 12px;
-  background: var(--article-card);
-  box-shadow: 0 4px 16px rgba(42, 46, 43, .04);
-}
-
-.author-avatar {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  place-items: center;
-  border: 1px solid var(--article-green);
-  border-radius: 50%;
-  background: var(--article-soft);
-  color: var(--article-green-deep);
-  font: 700 14px var(--serif);
-}
-
-.author-card strong {
-  color: var(--article-ink);
-  font-size: 13px;
-}
-
-.author-card p {
-  margin: 3px 0 0;
-  color: var(--article-muted);
-  font: 11px/1.7 var(--serif);
-}
-
-.author-card > a {
-  color: var(--article-green-deep);
-  font: 11px var(--sans);
-  text-decoration: none;
-}
-
 .next-article {
   display: flex;
   flex-direction: column;
@@ -566,15 +524,6 @@
 
   .prose h3 {
     font-size: 18px;
-  }
-
-  .author-card {
-    grid-template-columns: 42px 1fr;
-    padding: 18px;
-  }
-
-  .author-card > a {
-    grid-column: 2;
   }
 
   .next-article {
