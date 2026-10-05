@@ -60,6 +60,11 @@ test('mobile profile facts use more width and hide the base coordinates', async 
   assert.match(styles, /@media\(max-width:600px\)[\s\S]*?\.profile-facts small\{display:none\}/);
 });
 
+test('the homepage profile preview omits its action links', async () => {
+  const page = await readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8');
+  assert.doesNotMatch(page, /profile-actions|完整介绍|给我写信/);
+});
+
 test('the homepage orbit card is compact, animated, and driven by the owner profile', async () => {
   const [page, styles, script, tiltedCard, tiltedStyles, astroConfig, packageJson] = await Promise.all([
     readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),

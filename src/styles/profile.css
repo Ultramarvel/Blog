@@ -10,7 +10,6 @@
 .profile-kicker{margin:0 0 14px;color:var(--acid)!important;font:10px var(--mono)!important;letter-spacing:.08em}
 .profile-preview__copy h2{font:500 clamp(32px,4vw,51px)/1.35 var(--serif);letter-spacing:-.055em;margin:0 0 20px;color:var(--ink)}
 .profile-preview__copy>p{max-width:570px;margin:0;color:#a4aa9d;font:14px/2 var(--serif)}
-.profile-actions{display:flex;gap:28px}.profile-actions .text-link{margin-top:29px}.profile-actions__secondary{color:#9da396}
 .profile-facts{border-left:1px solid var(--line);padding-left:31px}
 .profile-facts>div{position:relative;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)}
 .profile-facts span,.profile-dossier dt{display:block;color:#71786a;font:8px var(--mono);letter-spacing:.12em;margin-bottom:4px}

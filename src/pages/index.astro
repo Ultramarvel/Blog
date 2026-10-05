@@ -111,10 +111,6 @@ const recommendedItems = posts.map((post, index) => ({
             <p class="profile-kicker">你好，我是{profile.data.name}。</p>
             <h2>{profile.data.tagline}</h2>
             <p>{profile.data.shortBio}</p>
-            <div class="profile-actions">
-              <a class="text-link" href="/about/">完整介绍 <span>↗</span></a>
-              <a class="text-link profile-actions__secondary" href={`mailto:${profile.data.email}`}>给我写信 <span>↗</span></a>
-            </div>
           </div>
           <div class="profile-facts">
             <div><span>BASE</span><strong>{profile.data.location}</strong><small>{profile.data.coordinates}</small></div>
