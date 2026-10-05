@@ -13,8 +13,8 @@ import '../styles/time-stream.css';
   </header>
 
   <div class="time-stream__chart">
-    <div class="time-stream__canvas" tabindex="0" aria-label="横向滚动查看完整时间流图">
-      <svg class="time-stream__svg" viewBox="0 0 1200 420" role="img" aria-labelledby="time-stream-chart-title time-stream-chart-desc">
+    <div class="time-stream__canvas" tabindex="0" aria-label="查看完整时间流图">
+      <svg class="time-stream__svg" viewBox="0 0 1200 420" preserveAspectRatio="none" role="img" aria-labelledby="time-stream-chart-title time-stream-chart-desc">
         <title id="time-stream-chart-title">时间分配流图</title>
         <desc id="time-stream-chart-desc">展示社交家庭、编程工作、游戏、音乐运动与学习五类活动随年龄变化的示意图。</desc>
 
@@ -27,6 +27,11 @@ import '../styles/time-stream.css';
         ))}
 
       </svg>
+      <div class="time-stream__mobile-labels" aria-hidden="true">
+        {streamBands.map((layer) => (
+          <span style={`--label-x:${layer.x / 12}%;--label-y:${layer.y / 4.2}%`}>{layer.title}</span>
+        ))}
+      </div>
     </div>
     <p class="time-stream__axis-label">AGE</p>
     <div class="time-stream__legend" aria-label="图例">

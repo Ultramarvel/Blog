@@ -55,11 +55,16 @@
 }
 
 .time-stream__canvas {
+  position: relative;
   overflow-x: auto;
   border-radius: 18px;
   background: #222923;
   scrollbar-width: thin;
   scrollbar-color: var(--acid) transparent;
+}
+
+.time-stream__mobile-labels {
+  display: none;
 }
 
 .time-stream__svg {
@@ -224,11 +229,47 @@ body.light .time-stream__chart {
   }
 
   .time-stream__canvas {
+    overflow: hidden;
     border-radius: 13px;
   }
 
+  .time-stream__svg {
+    width: 100%;
+    min-width: 0;
+    height: min(88vw, 420px);
+  }
+
+  .stream-layer text {
+    display: none;
+  }
+
+  .time-stream__mobile-labels {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    pointer-events: none;
+  }
+
+  .time-stream__mobile-labels span {
+    position: absolute;
+    left: var(--label-x);
+    top: var(--label-y);
+    color: #f0f1e9;
+    font: 600 clamp(10px, 3vw, 13px)/1.3 var(--sans);
+    white-space: nowrap;
+    transform: translate(-18%, -50%);
+  }
+
   .time-stream__legend {
-    justify-content: flex-start;
+    justify-content: center;
+    gap: 10px;
+    padding: 22px 4px 2px;
+  }
+
+  .time-stream__legend button {
+    min-height: 40px;
+    padding: 9px 13px;
   }
 
   .time-stream__axis-label {

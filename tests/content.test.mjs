@@ -428,6 +428,8 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.match(component, /时间流向哪里？/);
   assert.match(component, /streamBands\.map/);
   assert.match(component, /viewBox="0 0 1200 420"/);
+  assert.match(component, /preserveAspectRatio="none"/);
+  assert.match(component, /class="time-stream__mobile-labels" aria-hidden="true"/);
   assert.match(component, /class="time-stream__axis-label">AGE<\/p>/);
   assert.equal((component.match(/data-stream-target=/g) ?? []).length, 5);
   assert.equal((component.match(/aria-controls="stream-/g) ?? []).length, 5);
@@ -486,6 +488,9 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.match(styles, /\.time-stream__axis-label\s*\{[^}]*width:\s*max-content;[^}]*margin:\s*11px auto -4px;[^}]*transform:\s*translateX\(22px\);[^}]*font:\s*600 13px var\(--mono\);[^}]*letter-spacing:\s*\.32em/);
   assert.match(styles, /@media \(max-width: 700px\)[\s\S]*?\.time-stream\s*\{\s*margin-top:\s*0;/, 'the mobile time stream should remain below the open source cards');
   assert.match(styles, /@media \(max-width: 700px\)[\s\S]*?\.time-stream__axis-label\s*\{[^}]*transform:\s*translateX\(0\);/, 'the mobile AGE label should be visually centered');
+  assert.match(styles, /@media \(max-width: 700px\)[\s\S]*?\.time-stream__svg\s*\{[^}]*min-width:\s*0;[^}]*height:\s*min\(88vw, 420px\);/, 'the complete stream chart should fit in the mobile card without horizontal scrolling');
+  assert.match(styles, /@media \(max-width: 700px\)[\s\S]*?\.time-stream__canvas\s*\{[^}]*overflow:\s*hidden;/, 'the mobile stream chart should not scroll horizontally');
+  assert.match(styles, /@media \(max-width: 700px\)[\s\S]*?\.time-stream__legend\s*\{[^}]*justify-content:\s*center;/, 'the mobile legend should wrap around the visual center');
   assert.doesNotMatch(styles, /\.time-stream\s*\{[^}]*margin-top:\s*-[\d.]+px;/, 'the time stream must not overlap the preceding section');
   assert.doesNotMatch(styles, /#263020/);
   assert.match(styles, /body\.light \.time-stream/);
