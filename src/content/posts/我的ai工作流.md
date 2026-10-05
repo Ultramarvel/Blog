@@ -6,7 +6,6 @@ summary: 我平时用 AI 辅助开发，基本分五步：先搭好环境和 AGE
 category: 随笔
 publishedAt: 2026-10-04
 readingMinutes: 5
-views: 0
 featured: true
 draft: false
 author: 秦裕东

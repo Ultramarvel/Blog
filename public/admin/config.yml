@@ -68,7 +68,6 @@ collections:
       - { label: "分类", name: "category", widget: "string", default: "随笔" }
       - { label: "发布日期", name: "publishedAt", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
       - { label: "阅读分钟", name: "readingMinutes", widget: "number", value_type: "int", min: 1, default: 5 }
-      - { label: "阅读量", name: "views", widget: "number", value_type: "int", min: 0, default: 0 }
       - { label: "首页推荐", name: "featured", widget: "boolean", default: false }
       - { label: "保存为草稿", name: "draft", widget: "boolean", default: true }
       - { label: "作者", name: "author", widget: "string", default: "林" }

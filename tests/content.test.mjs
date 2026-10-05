@@ -10,7 +10,7 @@ test('every Markdown post contains the required frontmatter fields', async () =>
 
   for (const file of files) {
     const content = await readFile(new URL(file, postsDirectory), 'utf8');
-    for (const field of ['title', 'summary', 'category', 'publishedAt', 'readingMinutes', 'views', 'featured', 'draft']) {
+    for (const field of ['title', 'summary', 'category', 'publishedAt', 'readingMinutes', 'featured', 'draft']) {
       assert.match(content, new RegExp(`^${field}:`, 'm'), `${file} is missing ${field}`);
     }
   }
@@ -225,20 +225,30 @@ test('article pages use a reading column with a card-style table of contents', a
   assert.doesNotMatch(script, /IntersectionObserver/);
 });
 
-test('article title metadata only shows the date, reading time, and view count', async () => {
-  const [layout, schema, cms] = await Promise.all([
+test('article title metadata only shows the date, reading time, and live view count', async () => {
+  const [layout, baseLayout] = await Promise.all([
     readFile(new URL('../src/layouts/ArticleLayout.astro', import.meta.url), 'utf8'),
-    readFile(new URL('../src/content.config.ts', import.meta.url), 'utf8'),
-    readFile(new URL('../public/admin/config.yml', import.meta.url), 'utf8'),
+    readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8'),
   ]);
   const meta = layout.match(/<div class="article-meta">([\s\S]*?)<\/div>/)?.[1] ?? '';
 
   assert.match(meta, /<time datetime=\{dateISO\}>\{dateChinese\}<\/time>/);
   assert.match(meta, /\{data\.readingMinutes\} 分钟阅读/);
-  assert.match(meta, /\{data\.views\} 阅读/);
+  assert.match(meta, /id="busuanzi_page_pv">--<\/span> 阅读/);
   assert.doesNotMatch(meta, /data\.author|data\.location/);
-  assert.match(schema, /views: z\.number\(\)\.int\(\)\.nonnegative\(\)\.default\(0\)/);
-  assert.match(cms, /label: "阅读量", name: "views"/);
+  assert.match(baseLayout, /https:\/\/cdn\.busuanzi\.cc\/busuanzi\/3\.6\.9\/busuanzi\.min\.js/);
+});
+
+test('the site footer exposes live total visits and unique visitors', async () => {
+  const [layout, styles] = await Promise.all([
+    readFile(new URL('../src/layouts/BaseLayout.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../styles.css', import.meta.url), 'utf8'),
+  ]);
+
+  assert.match(layout, /id="busuanzi_site_pv">--<\/span>/);
+  assert.match(layout, /id="busuanzi_site_uv">--<\/span>/);
+  assert.match(layout, /class="footer-stats" aria-label="网站访问统计"/);
+  assert.match(styles, /\.footer-stats\{color:var\(--muted\)\}/);
 });
 
 test('the homepage showcases open source projects with green MagicBento interactions', async () => {

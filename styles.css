@@ -126,3 +126,17 @@
 
 body.light .brand-mark{background:var(--bg);border-color:#5d7334;color:#5d7334}
 body.light .brand-mark span{background:var(--bg);color:#5d7334}
+
+.footer-meta{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:2px;
+  text-align:right;
+}
+.footer-stats{color:var(--muted)}
+.footer-stats span{font-variant-numeric:tabular-nums}
+
+@media(max-width:600px){
+  .footer-meta{align-items:flex-end}
+}
