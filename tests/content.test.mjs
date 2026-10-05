@@ -190,7 +190,10 @@ test('the homepage presents published posts in the interactive recommended readi
   assert.match(carouselStyles, /body:not\(\.light\) \.recommended-reading\s*\{[^}]*linear-gradient\(145deg, rgba\(39, 48, 39, \.88\), rgba\(20, 26, 22, \.94\) 72%\)/);
   assert.match(carouselStyles, /body:not\(\.light\) \.recommended-reading canvas\s*\{\s*filter:\s*brightness\(\.68\) saturate\(\.84\)/);
   assert.match(carouselStyles, /body:not\(\.light\) \.recommended-reading__carousel \.flex-carousel__caption\s*\{\s*color:\s*#f0f1e9/);
+  assert.match(carouselStyles, /@media \(min-width: 701px\)[\s\S]*?\.recommendations-section > \.recommended-reading\s*\{\s*max-width:\s*1280px;/, 'desktop recommendations should use a smaller proportional width');
+  assert.match(carouselStyles, /@media \(min-width: 701px\)[\s\S]*?\.recommended-reading\s*\{\s*height:\s*505px;/, 'desktop recommendations should use a matching proportional height');
   assert.match(carouselStyles, /@media \(max-width: 700px\)[\s\S]*?\.recommendations-section\s*\{\s*padding: 28px 5% 78px;/, 'mobile recommendations should begin close to the preceding orbit section');
+  assert.match(carouselStyles, /@media \(max-width: 700px\)[\s\S]*?\.recommended-reading\s*\{\s*height:\s*440px;/, 'mobile recommendations should keep their existing height');
   assert.match(packageJson, /"ogl"/);
 });
 

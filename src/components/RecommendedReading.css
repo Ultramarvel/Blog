@@ -162,6 +162,17 @@ body:not(.light) .recommended-reading__guide { color: #b3bba9; }
   font-family: var(--mono);
 }
 
+@media (min-width: 701px) {
+  .recommendations-section > .recommended-reading {
+    max-width: 1280px;
+  }
+
+  .recommended-reading {
+    height: 505px;
+    border-radius: 25px;
+  }
+}
+
 @media (max-width: 700px) {
   .recommendations-section {
     padding: 28px 5% 78px;
