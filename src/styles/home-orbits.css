@@ -346,8 +346,9 @@ body.light .orbit-circle:after {
 
 @media (max-width: 600px) {
   .hero--orbit-only {
-    min-height: 420px;
+    min-height: 460px;
     padding-bottom: 10px;
+    overflow: hidden;
   }
 
   .hero--orbit-only .hero-art--circles {
@@ -365,7 +366,7 @@ body.light .orbit-circle:after {
 
   .orbit-profile {
     --outer-orbit-size: min(620px, calc((100vw - 8px) * 1.4706));
-    transform: scale(.68) translate3d(calc(var(--detail-x) - 175px), calc(var(--detail-y) - 240px), 0);
+    transform: scale(.68) translate3d(calc(var(--detail-x) - 175px), calc(var(--detail-y) - 185px), 0);
   }
 
   .orbit-card-tilt {

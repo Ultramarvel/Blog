@@ -77,7 +77,7 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(styles, /@keyframes profile-orbit-counter/);
   assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.orbit-card-tilt\s*\{\s*--orbit-card-scale: 1\.15/, 'mobile profile card should be enlarged independently of the orbit artwork');
   assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.orbit-card-panel li\s*\{\s*font-size: 18px;\s*line-height: 1\.55;/, 'mobile profile roles should use a larger readable type size');
-  assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.hero--orbit-only\s*\{\s*min-height: 420px;\s*padding-bottom: 10px;[\s\S]*?\.hero--orbit-only \.label-bottom\s*\{\s*bottom: 231px;[\s\S]*?\.hero--orbit-only \.hero-index\s*\{\s*bottom: 12px;/, 'mobile orbit content should retain a compact safe gap before the article section');
+  assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.hero--orbit-only\s*\{\s*min-height: 460px;\s*padding-bottom: 10px;\s*overflow: hidden;[\s\S]*?\.hero--orbit-only \.label-bottom\s*\{\s*bottom: 231px;[\s\S]*?\.hero--orbit-only \.hero-index\s*\{\s*bottom: 12px;/, 'mobile orbit should stay inside its section while the article section begins below it');
   assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.hero--orbit-only \.hero-art--circles\s*\{\s*height: 305px;/, 'mobile orbit art height should override the desktop two-class selector');
   assert.match(styles, /@media \(min-width: 851px\)[\s\S]*?\.hero--orbit-only\s*\{\s*min-height: 716px;\s*padding-bottom: 8px;[\s\S]*?\.hero--orbit-only \.label-bottom\s*\{\s*bottom: 91px;/, 'desktop orbit metadata and the following divider should move upward together');
   assert.match(styles, /--outer-orbit-size: min\(620px, calc\(\(100vw - 8px\) \* 1\.4706\)\)/, 'mobile outer orbit should grow responsively without exceeding the viewport');
@@ -88,7 +88,7 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(styles, /\.orbit-card-panel li\s*\{[^}]*font:\s*500 15px\/1\.7 "Microsoft YaHei", "微软雅黑", sans-serif/);
   assert.match(styles, /scale\(1\.15\)/, 'desktop orbit composition should use the enlarged scale');
   assert.ok(styles.includes('transform: scale(.88) translate3d(calc(var(--detail-x) - 125px), calc(var(--detail-y) - 200px), 0);'), 'narrow tablet orbit should remain centered and move upward in the viewport');
-  assert.ok(styles.includes('transform: scale(.68) translate3d(calc(var(--detail-x) - 175px), calc(var(--detail-y) - 240px), 0);'), 'mobile orbit and card should remain centered and move upward on the phone screen');
+  assert.ok(styles.includes('transform: scale(.68) translate3d(calc(var(--detail-x) - 175px), calc(var(--detail-y) - 185px), 0);'), 'mobile orbit and card should remain centered and sit fully inside the first section');
   for (const ring of ['outer', 'middle', 'inner']) {
     assert.match(styles, new RegExp(`body\\.light \\.orbit-circle--${ring}`), `light mode is missing the ${ring} orbit contrast rule`);
   }
