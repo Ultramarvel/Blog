@@ -109,14 +109,23 @@
   height: 4px;
 }
 
+/* The profile card owns the middle of the artwork and reaches past the inner
+   badge rings, so badges used to be sliced by the card edge. Orbit them above
+   the card instead, and keep the outer ring as the readable marker. */
 .orbit-carrier {
   position: absolute;
   left: 50%;
   top: 50%;
-  z-index: 2;
+  z-index: 6;
   border-radius: 50%;
+  pointer-events: none;
   animation: profile-orbit-spin var(--orbit-duration) linear infinite;
   animation-delay: var(--orbit-delay);
+  transition: opacity .3s ease;
+}
+
+.hero-art--circles:has(.orbit-card-tilt:hover) .orbit-carrier {
+  opacity: .5;
 }
 
 .orbit-carrier--idea {
@@ -200,6 +209,14 @@
   background: var(--acid);
   box-shadow: 0 0 0 5px rgba(209, 237, 120, .09), 0 0 13px rgba(209, 237, 120, .5);
   animation: profile-signal-pulse 2s ease-in-out infinite;
+}
+
+/* The two inner badge rings sit closer to the centre than the card half-height,
+   so their badges were always hidden behind the card. Keep only the outer ring,
+   whose badge clears the card outline at every animation phase. */
+.orbit-carrier--field,
+.orbit-carrier--signal {
+  display: none;
 }
 
 .orbit-card-tilt {
