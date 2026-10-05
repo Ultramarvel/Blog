@@ -50,7 +50,11 @@ const dateChinese = `${data.publishedAt.getFullYear()}年${data.publishedAt.getM
             <div class="article-tags"><span>{data.category}</span><span>Markdown</span></div>
             {next && (
               <a class="next-article" href={`/posts/${next.id}/`}>
-                <span>下一篇 →</span><strong>{next.data.title}</strong>
+                <span class="next-article__copy">
+                  <span>CONTINUE READING / 下一篇</span>
+                  <strong>{next.data.title}</strong>
+                </span>
+                <span class="next-article__arrow" aria-hidden="true">↗</span>
               </a>
             )}
           </footer>

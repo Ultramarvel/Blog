@@ -221,6 +221,18 @@ test('article pages do not render the author profile card', async () => {
   assert.doesNotMatch(styles, /author-card|author-avatar/);
 });
 
+test('the next article card uses a balanced horizontal layout', async () => {
+  const [layout, styles] = await Promise.all([
+    readFile(new URL('../src/layouts/ArticleLayout.astro', import.meta.url), 'utf8'),
+    readFile(new URL('../article.css', import.meta.url), 'utf8'),
+  ]);
+  assert.match(layout, /CONTINUE READING \/ 下一篇/);
+  assert.match(layout, /class="next-article__arrow" aria-hidden="true">↗<\/span>/);
+  assert.match(styles, /\.next-article\s*\{[^}]*grid-template-columns: minmax\(0, 1fr\) 46px;/);
+  assert.match(styles, /\.next-article__copy strong\s*\{[^}]*clamp\(17px, 2vw, 21px\)/);
+  assert.match(styles, /\.next-article__arrow\s*\{[^}]*border-radius: 50%/);
+});
+
 test('article pages use a reading column with a card-style table of contents', async () => {
   const [layout, page, styles, script] = await Promise.all([
     readFile(new URL('../src/layouts/ArticleLayout.astro', import.meta.url), 'utf8'),
