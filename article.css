@@ -1,5 +1,5 @@
 .article-page {
-  --reading-width: 760px;
+  --reading-width: 820px;
   --serif: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Noto Sans SC', sans-serif;
   --article-bg: #111311;
   --article-card: #191c18;
@@ -48,7 +48,7 @@
 }
 
 .article-shell {
-  max-width: 1120px;
+  max-width: 1180px;
   margin: 0 auto;
   padding: 48px 24px 104px;
 }

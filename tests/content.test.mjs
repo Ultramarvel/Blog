@@ -217,6 +217,8 @@ test('article section headings do not receive automatic number labels', async ()
 test('article typography uses Microsoft YaHei with cross-platform fallbacks', async () => {
   const styles = await readFile(new URL('../article.css', import.meta.url), 'utf8');
   assert.match(styles, /--serif: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Noto Sans SC', sans-serif;/);
+  assert.match(styles, /--reading-width:\s*820px;/);
+  assert.match(styles, /\.article-shell\s*\{[^}]*max-width:\s*1180px;/);
   assert.match(styles, /\.article-header h1\s*\{[^}]*text-wrap:\s*wrap;/);
   assert.doesNotMatch(styles, /\.article-header h1\s*\{[^}]*text-wrap:\s*balance;/);
 });
