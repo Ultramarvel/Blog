@@ -10,6 +10,7 @@ const posts = defineCollection({
     category: z.string().min(1),
     publishedAt: z.coerce.date(),
     readingMinutes: z.number().int().positive(),
+    views: z.number().int().nonnegative().default(0),
     featured: z.boolean().default(false),
     draft: z.boolean().default(true),
     author: z.string().default('林'),

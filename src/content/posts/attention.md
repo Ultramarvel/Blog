@@ -4,6 +4,7 @@ summary: 我们每天看见太多，却很少真正看见。关于屏幕、目�
 category: 设计观察
 publishedAt: 2026-10-03
 readingMinutes: 8
+views: 0
 featured: true
 draft: false
 author: 林

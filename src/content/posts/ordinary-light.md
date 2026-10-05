@@ -4,6 +4,7 @@ summary: 记录一些没有名字的时刻：墙上的树影、傍晚的窗，�
 category: 生活切片
 publishedAt: 2026-03-08
 readingMinutes: 3
+views: 0
 featured: false
 draft: false
 author: 林
