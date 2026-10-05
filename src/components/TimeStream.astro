@@ -29,7 +29,7 @@ import '../styles/time-stream.css';
       </svg>
       <div class="time-stream__mobile-labels" aria-hidden="true">
         {streamBands.map((layer) => (
-          <span style={`--label-x:${layer.x / 12}%;--label-y:${layer.y / 4.2}%`}>{layer.title}</span>
+          <span style={`--label-x:${(layer.mobileX ?? layer.x + layer.labelWidth / 2) / 12}%;--label-y:${(layer.mobileY ?? layer.y) / 4.2}%`}>{layer.label}</span>
         ))}
       </div>
     </div>

@@ -471,6 +471,20 @@ test('the homepage includes an accessible animated time stream with ordered band
       assert.ok(layer.y < lowerY, `${layer.key} label baseline leaves its stream at x=${sampleX}`);
     });
   });
+  const mobileLabels = new Map(geometry.streamBands.map((layer) => [layer.key, layer]));
+  assert.equal(mobileLabels.get('movement').label, '音乐 / 运动');
+  assert.equal(mobileLabels.get('work').label, '编程 / 工作');
+  assert.ok(mobileLabels.get('movement').mobileX < mobileLabels.get('movement').x, 'the mobile movement label should shift left');
+  assert.ok(mobileLabels.get('work').mobileX < mobileLabels.get('work').x, 'the mobile work label should shift left');
+  assert.ok(mobileLabels.get('game').mobileX > mobileLabels.get('game').x, 'the mobile game label should shift right');
+  ['movement', 'game', 'work'].forEach((key) => {
+    const layerIndex = geometry.streamBands.findIndex((layer) => layer.key === key);
+    const layer = geometry.streamBands[layerIndex];
+    const upperY = geometry.sampleBoundaryY(geometry.streamBoundaries[layerIndex], layer.mobileX);
+    const lowerY = geometry.sampleBoundaryY(geometry.streamBoundaries[layerIndex + 1], layer.mobileX);
+    const centerY = (upperY + lowerY) / 2;
+    assert.ok(Math.abs(layer.mobileY - centerY) < 2, `${key} mobile label should sit at the center of its stream`);
+  });
   assert.doesNotMatch(component, /<img\b/i);
   assert.match(styles, /\.stream-layer text\s*\{[^}]*fill:\s*#f0f1e9;/);
   assert.match(styles, /\[data-active-stream\][^{]*\.stream-layer\.is-active\s*\{[^}]*brightness\(1\.09\)[^}]*saturate\(1\.08\)/);
@@ -491,6 +505,7 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.match(styles, /@media \(max-width: 700px\)[\s\S]*?\.time-stream__svg\s*\{[^}]*min-width:\s*0;[^}]*height:\s*min\(88vw, 420px\);/, 'the complete stream chart should fit in the mobile card without horizontal scrolling');
   assert.match(styles, /@media \(max-width: 700px\)[\s\S]*?\.time-stream__canvas\s*\{[^}]*overflow:\s*hidden;/, 'the mobile stream chart should not scroll horizontally');
   assert.match(styles, /@media \(max-width: 700px\)[\s\S]*?\.time-stream__legend\s*\{[^}]*justify-content:\s*center;/, 'the mobile legend should wrap around the visual center');
+  assert.match(styles, /\.time-stream__mobile-labels span\s*\{[^}]*transform:\s*translate\(-50%, -50%\);/, 'mobile labels should be centered on their data coordinates');
   assert.doesNotMatch(styles, /\.time-stream\s*\{[^}]*margin-top:\s*-[\d.]+px;/, 'the time stream must not overlap the preceding section');
   assert.doesNotMatch(styles, /#263020/);
   assert.match(styles, /body\.light \.time-stream/);
