@@ -1,7 +1,7 @@
 ---
-name: 秦
+name: 秦裕东
 initials: " "
-cardName: Yudong
+cardName: Yudong Qin
 cardRoles:
   - MEng Student at SCNU
   - AI Enthusiast
