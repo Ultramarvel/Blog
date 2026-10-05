@@ -341,6 +341,11 @@ test('the open source showcase presents the EduFlow and FlyCode repositories', a
   }
 
   assert.ok(byTitle.get('EduFlow').tags.includes('Python'));
+  assert.equal(
+    byTitle.get('EduFlow').description,
+    '面向在线教育场景的智能客服系统，提供课程咨询、技术故障解决、课程售后等功能。',
+    'EduFlow should describe its online education support capabilities',
+  );
   assert.ok(byTitle.get('FlyCode').tags.includes('Java'));
 
   assert.deepEqual(

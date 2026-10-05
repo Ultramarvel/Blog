@@ -17,7 +17,7 @@ export const openSourceProjects = [
     status: 'OPEN SOURCE',
     title: 'EduFlow',
     englishTitle: 'EDU AGENT',
-    description: '基于 Python 的在线教育智能客服系统，由多 Agent 协作完成意图识别、RAG 知识问答与自动化评测。',
+    description: '面向在线教育场景的智能客服系统，提供课程咨询、技术故障解决、课程售后等功能。',
     tags: ['Python', 'FastAPI', 'RAG'],
     href: 'https://github.com/Ultramarvel/EduFlow',
     action: '查看仓库',
