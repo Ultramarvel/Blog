@@ -83,8 +83,6 @@ const recommendedItems = posts.map((post, index) => ({
       <div class="hero-index"><span>01</span><span class="index-line"></span><span>SCROLL TO EXPLORE</span></div>
     </section>
 
-    <TimeStream />
-
     <section class="recommendations-section" id="notes">
       <div class="section-heading">
         <div><p class="eyebrow">SELECTED NOTES <span>— 推荐阅读</span></p><h2>值得停留的<span class="accent">文章</span></h2></div>
@@ -94,6 +92,8 @@ const recommendedItems = posts.map((post, index) => ({
     </section>
 
     <OpenSourceProjects />
+
+    <TimeStream />
 
     {profile && (
       <section class="profile-preview" id="about">

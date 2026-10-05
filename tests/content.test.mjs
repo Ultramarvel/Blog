@@ -290,6 +290,10 @@ test('the homepage includes an accessible animated time stream with ordered band
     import(new URL('../src/data/time-stream.mjs', import.meta.url).href),
   ]);
   assert.match(page, /<TimeStream \/>/);
+  assert.ok(
+    page.indexOf('<OpenSourceProjects />') < page.indexOf('<TimeStream />'),
+    'the time stream should appear after the open source projects on every viewport',
+  );
   assert.match(component, /时间流向哪里？/);
   assert.match(component, /streamBands\.map/);
   assert.match(component, /viewBox="0 0 1200 420"/);
