@@ -50,6 +50,7 @@
 .profile-topics .text-link{margin-top:30px}
 body.light .profile-preview__copy h2,body.light .profile-hero__copy h1,body.light .profile-now__heading h2{color:#252920}
 body.light .profile-preview__copy>p,body.light .profile-prose{color:#4f554b}
+body.light .profile-preview__topline span:first-child,body.light .profile-hero__meta span:first-child,body.light .profile-kicker,body.light .profile-dossier>p,body.light .profile-now__heading>p,body.light .profile-topics>p,body.light .profile-now li span{color:#58702f!important}
 body.light .profile-facts strong{color:#363b33}
 body.light .profile-now{background:#dfe0d5;border-color:#c6c9bb}
 body.light .profile-now li strong{color:#3f453a}

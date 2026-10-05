@@ -49,6 +49,11 @@ test('profile planets do not render text in their center', async () => {
   assert.doesNotMatch(styles, /\.profile-sigil(?:--large)? strong/);
 });
 
+test('light mode uses a readable mid-tone green for profile labels', async () => {
+  const styles = await readFile(new URL('../src/styles/profile.css', import.meta.url), 'utf8');
+  assert.match(styles, /body\.light \.profile-preview__topline span:first-child[^\n]*body\.light \.profile-kicker[^\n]*\{color:#58702f!important\}/);
+});
+
 test('the homepage orbit card is compact, animated, and driven by the owner profile', async () => {
   const [page, styles, script, tiltedCard, tiltedStyles, astroConfig, packageJson] = await Promise.all([
     readFile(new URL('../src/pages/index.astro', import.meta.url), 'utf8'),
