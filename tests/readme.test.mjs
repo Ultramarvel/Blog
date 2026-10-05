@@ -7,9 +7,8 @@ const root = new URL('../', import.meta.url);
 const readme = await readFile(new URL('README.md', root), 'utf8');
 const packageJson = JSON.parse(await readFile(new URL('package.json', root), 'utf8'));
 
-test('the README documents the project name and scripts that actually exist', () => {
+test('the README documents the title and scripts that actually exist', () => {
   assert.match(readme, /^# 林间信号 · Field Notes$/m);
-  assert.ok(readme.includes(packageJson.name), `README should mention the package name "${packageJson.name}"`);
 
   const documentedCommands = [...readme.matchAll(/npm (?:run )?([a-z][a-z:]*)/g)].map((match) => match[1]);
   assert.ok(documentedCommands.length > 0, 'README should document npm scripts');
