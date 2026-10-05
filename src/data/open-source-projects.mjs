@@ -7,7 +7,7 @@ export const openSourceProjects = [
     englishTitle: 'FIELD NOTES',
     description: '一个全栈个人博客系统，融合交互式视觉体验、时间流图与液态阅读轮播等特色功能。',
     tags: ['Astro', 'React', 'Decap CMS'],
-    href: '/#top',
+    href: 'https://github.com/Ultramarvel/FieldNotes-blog',
     action: '查看项目',
     featured: true,
   },

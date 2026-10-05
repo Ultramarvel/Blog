@@ -360,7 +360,7 @@ test('the homepage showcases open source projects with green MagicBento interact
   assert.match(styles, /prefers-reduced-motion:\s*reduce/);
 });
 
-test('the open source showcase presents the EduFlow and FlyCode repositories', async () => {
+test('the open source showcase links to the Field Notes, EduFlow, and FlyCode repositories', async () => {
   const [data, magicBento, readme] = await Promise.all([
     import(new URL('../src/data/open-source-projects.mjs', import.meta.url).href),
     readFile(new URL('../src/components/MagicBento.jsx', import.meta.url), 'utf8'),
@@ -372,6 +372,12 @@ test('the open source showcase presents the EduFlow and FlyCode repositories', a
     EduFlow: 'https://github.com/Ultramarvel/EduFlow',
     FlyCode: 'https://github.com/Ultramarvel/FlyCode',
   };
+
+  assert.equal(
+    byTitle.get('林间信号').href,
+    'https://github.com/Ultramarvel/FieldNotes-blog',
+    'the blog card should link to its GitHub repository',
+  );
 
   for (const [title, href] of Object.entries(expected)) {
     const project = byTitle.get(title);
