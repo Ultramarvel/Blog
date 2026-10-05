@@ -1,6 +1,6 @@
 # 林间信号 · Field Notes
 
-一个以 Markdown 为唯一内容源的个人博客（包名 `field-notes-blog`）。全部页面在构建期静态生成，首页、文章列表与文章详情均来自 `src/content/` 下的 Markdown 文件；封面由 CSS 与 Canvas 动态绘制，仓库内不存放图片资源。
+一个全栈个人博客系统，融合 Markdown 内容管理、交互式视觉体验、时间流图与动态阅读推荐等特色功能。
 
 - 线上地址：<https://blog-of-qyd.xyz>
 - 内容后台：<https://blog-of-qyd.xyz/admin/>
