@@ -357,7 +357,7 @@ body.light .orbit-circle:after {
   }
 
   .hero--orbit-only .label-bottom {
-    bottom: 231px;
+    display: none;
   }
 
   .hero--orbit-only .hero-index {
