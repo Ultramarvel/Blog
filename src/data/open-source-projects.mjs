@@ -5,7 +5,7 @@ export const openSourceProjects = [
     status: 'MAINTAINED',
     title: '林间信号',
     englishTitle: 'FIELD NOTES',
-    description: '以 Markdown 为内容源的个人博客系统，整合 Astro、Decap CMS 与可交互的视觉组件。',
+    description: '一个全栈个人博客系统，融合交互式视觉体验、时间流图与液态阅读轮播等特色功能。',
     tags: ['Astro', 'React', 'Decap CMS'],
     href: '/#top',
     action: '查看项目',

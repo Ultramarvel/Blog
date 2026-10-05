@@ -318,9 +318,10 @@ test('the homepage showcases open source projects with green MagicBento interact
 });
 
 test('the open source showcase presents the EduFlow and FlyCode repositories', async () => {
-  const [data, magicBento] = await Promise.all([
+  const [data, magicBento, readme] = await Promise.all([
     import(new URL('../src/data/open-source-projects.mjs', import.meta.url).href),
     readFile(new URL('../src/components/MagicBento.jsx', import.meta.url), 'utf8'),
+    readFile(new URL('../README.md', import.meta.url), 'utf8'),
   ]);
 
   const byTitle = new Map(data.openSourceProjects.map((project) => [project.title, project]));
@@ -342,8 +343,22 @@ test('the open source showcase presents the EduFlow and FlyCode repositories', a
   assert.ok(byTitle.get('EduFlow').tags.includes('Python'));
   assert.ok(byTitle.get('FlyCode').tags.includes('Java'));
 
-  const serialized = JSON.stringify(data.openSourceProjects);
-  assert.doesNotMatch(serialized, /时间流图|液态阅读轮播/, 'replaced showcase entries should be gone');
+  assert.deepEqual(
+    data.openSourceProjects.map((project) => project.title),
+    ['林间信号', 'EduFlow', 'FlyCode'],
+    'the showcase should keep the blog plus the two repositories',
+  );
+
+  const readmeIntro = readme
+    .split('\n')
+    .map((line) => line.trim())
+    .find((line) => line.startsWith('一个全栈个人博客系统'));
+  assert.ok(readmeIntro, 'README should keep the site summary sentence');
+  assert.equal(
+    byTitle.get('林间信号').description,
+    readmeIntro,
+    'the blog card description should match the README summary verbatim',
+  );
 
   assert.match(magicBento, /const externalLink = \/\^https\?:\\\/\\\/\//);
   assert.match(magicBento, /target: '_blank', rel: 'noreferrer noopener'/);
