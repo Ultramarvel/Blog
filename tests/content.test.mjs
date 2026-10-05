@@ -77,7 +77,7 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(styles, /@keyframes profile-orbit-counter/);
   assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.orbit-card-tilt\s*\{\s*--orbit-card-scale: 1\.15/, 'mobile profile card should be enlarged independently of the orbit artwork');
   assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.orbit-card-panel li\s*\{\s*font-size: 18px;\s*line-height: 1\.55;/, 'mobile profile roles should use a larger readable type size');
-  assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.hero--orbit-only\s*\{\s*min-height: 570px;\s*padding-bottom: 18px;[\s\S]*?\.hero--orbit-only \.label-bottom\s*\{\s*bottom: 231px;[\s\S]*?\.hero--orbit-only \.hero-index\s*\{\s*bottom: 42px;/, 'mobile orbit content should retain its placement while removing the empty tail below it');
+  assert.match(styles, /@media \(max-width: 600px\)[\s\S]*?\.hero--orbit-only\s*\{\s*min-height: 540px;\s*padding-bottom: 10px;[\s\S]*?\.hero--orbit-only \.label-bottom\s*\{\s*bottom: 231px;[\s\S]*?\.hero--orbit-only \.hero-index\s*\{\s*bottom: 12px;/, 'mobile orbit content should retain its placement while removing the empty tail below it');
   assert.match(styles, /@media \(min-width: 851px\)[\s\S]*?\.hero--orbit-only\s*\{\s*min-height: 716px;\s*padding-bottom: 8px;[\s\S]*?\.hero--orbit-only \.label-bottom\s*\{\s*bottom: 91px;/, 'desktop orbit metadata and the following divider should move upward together');
   assert.match(styles, /--outer-orbit-size: min\(620px, calc\(\(100vw - 8px\) \* 1\.4706\)\)/, 'mobile outer orbit should grow responsively without exceeding the viewport');
   assert.match(styles, /\.orbit-circle--outer,\s*\.orbit-carrier--idea\s*\{[^}]*width: var\(--outer-orbit-size\);[^}]*height: var\(--outer-orbit-size\)/s, 'outer orbit ring and its badge carrier should stay aligned');
@@ -167,7 +167,7 @@ test('the homepage presents published posts in the interactive recommended readi
   assert.match(carouselStyles, /body:not\(\.light\) \.recommended-reading\s*\{[^}]*linear-gradient\(145deg, rgba\(39, 48, 39, \.88\), rgba\(20, 26, 22, \.94\) 72%\)/);
   assert.match(carouselStyles, /body:not\(\.light\) \.recommended-reading canvas\s*\{\s*filter:\s*brightness\(\.68\) saturate\(\.84\)/);
   assert.match(carouselStyles, /body:not\(\.light\) \.recommended-reading__carousel \.flex-carousel__caption\s*\{\s*color:\s*#f0f1e9/);
-  assert.match(carouselStyles, /@media \(max-width: 700px\)[\s\S]*?\.recommendations-section\s*\{\s*padding: 46px 5% 78px;/, 'mobile recommendations should begin close to the preceding orbit section');
+  assert.match(carouselStyles, /@media \(max-width: 700px\)[\s\S]*?\.recommendations-section\s*\{\s*padding: 28px 5% 78px;/, 'mobile recommendations should begin close to the preceding orbit section');
   assert.match(packageJson, /"ogl"/);
 });
 

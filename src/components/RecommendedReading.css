@@ -164,7 +164,7 @@ body:not(.light) .recommended-reading__guide { color: #b3bba9; }
 
 @media (max-width: 700px) {
   .recommendations-section {
-    padding: 46px 5% 78px;
+    padding: 28px 5% 78px;
   }
 
   .recommendations-section__hint {
