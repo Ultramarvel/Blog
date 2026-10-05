@@ -178,7 +178,7 @@
   max-width: 470px;
   margin: 0;
   color: #92998c;
-  font: 12px/1.9 var(--serif);
+  font: 14px/1.85 var(--serif);
 }
 
 .project-card--featured .project-card__copy>p:first-child,

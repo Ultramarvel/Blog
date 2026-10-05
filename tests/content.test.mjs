@@ -305,6 +305,7 @@ test('the homepage showcases open source projects with green MagicBento interact
   });
   assert.match(styles, /grid-template-columns:\s*1\.35fr \.82fr \.82fr/);
   assert.match(styles, /\.project-card li\s*\{[^}]*font: 11px var\(--mono\)/);
+  assert.match(styles, /\.project-card__copy>p:last-child\s*\{[^}]*font: 14px\/1\.85 var\(--serif\)/);
   assert.match(styles, /\.project-card ul\s*\{[^}]*gap: 8px/);
   assert.match(styles, /\.project-card ul\s*\{[^}]*padding: 30px 118px 0 0/);
   assert.match(styles, /\.project-card__action\s*\{[^}]*font: 11px var\(--mono\)/);
