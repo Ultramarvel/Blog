@@ -211,12 +211,11 @@
   animation: profile-signal-pulse 2s ease-in-out infinite;
 }
 
-/* The two inner badge rings sit closer to the centre than the card half-height,
-   so their badges were always hidden behind the card. Keep only the outer ring,
-   whose badge clears the card outline at every animation phase. */
-.orbit-carrier--field,
-.orbit-carrier--signal {
-  display: none;
+/* Badges orbit above the card (see .orbit-carrier), so the card lets them pass
+   in front of it instead of slicing them at its edge. */
+.orbit-card-tilt:hover .orbit-card-panel {
+  background: rgba(241, 242, 236, .9);
+  backdrop-filter: blur(2px);
 }
 
 .orbit-card-tilt {

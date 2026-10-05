@@ -87,9 +87,9 @@ test('the homepage orbit card is compact, animated, and driven by the owner prof
   assert.match(styles, /\.orbit-carrier\s*\{[^}]*z-index:\s*6;/, 'badges must orbit above the profile card instead of being sliced by its edge');
   assert.match(styles, /\.orbit-carrier\s*\{[^}]*pointer-events:\s*none;/, 'the wide orbit rings must not swallow pointer events aimed at the profile card');
   assert.match(styles, /\.orbit-card-tilt\s*\{[^}]*z-index:\s*5;/, 'the profile card must stay below the orbiting badges');
-  assert.match(styles, /\.orbit-carrier--field,\s*\.orbit-carrier--signal\s*\{\s*display: none;/, 'the inner badge rings stay hidden because the card always covers them');
-  assert.match(page, /orbit-carrier--idea/, 'the outer badge must keep rendering as the visible orbit marker');
   assert.match(styles, /\.hero-art--circles:has\(\.orbit-card-tilt:hover\) \.orbit-carrier\s*\{\s*opacity: \.5;/, 'hovering the card should fade the orbiting badges');
+  assert.doesNotMatch(styles, /\.orbit-carrier--(?:field|signal)\s*\{[^}]*display:\s*none/, 'all three orbiting badges must keep rendering');
+  assert.match(styles, /\.orbit-card-tilt:hover \.orbit-card-panel\s*\{[^}]*background:\s*rgba\(241, 242, 236, \.9\)/, 'the card should soften while a badge passes in front of it');
   assert.match(styles, /\.orbit-card-panel__prompt\s*\{[^}]*font:\s*700 20px\/1\.2 var\(--serif\)/);
   assert.match(styles, /\.orbit-card-panel__prompt--roles\s*\{[^}]*font-size:\s*25px/);
   assert.match(styles, /\.orbit-card-panel>strong\s*\{[^}]*font:\s*700 40px\/1 var\(--sans\)/);
