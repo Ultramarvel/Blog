@@ -7,6 +7,17 @@ const tocItems = tocLinks
     section: document.getElementById(decodeURIComponent(link.hash.slice(1))),
   }))
   .filter((item) => item.section);
+let clickedItem = null;
+let clickReleaseTimer = 0;
+
+const setActiveTocItem = (activeItem) => {
+  tocLinks.forEach((link) => {
+    const isActive = link === activeItem.link;
+    link.classList.toggle('current', isActive);
+    if (isActive) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+};
 
 const updateProgress = () => {
   if (!progress || !prose) return;
@@ -18,6 +29,10 @@ const updateProgress = () => {
 
 const updateTableOfContents = () => {
   if (!tocItems.length) return;
+  if (clickedItem) {
+    setActiveTocItem(clickedItem);
+    return;
+  }
   const activationLine = Math.min(innerHeight * .3, 220);
   let activeItem = tocItems[0];
 
@@ -25,10 +40,20 @@ const updateTableOfContents = () => {
     if (item.section.getBoundingClientRect().top <= activationLine) activeItem = item;
   });
 
-  tocLinks.forEach((link) => {
-    link.classList.toggle('current', link === activeItem.link);
-  });
+  setActiveTocItem(activeItem);
 };
+
+tocItems.forEach((item) => {
+  item.link.addEventListener('click', () => {
+    clickedItem = item;
+    setActiveTocItem(item);
+    clearTimeout(clickReleaseTimer);
+    clickReleaseTimer = setTimeout(() => {
+      clickedItem = null;
+      updateTableOfContents();
+    }, 900);
+  });
+});
 
 let updateFrame = 0;
 const requestPageUpdate = () => {

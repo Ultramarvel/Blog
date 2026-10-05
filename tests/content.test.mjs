@@ -217,7 +217,10 @@ test('article pages use a reading column with a card-style table of contents', a
   assert.match(script, /document\.getElementById\(decodeURIComponent\(link\.hash\.slice\(1\)\)\)/);
   assert.doesNotMatch(script, /document\.querySelector\(link\.getAttribute\('href'\)\)/);
   assert.match(script, /getBoundingClientRect\(\)\.top <= activationLine/);
-  assert.match(script, /link\.classList\.toggle\('current', link === activeItem\.link\)/);
+  assert.match(script, /item\.link\.addEventListener\('click'/);
+  assert.match(script, /setActiveTocItem\(item\)/);
+  assert.match(script, /link\.classList\.toggle\('current', isActive\)/);
+  assert.match(script, /link\.setAttribute\('aria-current', 'location'\)/);
   assert.match(script, /addEventListener\('scroll', requestPageUpdate, \{ passive: true \}\)/);
   assert.doesNotMatch(script, /IntersectionObserver/);
 });
