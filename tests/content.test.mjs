@@ -233,7 +233,8 @@ test('article title metadata only shows the date, reading time, and live view co
   const meta = layout.match(/<div class="article-meta">([\s\S]*?)<\/div>/)?.[1] ?? '';
 
   assert.match(meta, /<time datetime=\{dateISO\}>\{dateChinese\}<\/time>/);
-  assert.match(meta, /\{data\.readingMinutes\} 分钟阅读/);
+  assert.match(meta, /\{data\.readingMinutes\} 分钟/);
+  assert.doesNotMatch(meta, /分钟阅读/);
   assert.match(meta, /id="busuanzi_page_pv">--<\/span> 阅读/);
   assert.doesNotMatch(meta, /data\.author|data\.location/);
   assert.match(baseLayout, /https:\/\/cdn\.busuanzi\.cc\/busuanzi\/3\.6\.9\/busuanzi\.min\.js/);
