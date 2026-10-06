@@ -530,9 +530,11 @@ test('the homepage includes an accessible animated time stream with ordered band
   const mobileLabels = new Map(geometry.streamBands.map((layer) => [layer.key, layer]));
   assert.equal(mobileLabels.get('movement').label, '音乐 / 运动');
   assert.equal(mobileLabels.get('work').label, '编程 / 工作');
-  assert.ok(mobileLabels.get('movement').mobileX < mobileLabels.get('movement').x, 'the mobile movement label should shift left');
+  assert.equal(mobileLabels.get('movement').x, 600, 'the movement label should use the former game position');
+  assert.equal(mobileLabels.get('game').x, 900, 'the game label should use the former movement position');
+  assert.ok(mobileLabels.get('movement').mobileX > mobileLabels.get('movement').x, 'the mobile movement label should shift right');
   assert.ok(mobileLabels.get('work').mobileX < mobileLabels.get('work').x, 'the mobile work label should shift left');
-  assert.ok(mobileLabels.get('game').mobileX > mobileLabels.get('game').x, 'the mobile game label should shift right');
+  assert.ok(mobileLabels.get('game').mobileX < mobileLabels.get('game').x, 'the mobile game label should shift left');
   ['movement', 'game', 'work'].forEach((key) => {
     const layerIndex = geometry.streamBands.findIndex((layer) => layer.key === key);
     const layer = geometry.streamBands[layerIndex];
