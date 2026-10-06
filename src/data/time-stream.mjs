@@ -56,8 +56,8 @@ const bandPath = (upper, lower) => {
 
 const layerDefinitions = [
   { key: 'study', title: '学习', label: '学习', x: 300, y: 116, labelWidth: 52 },
-  { key: 'movement', title: '音乐与运动', label: '音乐 / 运动', x: 600, y: 178, labelWidth: 128, mobileX: 700, mobileY: 178 },
-  { key: 'game', title: '游戏', label: '游戏', x: 900, y: 265, labelWidth: 52, mobileX: 700, mobileY: 256 },
+  { key: 'movement', title: '音乐与运动', label: '音乐 / 运动', x: 600, y: 265, labelWidth: 128, mobileX: 700, mobileY: 256 },
+  { key: 'game', title: '游戏', label: '游戏', x: 900, y: 178, labelWidth: 52, mobileX: 700, mobileY: 178 },
   { key: 'work', title: '编程与工作', label: '编程 / 工作', x: 800, y: 328, labelWidth: 120, mobileX: 700, mobileY: 335 },
   { key: 'family', title: '社交与家庭', label: '社交 / 家庭', x: 100, y: 335, labelWidth: 140 },
 ];

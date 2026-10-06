@@ -518,11 +518,16 @@ test('the homepage includes an accessible animated time stream with ordered band
       assert.ok(current[1] >= previous[1], `boundary ${boundaryIndex} crosses the layer above at point ${pointIndex}`);
     }
   }
+  const labelBandIndexes = new Map([
+    ['movement', 2],
+    ['game', 1],
+  ]);
   geometry.streamBands.forEach((layer, layerIndex) => {
+    const labelBandIndex = labelBandIndexes.get(layer.key) ?? layerIndex;
     const sampleXs = [layer.x, layer.x + layer.labelWidth / 2, layer.x + layer.labelWidth];
     sampleXs.forEach((sampleX) => {
-      const upperY = geometry.sampleBoundaryY(geometry.streamBoundaries[layerIndex], sampleX);
-      const lowerY = geometry.sampleBoundaryY(geometry.streamBoundaries[layerIndex + 1], sampleX);
+      const upperY = geometry.sampleBoundaryY(geometry.streamBoundaries[labelBandIndex], sampleX);
+      const lowerY = geometry.sampleBoundaryY(geometry.streamBoundaries[labelBandIndex + 1], sampleX);
       assert.ok(layer.y - 22 > upperY, `${layer.key} label top leaves its stream at x=${sampleX}`);
       assert.ok(layer.y < lowerY, `${layer.key} label baseline leaves its stream at x=${sampleX}`);
     });
@@ -532,14 +537,17 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.equal(mobileLabels.get('work').label, '编程 / 工作');
   assert.equal(mobileLabels.get('movement').x, 600, 'the movement label should use the former game position');
   assert.equal(mobileLabels.get('game').x, 900, 'the game label should use the former movement position');
+  assert.equal(mobileLabels.get('movement').y, 265, 'the movement label should sit in the game band');
+  assert.equal(mobileLabels.get('game').y, 178, 'the game label should sit in the movement band');
   assert.ok(mobileLabels.get('movement').mobileX > mobileLabels.get('movement').x, 'the mobile movement label should shift right');
   assert.ok(mobileLabels.get('work').mobileX < mobileLabels.get('work').x, 'the mobile work label should shift left');
   assert.ok(mobileLabels.get('game').mobileX < mobileLabels.get('game').x, 'the mobile game label should shift left');
   ['movement', 'game', 'work'].forEach((key) => {
     const layerIndex = geometry.streamBands.findIndex((layer) => layer.key === key);
     const layer = geometry.streamBands[layerIndex];
-    const upperY = geometry.sampleBoundaryY(geometry.streamBoundaries[layerIndex], layer.mobileX);
-    const lowerY = geometry.sampleBoundaryY(geometry.streamBoundaries[layerIndex + 1], layer.mobileX);
+    const labelBandIndex = labelBandIndexes.get(key) ?? layerIndex;
+    const upperY = geometry.sampleBoundaryY(geometry.streamBoundaries[labelBandIndex], layer.mobileX);
+    const lowerY = geometry.sampleBoundaryY(geometry.streamBoundaries[labelBandIndex + 1], layer.mobileX);
     const centerY = (upperY + lowerY) / 2;
     assert.ok(Math.abs(layer.mobileY - centerY) < 2, `${key} mobile label should sit at the center of its stream`);
   });
