@@ -105,10 +105,11 @@
   vector-effect: non-scaling-stroke;
 }
 
-.stream-layer text {
+.stream-label {
   fill: #f0f1e9;
   font: 600 22px var(--sans);
   letter-spacing: -.02em;
+  opacity: 1;
   pointer-events: none;
 }
 
@@ -239,7 +240,7 @@ body.light .time-stream__chart {
     height: min(88vw, 420px);
   }
 
-  .stream-layer text {
+  .stream-label {
     display: none;
   }
 

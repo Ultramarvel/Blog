@@ -22,9 +22,14 @@ import '../styles/time-stream.css';
           <g id={`stream-${layer.key}`} class={`stream-layer stream-layer--${layer.key}`}>
             <title>{layer.title}</title>
             <path d={layer.path}></path>
-            <text x={layer.x} y={layer.y}>{layer.label}</text>
           </g>
         ))}
+
+        <g class="stream-labels" aria-hidden="true">
+          {streamBands.map((layer) => (
+            <text class={`stream-label stream-label--${layer.key}`} x={layer.x} y={layer.y}>{layer.label}</text>
+          ))}
+        </g>
 
       </svg>
       <div class="time-stream__mobile-labels" aria-hidden="true">

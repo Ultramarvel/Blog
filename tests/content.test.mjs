@@ -486,6 +486,9 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.match(component, /viewBox="0 0 1200 420"/);
   assert.match(component, /preserveAspectRatio="none"/);
   assert.match(component, /class="time-stream__mobile-labels" aria-hidden="true"/);
+  assert.match(component, /<g class="stream-labels" aria-hidden="true">/);
+  assert.match(component, /class=\{`stream-label stream-label--\$\{layer\.key\}`\}/);
+  assert.doesNotMatch(component, /<path d=\{layer\.path\}><\/path>\s*<text/);
   assert.match(component, /class="time-stream__axis-label">AGE<\/p>/);
   assert.equal((component.match(/data-stream-target=/g) ?? []).length, 5);
   assert.equal((component.match(/aria-controls="stream-/g) ?? []).length, 5);
@@ -552,7 +555,8 @@ test('the homepage includes an accessible animated time stream with ordered band
     assert.ok(Math.abs(layer.mobileY - centerY) < 2, `${key} mobile label should sit at the center of its stream`);
   });
   assert.doesNotMatch(component, /<img\b/i);
-  assert.match(styles, /\.stream-layer text\s*\{[^}]*fill:\s*#f0f1e9;/);
+  assert.match(styles, /\.stream-label\s*\{[^}]*fill:\s*#f0f1e9;[^}]*opacity:\s*1;/);
+  assert.doesNotMatch(styles, /\[data-active-stream\][^{]*\.stream-label/);
   assert.match(styles, /\[data-active-stream\][^{]*\.stream-layer\.is-active\s*\{[^}]*brightness\(1\.09\)[^}]*saturate\(1\.08\)/);
   assert.match(styles, /--stream-family:\s*#a8c75f/);
   assert.match(styles, /--stream-work:\s*#5d887f/);
