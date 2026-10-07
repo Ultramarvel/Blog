@@ -538,7 +538,11 @@ test('the homepage includes an accessible animated time stream with ordered band
   const mobileLabels = new Map(geometry.streamBands.map((layer) => [layer.key, layer]));
   assert.equal(mobileLabels.get('movement').label, '音乐 / 运动');
   assert.equal(mobileLabels.get('work').label, '编程 / 工作');
-  assert.equal(mobileLabels.get('movement').x, 600, 'the movement label should use the former game position');
+  assert.equal(
+    mobileLabels.get('movement').x + mobileLabels.get('movement').labelWidth / 2,
+    750,
+    'the desktop movement label should be centered in the game band',
+  );
   assert.equal(mobileLabels.get('game').x, 900, 'the game label should use the former movement position');
   assert.equal(mobileLabels.get('movement').y, 265, 'the movement label should sit in the game band');
   assert.equal(mobileLabels.get('game').y, 178, 'the game label should sit in the movement band');
