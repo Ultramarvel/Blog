@@ -540,13 +540,13 @@ test('the homepage includes an accessible animated time stream with ordered band
   assert.equal(mobileLabels.get('work').label, '编程 / 工作');
   assert.equal(
     mobileLabels.get('movement').x + mobileLabels.get('movement').labelWidth / 2,
-    750,
-    'the desktop movement label should be centered in the game band',
+    830,
+    'the desktop movement label should sit right of center in the game band',
   );
   assert.equal(mobileLabels.get('game').x, 900, 'the game label should use the former movement position');
   assert.equal(mobileLabels.get('movement').y, 265, 'the movement label should sit in the game band');
   assert.equal(mobileLabels.get('game').y, 178, 'the game label should sit in the movement band');
-  assert.ok(mobileLabels.get('movement').mobileX > mobileLabels.get('movement').x, 'the mobile movement label should shift right');
+  assert.equal(mobileLabels.get('movement').mobileX, 700, 'the mobile movement label position should remain unchanged');
   assert.ok(mobileLabels.get('work').mobileX < mobileLabels.get('work').x, 'the mobile work label should shift left');
   assert.ok(mobileLabels.get('game').mobileX < mobileLabels.get('game').x, 'the mobile game label should shift left');
   ['movement', 'game', 'work'].forEach((key) => {
