@@ -315,9 +315,10 @@ test('article title metadata only shows the date, reading time, and live view co
   assert.match(meta, /<time datetime=\{dateISO\}>\{dateChinese\}<\/time>/);
   assert.match(meta, /\{data\.readingMinutes\} 分钟/);
   assert.doesNotMatch(meta, /分钟阅读/);
-  assert.match(meta, /id="busuanzi_page_pv">--<\/span> 阅读/);
+  assert.match(meta, /id="vercount_value_page_pv">--<\/span> 阅读/);
   assert.doesNotMatch(meta, /data\.author|data\.location/);
-  assert.match(baseLayout, /https:\/\/cdn\.busuanzi\.cc\/busuanzi\/3\.6\.9\/busuanzi\.min\.js/);
+  assert.match(baseLayout, /https:\/\/events\.vercount\.one\/js/);
+  assert.doesNotMatch(baseLayout, /busuanzi\.cc/);
 });
 
 test('the site footer exposes live total visits and unique visitors', async () => {
@@ -326,8 +327,8 @@ test('the site footer exposes live total visits and unique visitors', async () =
     readFile(new URL('../styles.css', import.meta.url), 'utf8'),
   ]);
 
-  assert.match(layout, /id="busuanzi_site_pv">--<\/span>/);
-  assert.match(layout, /id="busuanzi_site_uv">--<\/span>/);
+  assert.match(layout, /id="vercount_value_site_pv">--<\/span>/);
+  assert.match(layout, /id="vercount_value_site_uv">--<\/span>/);
   assert.match(layout, /class="footer-stats" aria-label="网站访问统计"/);
   assert.match(layout, />2026 Field Notes<\/span>/);
   assert.doesNotMatch(layout, /©/);
